@@ -1,0 +1,59 @@
+.commonContainer {
+    width: 100%;
+    height: 44px;
+    background-color: #7E33E0;
+}
+
+.contentContainer {
+    /* background-color: rgb(47, 185, 185); */
+    width: 80%;
+    margin: auto;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mailPhoneContainer {
+    /* background-color: blue; */
+    width: 40%;
+    height: 44px;
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+}
+
+.mailPhoneContainer p {
+    margin-top: 10px;
+    color: #fff;
+}
+
+.loginOtherContainer {
+    /* background-color: bisque; */
+    width: 40%;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+}
+.wishLoginContainer {
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+    width: 100%;
+    color: #fff;
+}
+
+.imgAndTag {
+    display: flex;
+    justify-content: space-evenly;
+    color: #fff;
+}
+
+.imgAndTag p {
+    margin-top: 10px;
+    color: #fff;
+}
+
+.options {
+    color: #000;
+} 
+

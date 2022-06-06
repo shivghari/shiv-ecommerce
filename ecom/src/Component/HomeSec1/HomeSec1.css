@@ -1,0 +1,83 @@
+.Sec1-background {
+    background-color: #F2F0FF;
+    font: "Josefin Sans";
+    width: 100%;
+    height: max-content;
+}
+
+.smallDesc {
+    font-weight: 500;
+    color: #FB2E86;
+    width: 40%;
+    display: flex;
+    font-size: 16px;
+}
+
+.big-heading{
+    width: 70%;
+    text-align: left;
+    margin-top: -10px;
+}
+
+.big-heading h1 {
+    line-height: 1.3;
+}
+
+.extra-desc {
+    width: 55%;
+    font-size: 16px;
+    display: flex;
+    text-align: left;
+    color: #8A8FB9;
+    
+}
+
+.btnContainer {
+    width: fit-content;
+    display: flex;
+    margin-top: 20px;
+}
+
+.slider-Content {
+    width: fit-content;
+    margin: auto;
+    padding-top: 200px;
+    margin-left: 300px;
+    height: 535px;
+    
+}
+
+.lamp {
+    position: absolute;
+    width: 287px;
+    height: 287px;
+    left: 70px;
+    top: 122px;
+}
+
+.eclipsPink {
+    position: absolute;
+    width: 451px;
+    height: 451px;
+    top: 25%;
+    left: 60%;
+}
+
+.eclipsPink1 {
+    position: absolute;
+    width: 451px;
+    left: 64%;
+    top: 29%;
+}
+
+.seperate-rect {
+    cursor: pointer;
+    display: flex;
+    width: 140px;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.slider-rect-container{
+    margin: auto;
+}
