@@ -1,0 +1,25 @@
+.productRowHolder {
+    display: flex;
+    width: fit-content;
+}
+
+.rowproductDesc {
+    margin-top: 10px;
+}
+
+.rowproductDesc p{
+    margin: 0;
+    text-align: left;
+}
+
+.rowProductName {
+    font-size: 16px;
+    color: #151875;
+    font-weight: 500;
+}
+
+.rowProductPrice {
+    font-size: 14px;
+    color: #151875;
+    font-weight: 500;
+}

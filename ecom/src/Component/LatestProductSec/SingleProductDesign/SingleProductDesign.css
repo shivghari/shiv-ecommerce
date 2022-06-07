@@ -1,0 +1,50 @@
+.ImgIconContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.iconList {
+    width : 15px;
+    margin-top : 40%;
+    display: none;
+}
+
+.productDesc {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.arrivalProductName {
+    color: #151875;
+    font-size: 16px;
+    font-style: "Josefin Sans";
+    font-weight: 500;
+}
+
+.arrivalProductPrice {
+    color: #151875;
+    font-size: 14px;
+    font-style: "Josefin Sans";
+    font-weight: 500;
+}
+
+.strikedprice {
+    color : #FB2448;
+    font-size: 14px;
+    font-style: "Josefin Sans";
+    font-weight: 500;    
+}
+
+.SingleproductCardContainer {
+    width: fit-content;
+}
+
+.SingleproductCardContainer :hover .iconList {
+    display: block;
+}
+
+.IconListHolder {
+    margin-top : 40%;
+    width: 15px;
+}

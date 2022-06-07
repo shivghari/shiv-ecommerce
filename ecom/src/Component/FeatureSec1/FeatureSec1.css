@@ -1,0 +1,64 @@
+.cardIcons {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    display: none;
+}
+
+.btnContainer {
+    width: fit-content;
+    margin: auto;
+    display: none;
+}
+
+.productDescription {
+    padding: 10px;
+}
+
+.productDescription p{
+    margin: 0;
+    margin-top: 3px;
+}
+
+.productName {
+    font-size: 18px;
+    color : #FB2E86;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+}
+
+.productCode {
+    font-size: 14px;
+    color: #151875;
+    font-family: "Josefin Sans";
+}
+
+.productPrice {
+    font-size: 14px;
+    color: #151875;
+    font-family: "Josefin Sans";
+}
+
+.cardContainer {
+    width: fit-content;
+}
+.cardContainer:hover .productDesc {
+    background-color: #2F1AC4;
+    color : #fff
+}
+
+.cardContainer:hover .btnContainer {
+    display: block;
+    
+}
+
+.cardContainer:hover .cardIcons {
+    display: block;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.cardContainer:hover .productDesc p {
+    color: #fff;
+}

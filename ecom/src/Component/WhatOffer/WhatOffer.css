@@ -1,0 +1,26 @@
+.WhatOfferContainer {
+    margin-top: 60px;
+}
+
+.WhatOfferHeading {
+    font-size: 42px;
+    color: #151875;
+}
+
+.offerBoxHolder {
+    width: 80%;
+    margin: auto;
+    margin-top: 90px;
+}
+
+.offerBox {
+    width: 270;
+}
+
+.offerBox p {
+    margin: auto;
+    font-size: 16px;
+    width: 200px;
+    color : rgba(26, 11, 91, 0.3);
+    text-align: center;
+}
