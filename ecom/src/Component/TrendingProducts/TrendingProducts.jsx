@@ -7,7 +7,10 @@ import "./TrendingProducts.css";
 
 function TrendingProducts() {
   return (
-    <div className="tremdingHolder">
+    <div className="trendingHolder">
+      <div className="TrendingSecHeading">
+        <h1>Trending Product</h1>
+      </div>
       <Row>
         <Col lg={3}>
           <TrendingProductSolo1 />

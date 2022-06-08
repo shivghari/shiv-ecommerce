@@ -1,4 +1,14 @@
-.tremdingHolder {
+.trendingHolder {
     width: 80%;
     margin: auto;
+    margin-top: 100px;
+}
+
+.TrendingSecHeading h1{
+    font-size: 42px;
+    color: #151875;
+}
+
+.TrendingSecHeading {
+    margin-bottom: 30px;
 }

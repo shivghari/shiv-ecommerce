@@ -1,0 +1,16 @@
+.BlogContainer {
+    margin-top : 60px
+}
+
+.BlogDisplayer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.BlogHomeHeading {
+    font-size: 42px;
+    color: #151875;
+}

@@ -1,0 +1,10 @@
+.sponserImgContainer {
+    height: 200px;
+    width: 200px;
+}
+
+.logosHolder {
+    width: fit-content;
+    margin: auto;
+    margin-top: 60px;
+}

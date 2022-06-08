@@ -1,0 +1,23 @@
+.CategorySliderHolder {
+    width: 80%;
+    margin: auto;
+
+}
+
+.topCategotyHeading {
+    font-size: 42px;
+    color: #151875;
+}
+
+.CategoryHolderSlider {
+    display: flex;
+    justify-content: space-around;
+}
+
+.SliderMainDiv {
+    margin-top: 60px
+}
+
+.CategorySliderContainer {
+    padding : 30px;
+}

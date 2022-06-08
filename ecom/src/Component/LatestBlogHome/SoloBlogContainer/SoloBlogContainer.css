@@ -1,0 +1,44 @@
+.BlogPostHolder {
+    width: 330px;
+}
+
+.writerDateHolder {
+    width: 100%;
+    display: flex;
+    justify-content: initial;
+}
+
+.writerDateHolder p {
+    padding-right: 30px;
+}
+
+.blogNameHolder {
+    text-align: left;
+}
+
+.blogName {
+    font-size: 18px;
+    color : #151875;
+    font-weight: 700;
+}
+
+.BlogDesc {
+    text-align: left;
+    color : #72718F;
+    font-size : 16px;
+}
+
+.BlogreadMore {
+    font-size: 16px;
+    color: #151875;
+    font-weight: 500;
+}
+
+.BlogdetailsContainer {
+    margin-top: 30px;
+}
+
+.curveImg {
+    width: 330px;
+    border-radius: 6px;
+}

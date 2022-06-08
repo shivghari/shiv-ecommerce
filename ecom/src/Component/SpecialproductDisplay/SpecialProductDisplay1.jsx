@@ -1,8 +1,9 @@
 import React from "react";
-import BlueSofa from "./BlueSofa.png";
+
 import BackEclipsPink from "./BackEclipsdPink.png";
 import "./SpecialProductDisplay1.css";
 import { Button } from "react-bootstrap";
+import Chair from "./Chair.png";
 
 function SpecialProductDisplay1() {
   return (
@@ -10,7 +11,7 @@ function SpecialProductDisplay1() {
       <div className="specialProductAndDecHolder">
         <div style={{ width: "fit-content" }}>
           <img src={BackEclipsPink} alt="specialProduct" className="" />
-          <img src={BlueSofa} alt="specialProduct" className="specialImage" />
+          <img src={Chair} alt="specialProduct" className="specialImage" />
         </div>
         <div className="spacer"></div>
         <div className="specialProductDetailsHolder">

@@ -1,7 +1,8 @@
 import React from "react";
 import "./SingleProductDesign.css";
 
-import Card from "@mui/material/Card";
+// import Card from "@mui/material/Card";
+import { Card } from "antd";
 import CardContent from "@mui/material/CardContent";
 
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -16,7 +17,7 @@ function SingleProductDesign({
 }) {
   return (
     <div className="SingleproductCardContainer">
-      <Card sx={{ width: "360px" }}>
+      <Card style={{ width: "360px" }}>
         <CardContent>
           <div className="card-content">
             <div className="ImgIconContainer">

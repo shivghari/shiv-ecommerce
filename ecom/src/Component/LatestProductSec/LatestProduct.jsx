@@ -17,7 +17,7 @@ function LatestProduct() {
           <Nav>
             <div className="latestProductLinks">
               <Nav.Item>
-                <Nav.Link eventKey={"newArrival"} stykle={{ color: "#151875" }}>
+                <Nav.Link eventKey={"newArrival"} style={{ color: "#151875" }}>
                   New Arrival
                 </Nav.Link>
               </Nav.Item>

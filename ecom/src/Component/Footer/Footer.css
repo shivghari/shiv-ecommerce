@@ -1,0 +1,80 @@
+.mainFooterHolder {
+    width: 100%;
+    background-color: #EEEFFB;
+}
+
+.footerHolder {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.InputAndSignin {
+    margin-top: 30px;
+    display: flex;
+}
+
+input {
+    border: none;
+    height: 37px;
+    width: 300px;
+}
+
+input:focus{
+    outline: none;
+}
+
+.footerParts p {
+    font-size: 16px;
+    color: #8A8FB9;
+}
+
+.footerParts h1 {
+    font-size: 38px;
+    color: #000000;
+    text-align: left;
+}
+
+.footerPartsHeading {
+    font-size: 22px;
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.Contactinfo {
+    text-align: left;
+    margin: 0%;
+}
+
+.ContactInfoContainer {
+    margin-top: 30px;
+}
+
+.SignUpBtnFooter {
+    background-color: #FB2E86;
+    border: #FB2E86;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.bottomFooter {
+    background-color: #E7E4F8;
+    height: 53px;
+
+}
+
+.bottomFooterText {
+    color : #9DA0AE;
+    font-size: 16px;
+}
+
+.bottomFooterContentHolder {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    padding-top: 10px;
+}

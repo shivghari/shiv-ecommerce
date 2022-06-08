@@ -1,0 +1,21 @@
+.solo1Desc p{
+    margin : 0;
+}
+
+.solo1name {
+    font-size: 16px;
+    font-weight: 700;
+    color : #151875;
+}
+
+.solo1price {
+    font-size: 14px;
+    color : #151875;
+    font-weight: 500;
+}
+
+.solo1strickedPrice {
+    padding-left: 10px;
+    color: rgba(21, 24, 117, 0.3);
+    font: 14px;
+}

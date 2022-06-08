@@ -1,0 +1,14 @@
+.discountItemHeading h1 {
+    font-size: 42px;
+    color : #151875;
+}
+
+.discountItemcontentHolder {
+    margin-top : 80px;
+}
+
+.discountLinks {
+    width: fit-content;
+    margin: auto;
+    margin-top: 30px;
+}

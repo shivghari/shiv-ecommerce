@@ -1,7 +1,8 @@
 import React from "react";
 import "./FeatureSec1.css";
 
-import Card from "@mui/material/Card";
+// import Card from "@mui/material/Card";
+import { Card } from "antd";
 import CardContent from "@mui/material/CardContent";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -13,7 +14,7 @@ function FeatureSec1({ productPhoto, productname, productCode, productPrice }) {
     <div>
       <div className="cardContainer">
         <Card
-          sx={{
+          style={{
             width: "270px",
             height: "430px",
           }}
