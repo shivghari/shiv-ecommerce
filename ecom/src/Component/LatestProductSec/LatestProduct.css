@@ -31,3 +31,15 @@
     color: #FB2E86 !important;
     font-weight: 500 !important;
 }
+
+
+@media screen and (max-width : 450px) {
+    .latestProductLinks {
+        width: 360px;
+        font-size: small;
+    }
+    .LatestProductHeading {
+        font-size: 30px;
+        width:360px;
+    }
+}

@@ -18,7 +18,7 @@ function App() {
           <Route exact path='/' element={<HomePage />}></Route>
           <Route exact path='/login' element={<Login />}></Route>
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );

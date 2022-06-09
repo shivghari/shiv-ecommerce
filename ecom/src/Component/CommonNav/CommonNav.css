@@ -29,7 +29,7 @@
 
 .loginOtherContainer {
     /* background-color: bisque; */
-    width: 40%;
+    width: 50%;
     height: 44px;
     display: flex;
     justify-content: space-between;
@@ -56,5 +56,81 @@
 
 .options {
     color: #000;
-} 
+}
+
+.extraIconForResponsive {
+    display: none;
+}
+
+@media only screen and (max-width: 420px) {
+
+    .commonContainer {
+        width: 100% !important;
+    }
+
+    .mailPhoneContainer .hideIcon{
+       display: none;
+   }
+
+   .mailPhoneContainer p{
+        margin-left: 30px;
+   }
+
+   .mailPhoneContainer {
+        margin-left: 14%;
+    }
+
+   .loginOtherContainer {
+       display: none;
+   }
+
+   .extraIconForResponsive {
+        display: block;   
+    }
+
+}
+
+@media only screen and (max-width: 770px) {
+
+    .commonContainer {
+        width: 100%;
+    }
+
+    .mailPhoneContainer .hideIcon{
+       display: none;
+   }
+
+   .mailPhoneContainer p{
+        margin-left: 30px;
+   }
+
+   .mailPhoneContainer {
+        margin-left: 14%;
+    }
+
+   .loginOtherContainer {
+       display: none;
+   }
+
+   .extraIconForResponsive {
+        display: block;   
+    }
+
+}
+
+@media only screen and (max-width: 375px) { 
+    .commonContainer {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1000) {
+    .commonContainer {
+        width: 100%;
+    }
+
+    .loginOtherContainer {
+        width: 500px;
+    }
+}
 

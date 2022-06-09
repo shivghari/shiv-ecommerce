@@ -16,14 +16,14 @@ function CommonNav() {
     <div className="commonContainer">
       <div className="contentContainer">
         <div className="mailPhoneContainer">
-          <div>
+          <div className="hideIcon">
             <MailOutlineIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p>test123test@gmai.com</p>
-          <div>
+          <p className="email">test123test@gmai.com</p>
+          <div className="hideIcon">
             <PhoneInTalkIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p>(12345)67890</p>
+          <p classaName="phone">(12345)67890</p>
         </div>
         <div className="loginOtherContainer">
           <NativeSelect defaultValue={"English"} sx={{ color: "#fff" }}>
@@ -65,6 +65,14 @@ function CommonNav() {
           <div className="imgAndTag">
             <ShoppingCartOutlinedIcon style={{ marginTop: "10px" }} />
           </div>
+        </div>
+        <div className="extraIconForResponsive">
+          <PersonRoundedIcon
+            style={{ marginTop: "10px", color: "#fff" }}
+            onClick={() => {
+              Navigate("/login");
+            }}
+          />
         </div>
       </div>
     </div>

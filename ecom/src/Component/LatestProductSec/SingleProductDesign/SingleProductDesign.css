@@ -48,3 +48,9 @@
     margin-top : 40%;
     width: 15px;
 }
+
+@media screen and (max-width : 450px) {
+    .card-content {
+        width: 300px;
+    }
+}

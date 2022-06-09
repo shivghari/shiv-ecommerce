@@ -13,18 +13,18 @@ import LatestBlogHome from "../LatestBlogHome/LatestBlogHome";
 
 function HomePage() {
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <HomeSec1 />
       <FeatureProduct />
       <LatestProduct />
-      <WhatOffer />
+      {/* <WhatOffer />
       <SpecialProductDisplay1 />
       <TrendingProducts />
       <DiscountItem />
       <TopCategory />
       <SubscribeBar />
       <Sponsers />
-      <LatestBlogHome />
+      <LatestBlogHome /> */}
     </div>
   );
 }

@@ -17,51 +17,51 @@ function SingleProductDesign({
 }) {
   return (
     <div className="SingleproductCardContainer">
-      <Card style={{ width: "360px" }}>
-        <CardContent>
-          <div className="card-content">
-            <div className="ImgIconContainer">
-              <div className="IconListHolder">
-                <div className="iconList">
-                  <ShoppingCartOutlinedIcon
-                    sx={{
-                      fontSize: "18px",
-                      color: "#1389FF",
-                      marginBottom: "10px",
-                      cursor: "pointer",
-                    }}
-                  />
-                  <FavoriteBorderOutlinedIcon
-                    sx={{
-                      fontSize: "18px",
-                      color: "#1389FF",
-                      marginBottom: "10px",
-                      cursor: "pointer",
-                    }}
-                  />
-                  <ZoomInOutlinedIcon
-                    sx={{
-                      fontSize: "18px",
-                      color: "#1389FF",
-                      marginBottom: "10px",
-                      cursor: "pointer",
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="imgComtainer">
-                <img src={productImage} alt="New Arrival" />
+      <Card style={{ width: "300px" }}>
+        {/* <CardContent> */}
+        <div className="card-content">
+          <div className="ImgIconContainer">
+            <div className="IconListHolder">
+              <div className="iconList">
+                <ShoppingCartOutlinedIcon
+                  sx={{
+                    fontSize: "18px",
+                    color: "#1389FF",
+                    marginBottom: "10px",
+                    cursor: "pointer",
+                  }}
+                />
+                <FavoriteBorderOutlinedIcon
+                  sx={{
+                    fontSize: "18px",
+                    color: "#1389FF",
+                    marginBottom: "10px",
+                    cursor: "pointer",
+                  }}
+                />
+                <ZoomInOutlinedIcon
+                  sx={{
+                    fontSize: "18px",
+                    color: "#1389FF",
+                    marginBottom: "10px",
+                    cursor: "pointer",
+                  }}
+                />
               </div>
             </div>
-            <div className="productDesc">
-              <p className="arrivalProductName">{productName}</p>
-              <p className="arrivalProductPrice">
-                {productPrice}{" "}
-                <strike className="strikedprice">{strikedPrice}</strike>
-              </p>
+            <div className="imgComtainer">
+              <img src={productImage} alt="New Arrival" />
             </div>
           </div>
-        </CardContent>
+          <div className="productDesc">
+            <p className="arrivalProductName">{productName}</p>
+            <p className="arrivalProductPrice">
+              {productPrice}{" "}
+              <strike className="strikedprice">{strikedPrice}</strike>
+            </p>
+          </div>
+        </div>
+        {/* </CardContent> */}
       </Card>
     </div>
   );

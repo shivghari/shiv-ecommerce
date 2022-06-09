@@ -10,8 +10,8 @@ function BestSeller() {
   return (
     <div>
       <div className="ArrivalHolder">
-        <Row gutter={[32, 32]}>
-          <Col>
+        <Row>
+          <Col xs={24} md={6} sm={6} lg={4}>
             <SingleProductDesign
               productImage={NA2}
               productName={"Comfort Handy Craft"}
@@ -19,7 +19,7 @@ function BestSeller() {
               strikedPrice={"$55.00"}
             />
           </Col>
-          <Col>
+          <Col xs={24} md={6} sm={6} lg={4}>
             <SingleProductDesign
               productImage={NA2}
               productName={"Comfort Handy Craft"}
@@ -27,7 +27,7 @@ function BestSeller() {
               strikedPrice={"$55.00"}
             />
           </Col>
-          <Col>
+          <Col xs={24} md={6} sm={6} lg={4}>
             <SingleProductDesign
               productImage={NA2}
               productName={"Comfort Handy Craft"}
@@ -35,7 +35,7 @@ function BestSeller() {
               strikedPrice={"$55.00"}
             />
           </Col>
-          <Col>
+          <Col xs={24} md={6} sm={6} lg={4}>
             <SingleProductDesign
               productImage={NA2}
               productName={"Comfort Handy Craft"}
@@ -43,7 +43,7 @@ function BestSeller() {
               strikedPrice={"$55.00"}
             />
           </Col>
-          <Col>
+          <Col xs={24} md={6} sm={6} lg={4}>
             <SingleProductDesign
               productImage={NA2}
               productName={"Comfort Handy Craft"}
@@ -51,7 +51,7 @@ function BestSeller() {
               strikedPrice={"$55.00"}
             />
           </Col>
-          <Col>
+          <Col xs={24} md={6} sm={6} lg={4}>
             <SingleProductDesign
               productImage={NA2}
               productName={"Comfort Handy Craft"}

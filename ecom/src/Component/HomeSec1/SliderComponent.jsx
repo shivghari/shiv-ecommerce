@@ -9,8 +9,8 @@ function SliderComponent({ Lamp, Eclips, Chair, Button, BigHeading }) {
   return (
     <div>
       <div className="Sec1-background">
-        <div>
-          <img src={Lamp} alt="lightLamp" className="lamp" />
+        <img src={Lamp} alt="lightLamp" className="lamp" />
+        <div className="firstDisplay">
           <div className="slider-Content">
             <div className="smallDesc">
               <p>Best Furniture For your Castle...</p>
@@ -33,8 +33,6 @@ function SliderComponent({ Lamp, Eclips, Chair, Button, BigHeading }) {
               </Button>
             </div>
           </div>
-          <img src={Eclips} alt="eclipsBack" className="eclipsPink" />
-          <img src={Eclips} alt="eclipsBack" className="eclipsPink1" />
           <img src={Chair} alt="eclipsBack" className="eclipsPink" />
         </div>
       </div>
