@@ -46,6 +46,7 @@
     display: flex;
     justify-content: space-evenly;
     color: #fff;
+    cursor: pointer;
 }
 
 .imgAndTag p {

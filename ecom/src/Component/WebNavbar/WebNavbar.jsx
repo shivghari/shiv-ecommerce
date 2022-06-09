@@ -9,11 +9,20 @@ import {
   Button,
 } from "react-bootstrap";
 
+import { useNavigate } from "react-router-dom";
+
 function WebNavbar() {
+  const Navigate = useNavigate();
   return (
     <Navbar bg="light" expand="lg" className="webnav">
       <Container fluid>
-        <Navbar.Brand href="#" className="logo">
+        <Navbar.Brand
+          href="#"
+          className="logo"
+          onClick={() => {
+            Navigate("/");
+          }}
+        >
           Hecto
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

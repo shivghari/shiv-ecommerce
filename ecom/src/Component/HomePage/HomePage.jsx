@@ -10,7 +10,6 @@ import TopCategory from "../TopCategory/TopCategory";
 import SubscribeBar from "../SubscribeBar/SubscribeBar";
 import Sponsers from "../Sponsers/Sponsers";
 import LatestBlogHome from "../LatestBlogHome/LatestBlogHome";
-import Footer from "../Footer/Footer";
 
 function HomePage() {
   return (
@@ -26,7 +25,6 @@ function HomePage() {
       <SubscribeBar />
       <Sponsers />
       <LatestBlogHome />
-      <Footer />
     </div>
   );
 }

@@ -8,8 +8,10 @@ import NativeSelect from "@mui/material/NativeSelect";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useNavigate } from "react-router-dom";
 
 function CommonNav() {
+  const Navigate = useNavigate();
   return (
     <div className="commonContainer">
       <div className="contentContainer">
@@ -49,7 +51,12 @@ function CommonNav() {
               Rupee
             </option>
           </NativeSelect>
-          <div className="imgAndTag">
+          <div
+            className="imgAndTag"
+            onClick={() => {
+              Navigate("/login");
+            }}
+          >
             <p>Login</p> <PersonRoundedIcon style={{ marginTop: "10px" }} />
           </div>
           <div className="imgAndTag">
