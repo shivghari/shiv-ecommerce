@@ -78,3 +78,50 @@ input:focus{
     margin: auto;
     padding-top: 10px;
 }
+
+@media only screen and (max-width: 420px) {
+    .footerHolder {
+        display: block;
+    }
+
+    .InputAndSignin input {
+        width: 200px;
+    }
+
+    .bottomFooterContentHolder {
+        width: 90% ;
+    }
+
+    .footer-footer-icon-holder {
+        width: 150px;
+    }
+
+    .bottomFooterText {
+        font-size: 14px;
+
+    }
+
+}
+
+@media only screen and (max-width: 820px) and ( min-width: 421px) {
+    .footerHolder {
+        width: 90%;
+    }
+    
+    .InputAndSignin input {
+        width: 200px;
+    }
+
+    .SignUpBtnFooter {
+        width: 100px;
+    }
+
+}
+
+
+@media only screen and (max-width: 1200px) and ( min-width: 821px) {
+    .footerHolder {
+        width: 90%;
+    }
+}
+

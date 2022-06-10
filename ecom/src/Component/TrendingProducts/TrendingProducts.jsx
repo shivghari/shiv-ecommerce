@@ -11,21 +11,21 @@ function TrendingProducts() {
       <div className="TrendingSecHeading">
         <h1>Trending Product</h1>
       </div>
-      <Row>
-        <Col lg={3}>
+      <Row className="TrendingRow">
+        <Col lg={3} md={6} sm={6}>
           <TrendingProductSolo1 />
         </Col>
-        <Col lg={3}>
+        <Col lg={3} md={6} sm={6}>
           <TrendingProductSolo1 />
         </Col>
-        <Col lg={3}>
+        <Col lg={3} md={6} sm={6}>
           <TrendingProductSolo1 />
         </Col>
-        <Col lg={3}>
+        <Col lg={3} md={6} sm={6}>
           <TrendingProductSolo1 />
         </Col>
       </Row>
-      <Row>
+      <Row className="TrendingRow">
         <Col>
           <TrendingProductSoloRect />
         </Col>
@@ -44,10 +44,6 @@ function TrendingProducts() {
           </Row>
         </Col>
       </Row>
-
-      {/* <TrendingProductSolo1 />
-      <TrendingProductSoloRect />
-      <TrendingProductRowSolo /> */}
     </div>
   );
 }

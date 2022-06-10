@@ -19,18 +19,18 @@ function DiscountItemContainer({ Heading, Name, Image }) {
           </p>
           <div className="discountPropertyHolder">
             <Row>
-              <Col className="">
+              <Col xs={12}>
                 <CheckIcon /> Material Expose Like Metal
               </Col>
-              <Col>
+              <Col xs={12}>
                 <CheckIcon /> Clear Lines and Geo Metric Figure
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col xs={12}>
                 <CheckIcon /> Simple Nuteral Colours
               </Col>
-              <Col>
+              <Col xs={12}>
                 <CheckIcon /> Material Expose Like Metal
               </Col>
             </Row>
@@ -41,7 +41,13 @@ function DiscountItemContainer({ Heading, Name, Image }) {
         </div>
       </div>
       <div className="discountImg">
-        <img src={DI1} alt="Discount Item" height="497px" width="560px" />
+        <img
+          src={DI1}
+          alt="Discount Item"
+          height="497px"
+          width="560px"
+          className="discountImagecss"
+        />
       </div>
     </div>
   );

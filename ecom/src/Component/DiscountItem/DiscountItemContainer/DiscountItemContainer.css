@@ -50,3 +50,65 @@
 .discountItemBtn {
     display: flex;
 }
+
+@media only screen and (max-width: 420px) {
+    .soloDiscountHolder {
+        display: block;
+    }
+
+    .discountImagecss {
+        height: min-content;
+        width: 250px;
+        margin-left: -10%;
+        /* margin-right: 60%; */
+    }
+
+    .discountImg {
+        width: min-content;
+        height: fit-content;
+    }
+
+    .discountDesc {
+        width: 100%;
+        margin-left: -10%;
+    }
+
+}
+
+@media only screen and (max-width: 820px) and ( min-width: 421px) {
+    .discountImagecss {
+        height: 330px;
+        width: 330px;
+        margin-left: -10%;
+        margin-top: 15%;
+    }
+
+    .discountImg {
+        width: min-content;
+    }
+
+    .discountDesc {
+        margin-left: -10%;
+        height: fit-content;
+    }
+}
+
+
+@media only screen and (max-width: 1200px) and ( min-width: 821px) {
+    .discountImagecss {
+        height: 330px;
+        width: 330px;
+        margin-left: -10%;
+        margin-top: 15%;
+    }
+
+    .discountImg {
+        width: min-content;
+        height: fit-content;
+    }
+
+    .discountDesc {
+        margin-left: -10%;
+    }
+}
+

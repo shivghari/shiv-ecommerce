@@ -1,8 +1,11 @@
 const express = require('express')
-const loginRouter = require('./routes/loginRoute')
-
+var cors = require('cors')
+const loginRoute = require('./routes/loginRoute')
+const signinRoute = require('./routes/signinRoute')
 const app = express()
 
-app.use('/login', loginRouter);
+app.use(cors())
+app.use('/login', loginRoute);
+app.use('/signin', signinRoute)
 
 app.listen(3001, ()=>{console.log('Server running on 3001')})

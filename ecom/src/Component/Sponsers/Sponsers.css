@@ -8,3 +8,21 @@
     margin: auto;
     margin-top: 60px;
 }
+
+
+@media only screen and (max-width: 420px) {
+    .sponserImgContainer {
+        height: 130px;
+        width: 130px;
+    }    
+}
+
+@media only screen and (max-width: 820px) and ( min-width: 421px) {
+    
+}
+
+
+@media only screen and (max-width: 1200px) and ( min-width: 821px) {
+  
+}
+

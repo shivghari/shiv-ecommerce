@@ -51,7 +51,7 @@ function Footer() {
         <div className="bottomFooter">
           <div className="bottomFooterContentHolder">
             <p className="bottomFooterText">&copy;Website-All right reserved</p>
-            <div>
+            <div className="footer-footer-icon-holder">
               <FacebookIcon sx={{ color: "#151875", marginRight: "20px" }} />
               <InstagramIcon sx={{ color: "#151875", marginRight: "20px" }} />
               <TwitterIcon sx={{ color: "#151875", marginRight: "20px" }} />

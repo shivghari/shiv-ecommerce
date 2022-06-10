@@ -1,6 +1,7 @@
 import "./LatestBlogHome.css";
 import React from "react";
 import SoloBlogContainer from "./SoloBlogContainer/SoloBlogContainer";
+import { Col, Row } from "react-bootstrap";
 
 function LatestBlogHome() {
   return (
@@ -9,9 +10,17 @@ function LatestBlogHome() {
         <h1>Latest Blog</h1>
       </div>
       <div className="BlogDisplayer">
-        <SoloBlogContainer />
-        <SoloBlogContainer />
-        <SoloBlogContainer />
+        <Row>
+          <Col xs={12} md={6} lg={4}>
+            <SoloBlogContainer />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <SoloBlogContainer />
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <SoloBlogContainer />
+          </Col>
+        </Row>
       </div>
     </div>
   );

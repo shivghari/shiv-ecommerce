@@ -31,6 +31,7 @@ function WebNavbar() {
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
+            id="scrollNav"
           >
             <Nav.Link href="#action1" className="links">
               Home

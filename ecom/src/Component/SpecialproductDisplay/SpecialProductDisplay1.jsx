@@ -10,7 +10,11 @@ function SpecialProductDisplay1() {
     <div className="specialProductAllDeaitlsHolder">
       <div className="specialProductAndDecHolder">
         <div style={{ width: "fit-content" }}>
-          <img src={BackEclipsPink} alt="specialProduct" className="" />
+          <img
+            src={BackEclipsPink}
+            alt="specialProduct"
+            className="imageBackround"
+          />
           <img src={Chair} alt="specialProduct" className="specialImage" />
         </div>
         <div className="spacer"></div>

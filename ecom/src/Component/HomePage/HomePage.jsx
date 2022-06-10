@@ -17,14 +17,14 @@ function HomePage() {
       <HomeSec1 />
       <FeatureProduct />
       <LatestProduct />
-      {/* <WhatOffer />
+      <WhatOffer />
       <SpecialProductDisplay1 />
       <TrendingProducts />
       <DiscountItem />
       <TopCategory />
       <SubscribeBar />
       <Sponsers />
-      <LatestBlogHome /> */}
+      <LatestBlogHome />
     </div>
   );
 }

@@ -3,7 +3,6 @@ import "./SingleProductDesign.css";
 
 // import Card from "@mui/material/Card";
 import { Card } from "antd";
-import CardContent from "@mui/material/CardContent";
 
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -18,7 +17,6 @@ function SingleProductDesign({
   return (
     <div className="SingleproductCardContainer">
       <Card style={{ width: "300px" }}>
-        {/* <CardContent> */}
         <div className="card-content">
           <div className="ImgIconContainer">
             <div className="IconListHolder">
@@ -61,7 +59,6 @@ function SingleProductDesign({
             </p>
           </div>
         </div>
-        {/* </CardContent> */}
       </Card>
     </div>
   );

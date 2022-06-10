@@ -1,6 +1,6 @@
-.loginCardHolder {
+.signinCardHolder {
     width: 33%;
-    height: 420px;
+    height: 520px;
     margin: auto;
     box-shadow: 0px 0px 25px 10px #F8F8FB;
     margin-top: 40px;
@@ -60,14 +60,14 @@
 }
 
 @media only screen and (max-width: 420px) {
-  .loginCardHolder {
+  .signinCardHolder {
       width: 100%;
   }
 
 }
 
 @media only screen and (max-width: 820px) and ( min-width: 421px) {
-    .loginCardHolder {
+    .signinCardHolder {
         width: 60%;
     }
 
@@ -77,4 +77,3 @@
 @media only screen and (max-width: 1200px) and ( min-width: 821px) {
     
 }
-

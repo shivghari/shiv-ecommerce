@@ -9,9 +9,14 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function CommonNav() {
   const Navigate = useNavigate();
+
+  const loginUserName = useSelector((state) => state.newUser.username);
+  const loginEmail = useSelector((state) => state.newUser.email);
+
   return (
     <div className="commonContainer">
       <div className="contentContainer">
@@ -19,11 +24,11 @@ function CommonNav() {
           <div className="hideIcon">
             <MailOutlineIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p className="email">test123test@gmai.com</p>
+          <p className="email">{loginEmail}</p>
           <div className="hideIcon">
             <PhoneInTalkIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p classaName="phone">(12345)67890</p>
+          <p classaName="phone">{loginUserName}</p>
         </div>
         <div className="loginOtherContainer">
           <NativeSelect defaultValue={"English"} sx={{ color: "#fff" }}>

@@ -1,6 +1,7 @@
 .webnav {
     width: 80%;
     margin: auto;
+    background-color: #fff !important;
 }
 
 .links {
@@ -20,11 +21,6 @@
     margin-top: 0;
 }
 
-/* .lamp {
-    position: absolute;
-    width: 287px;
-    height: 287px;
-    left: 70px;
-    top: 122px;
+.scrollNav {
+    max-height: 500px;
 }
- */
