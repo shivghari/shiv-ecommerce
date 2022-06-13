@@ -78,7 +78,12 @@ function Login() {
             />
             <p>Forget Password?</p>
             <div className="loginBtnHolder">
-              <Button className="loginBtn" onClick={handleLogin}>
+              <Button
+                className="loginBtn"
+                onClick={(e) => {
+                  handleLogin(e);
+                }}
+              >
                 Sign In
               </Button>
             </div>

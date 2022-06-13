@@ -1,19 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-    userID : "",
+var initialState = {
+    userID :  "",
     token : "",
     username : "",
-    email : ""
+    email :  ""
 }
-
 const loginUserSlice = createSlice({
     name : "loginUserSlice",
     initialState,
     reducers : {
         newUser : (state, action)=>{
-            state.token = action.payload.token
-            state.userID = action.payload.userID
+            if(action.payload.token){
+                state.token = action.payload.token
+            }
+            if(action.payload.userID){
+                state.userID = action.payload.userID
+            }
             state.username = action.payload.username
             state.email = action.payload.email
         }

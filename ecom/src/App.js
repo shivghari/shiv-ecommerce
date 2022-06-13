@@ -8,6 +8,9 @@ import WebNavbar from './Component/WebNavbar/WebNavbar';
 import Footer from './Component/Footer/Footer'
 import Login from './Component/Login/Login';
 import Signin from './Component/Signin/Signin';
+import AdminPanel from './Component/AdminPanel/AdminPanel';
+import AdminProtectedRoute from './Component/AdminPanel/AdminProtectedRoute/AdminProtectedRoute';
+
 import {Provider} from 'react-redux'
 import Store from './Store/Store'
 
@@ -22,6 +25,13 @@ function App() {
           <Route exact path='/' element={<HomePage />}></Route>
           <Route exact path='/login' element={<Login />}></Route>
           <Route exact path='/signin' element={<Signin />}></Route>
+          <Route exact path='/admin' element={
+            <>
+              <AdminProtectedRoute>
+                <AdminPanel/>
+              </AdminProtectedRoute>
+            </>
+          }></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

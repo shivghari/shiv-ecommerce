@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CommonNav.css";
 
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -9,13 +9,38 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useGetUserQuery } from "../../Feature/FindUserSlice";
+import { newUser } from "../../Feature/LoginUserSlice";
 
 function CommonNav() {
   const Navigate = useNavigate();
 
   const loginUserName = useSelector((state) => state.newUser.username);
   const loginEmail = useSelector((state) => state.newUser.email);
+
+  const dispatch = useDispatch();
+
+  var userId;
+
+  //manageing Sesssion on the userID stored in localStorage
+
+  try {
+    if (JSON.parse(localStorage.getItem("token")).userID) {
+      userId = JSON.parse(localStorage.getItem("token")).userID;
+    }
+  } catch (e) {
+    console.log(e.message);
+    userId = "";
+  }
+  const { data } = useGetUserQuery(userId);
+
+  console.log(data);
+  useEffect(() => {
+    if (data) {
+      dispatch(newUser({ email: data.email, username: data.username }));
+    }
+  }, [data]);
 
   return (
     <div className="commonContainer">
@@ -59,10 +84,15 @@ function CommonNav() {
           <div
             className="imgAndTag"
             onClick={() => {
-              Navigate("/login");
+              if (loginUserName === "admin") {
+                Navigate("/admin");
+              } else {
+                Navigate("/login");
+              }
             }}
           >
-            <p>Login</p> <PersonRoundedIcon style={{ marginTop: "10px" }} />
+            <p>{loginUserName === "admin" ? "Admin Panel" : "Login"}</p>{" "}
+            <PersonRoundedIcon style={{ marginTop: "10px" }} />
           </div>
           <div className="imgAndTag">
             <p>Wishlist</p> <FavoriteBorderIcon style={{ marginTop: "10px" }} />

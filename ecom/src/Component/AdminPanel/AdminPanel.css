@@ -1,0 +1,38 @@
+.mainAdminbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.adminLinks {
+    margin-top: 20px;
+    display: block;
+    width: 170px;
+    text-align: left;
+}
+
+.adminContent {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.admin-link-content {
+    display: flex;
+    justify-content: space-between;
+    color : gray !important; 
+    cursor: pointer;
+    margin-bottom: 20px;
+
+}
+
+.admin-link-content:hover {
+    color: rgb(104, 102, 102) !important;
+} 
+
+
+.navLinkContainer {
+    border-right: 1px solid rgb(220, 219, 219);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
