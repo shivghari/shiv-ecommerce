@@ -9,6 +9,8 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 
 import AddProduct from "./AddProduct/AddProduct";
 import AdminProductList from "./AdminProductList/AdminProductList";
+import AdminEditProduct from "./AdminEditProduct/AdminEditProduct";
+import Orders from "./Orders/Orders";
 
 function AdminPanel() {
   return (
@@ -40,6 +42,25 @@ function AdminPanel() {
                 <BookmarkBorderIcon />
               </Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="admin-link-content">
+                --------------------- HomePage Control
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="admin-link-content">
+                Entrence Products
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="admin-link-content">Latest Product</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="admin-link-content">Discount Items</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="admin-link-content">Manage Blogs</Nav.Link>
+            </Nav.Item>
           </div>
         </Nav>
         <Tab.Content className="adminContent">
@@ -50,10 +71,10 @@ function AdminPanel() {
             <AddProduct />
           </Tab.Pane>
           <Tab.Pane eventKey={"editProduct"}>
-            <h1>editProduct</h1>
+            <AdminEditProduct />
           </Tab.Pane>
           <Tab.Pane eventKey={"orders"}>
-            <h1>orders</h1>
+            <Orders />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>

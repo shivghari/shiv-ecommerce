@@ -17,7 +17,7 @@ function WebNavbar() {
     <Navbar bg="light" expand="lg" className="webnav">
       <Container fluid>
         <Navbar.Brand
-          href="#"
+          href=""
           className="logo"
           onClick={() => {
             Navigate("/");

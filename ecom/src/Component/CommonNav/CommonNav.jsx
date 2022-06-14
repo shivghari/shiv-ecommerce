@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetUserQuery } from "../../Feature/FindUserSlice";
 import { newUser } from "../../Feature/LoginUserSlice";
+import { Button } from "react-bootstrap";
 
 function CommonNav() {
   const Navigate = useNavigate();
@@ -109,6 +110,15 @@ function CommonNav() {
             }}
           />
         </div>
+        <Button
+          onClick={() => {
+            localStorage.clear();
+            Navigate("/");
+            dispatch(newUser({ email: "", username: "" }));
+          }}
+        >
+          Logout
+        </Button>
       </div>
     </div>
   );

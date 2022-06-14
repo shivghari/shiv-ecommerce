@@ -5,6 +5,7 @@ const signinRoute = require('./routes/signinRoute')
 const findUserRoute = require('./routes/findUserRoute')
 const addProduct = require('./routes/Addproduct')
 const deleteProduct = require('./routes/DeleteProduct')
+const editProduct = require('./routes/EditProduct')
 
 const fetchAllProduct = require('./routes/FetchAllProduct')
 const path = require('path')
@@ -17,8 +18,9 @@ app.use('/login', loginRoute);
 app.use('/signin', signinRoute);
 app.use('/findUser', findUserRoute);
 app.use('/addproduct', addProduct);
-app.use('/fetchProduct', fetchAllProduct)
+app.use('/fetchProduct', fetchAllProduct);
 app.use('/deleteProduct', deleteProduct);
+app.use('/editProduct', editProduct);
 
 
 app.listen(3001, ()=>{console.log('Server running on 3001')});

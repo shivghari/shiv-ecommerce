@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "./AdminProductList.css";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,26 +15,90 @@ import Paper from "@mui/material/Paper";
 import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
+import Form from "react-bootstrap/Form";
+
 import axios from "axios";
-import { useGetProductsQuery } from "../../../Feature/FetchProducts";
+// import { useGetProductsQuery } from "../../../Feature/FetchProducts";
+import { useState, useEffect } from "react";
+// import { getProduct } from "../../../Feature/productManage";
+// import { useDispatch, useSelector } from "react-redux";
 
 function AdminProductList() {
+  // const dispatch = useDispatch();
+
+  // const { data, isFetching } = useGetProductsQuery();
+
+  const [filterProducts, setfilterProducts] = useState({});
+  const [deleteFlag, setdeleteFlag] = useState(false);
+
+  // const Newdata = useSelector((state) => state.products);
+  // console.log("new Data", Newdata.products.data);
+
+  // console.log("Flag", deleteFlag);
+
+  // useEffect(() => {
+  //   dispatch(getProduct());
+  //   setTimeout(() => {
+  //     setfilterProducts(Newdata.products.data);
+  //   }, 0);
+  // }, [data, deleteFlag]);
+
+  // useEffect(() => {
+  //   dispatch(getProduct());
+  //   setTimeout(() => {
+  //     setfilterProducts(Newdata.products.data);
+  //   }, 0);
+  // }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/fetchProduct")
+      .then((response) => {
+        setfilterProducts(response.data);
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [deleteFlag]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/fetchProduct")
+      .then((response) => {
+        setfilterProducts(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const refresh = () => {
     window.location.reload(false);
   };
-
-  const { data } = useGetProductsQuery();
 
   const deleteProduct = (productId) => {
     console.log(productId);
     axios
       .post("http://localhost:3001/deleteProduct", { productId })
       .then((response) => {
-        console.log("Delete Success");
+        console.log("Delete Success", response);
       })
       .catch((err) => {
         console.log(err.messsage);
       });
+  };
+
+  const categoryFilter = (category) => {
+    const newArr = filterProducts.filter((item) => {
+      if (item.category === category) {
+        return item;
+      }
+    });
+    console.log(newArr);
+    if (newArr.length !== 0) {
+      setfilterProducts(newArr);
+    } else setfilterProducts(filterProducts);
   };
 
   return (
@@ -49,17 +112,18 @@ function AdminProductList() {
             </Button>
           </div>
           <div className="select-conatiner">
-            <DropdownButton
-              id="dropdown-basic-button"
-              title="Select Category"
-              className="select-btn"
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => {
+                categoryFilter(e.target.value);
+              }}
             >
-              <Dropdown.Item href="#/action-1">All</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Cloths</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Bag</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Watch</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Cosmatics</Dropdown.Item>
-            </DropdownButton>
+              <option value={"all"}>All</option>
+              {filterProducts.length &&
+                filterProducts.map((item) => (
+                  <option value={item.category}>{`${item.category}`}</option>
+                ))}
+            </Form.Select>
           </div>
           <IconButton sx={{ marginLeft: "10px" }}>
             <RefreshIcon onClick={refresh} />
@@ -76,11 +140,12 @@ function AdminProductList() {
                   <TableCell align="left">Price</TableCell>
                   <TableCell align="left">Stock</TableCell>
                   <TableCell align="left">Status</TableCell>
+                  <TableCell align="left"></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data &&
-                  data.map((item, index) => (
+                {filterProducts.length &&
+                  filterProducts.map((item, index) => (
                     <TableRow
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
@@ -110,9 +175,9 @@ function AdminProductList() {
                           className="more"
                         >
                           <Dropdown.Item
-                            href="#/action-1"
                             onClick={() => {
                               deleteProduct(item._id);
+                              setdeleteFlag(!deleteFlag);
                             }}
                           >
                             Delete

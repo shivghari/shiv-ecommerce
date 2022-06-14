@@ -1,0 +1,55 @@
+.listHolder {
+    width: 98%;
+    border: 1px solid  rgb(220, 219, 219);
+    border-radius: 8px;
+    margin-left: 1%;
+    padding: 20px;
+}
+
+.search-bar-holder {
+    width: fit-content;
+    text-align: left;
+}
+
+.search-bar-holder input{
+    border: 1px solid  rgb(220, 219, 219);
+    border-radius: 8px;
+    padding: 10px;
+    width: 50%;
+    margin-right: 10px;
+
+}
+
+.select-btn {
+    background-color: #fff !important;
+}
+
+.search-select-holder {
+    width: 60%;
+    display: flex;
+}
+
+.select-container {
+    text-align: left;
+    margin-left: -30%;
+}
+
+.nameImgHolderOrder {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.table-holder {
+    margin-top: 30px;
+}
+
+.more {
+    background-color: #fff !important;
+}
+
+.btn-primary {
+    color : #000 !important;
+    background-color: #fff !important;
+    border-color: #fff !important;
+}
