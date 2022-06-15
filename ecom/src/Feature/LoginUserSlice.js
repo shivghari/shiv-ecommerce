@@ -4,7 +4,8 @@ var initialState = {
     userID :  "",
     token : "",
     username : "",
-    email :  ""
+    email :  "",
+    role : "admin",
 }
 const loginUserSlice = createSlice({
     name : "loginUserSlice",
@@ -19,6 +20,7 @@ const loginUserSlice = createSlice({
             }
             state.username = action.payload.username
             state.email = action.payload.email
+            state.role = action.payload.role
         }
     }
 })

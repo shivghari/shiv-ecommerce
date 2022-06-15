@@ -98,6 +98,7 @@ function AddProduct() {
                   <label>Price</label>
                   <br />
                   <input
+                    type="number"
                     placeholder="₹"
                     required
                     onChange={(e) => {
@@ -109,6 +110,7 @@ function AddProduct() {
                   <label>Compare price</label>
                   <br />
                   <input
+                    type="number"
                     placeholder="₹"
                     required
                     onChange={(e) => {
@@ -122,6 +124,7 @@ function AddProduct() {
                   <label>Cost per Item</label>
                   <br />
                   <input
+                    type="number"
                     placeholder="₹"
                     required
                     onChange={(e) => {
@@ -133,6 +136,7 @@ function AddProduct() {
                   <label>Tax Rate</label>
                   <br />
                   <input
+                    type="number"
                     placeholder="₹"
                     required
                     onChange={(e) => {

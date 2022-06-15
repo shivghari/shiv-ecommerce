@@ -6,6 +6,10 @@ const findUserRoute = require('./routes/findUserRoute')
 const addProduct = require('./routes/Addproduct')
 const deleteProduct = require('./routes/DeleteProduct')
 const editProduct = require('./routes/EditProduct')
+const featureProductRoute = require('./routes/FeatureProductRoute')
+const latestProductRoute = require('./routes/LatestProductRoute')
+const topCategoryRoute = require('./routes/TopCategoryRoute')
+const manageUserRoute = require('./routes/manageUser')
 
 const fetchAllProduct = require('./routes/FetchAllProduct')
 const path = require('path')
@@ -21,6 +25,10 @@ app.use('/addproduct', addProduct);
 app.use('/fetchProduct', fetchAllProduct);
 app.use('/deleteProduct', deleteProduct);
 app.use('/editProduct', editProduct);
+app.use('/featureproduct', featureProductRoute);
+app.use('/latestproduct',latestProductRoute );
+app.use('/topcategory', topCategoryRoute);
+app.use('/manageUser', manageUserRoute);
 
 
 app.listen(3001, ()=>{console.log('Server running on 3001')});

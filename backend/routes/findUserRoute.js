@@ -17,7 +17,7 @@ router.get('/:userID', (req, res)=>{
     const userID = req.params.userID
     console.log(userID)
     User.find({_id : userID}).then(async(reponse)=>{
-        res.status(200).json({email : reponse[0].email, username : reponse[0].username})
+        res.status(200).json({email : reponse[0].email, username : reponse[0].username, role: reponse[0].role })
     })
 })
 

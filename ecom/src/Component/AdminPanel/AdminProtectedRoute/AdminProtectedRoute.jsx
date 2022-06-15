@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 import React from "react";
+import { useSelector } from "react-redux";
 
 function AdminProtectedRoute({ children }) {
-  if (
-    JSON.parse(localStorage.getItem("token")).userID ===
-    "62a41371914075fe73ccdd95"
-  ) {
+  const loginUserRole = useSelector((state) => state.newUser.role);
+  console.log(loginUserRole);
+  if (loginUserRole === "admin") {
     return <div>{children}</div>;
   } else {
     return <Navigate to="/"></Navigate>;

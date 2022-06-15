@@ -28,8 +28,9 @@ function AdminProductList() {
 
   // const { data, isFetching } = useGetProductsQuery();
 
-  const [filterProducts, setfilterProducts] = useState({});
+  const [filterProducts, setfilterProducts] = useState([]);
   const [deleteFlag, setdeleteFlag] = useState(false);
+  const [copyData, setcopyData] = useState([]);
 
   // const Newdata = useSelector((state) => state.products);
   // console.log("new Data", Newdata.products.data);
@@ -55,6 +56,7 @@ function AdminProductList() {
       .get("http://localhost:3001/fetchProduct")
       .then((response) => {
         setfilterProducts(response.data);
+        setcopyData(response.data);
         console.log(response.data);
       })
       .catch((err) => {
@@ -67,6 +69,7 @@ function AdminProductList() {
       .get("http://localhost:3001/fetchProduct")
       .then((response) => {
         setfilterProducts(response.data);
+        setcopyData(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -90,7 +93,7 @@ function AdminProductList() {
   };
 
   const categoryFilter = (category) => {
-    const newArr = filterProducts.filter((item) => {
+    const newArr = copyData.filter((item) => {
       if (item.category === category) {
         return item;
       }
@@ -98,7 +101,7 @@ function AdminProductList() {
     console.log(newArr);
     if (newArr.length !== 0) {
       setfilterProducts(newArr);
-    } else setfilterProducts(filterProducts);
+    } else setfilterProducts(copyData);
   };
 
   return (
@@ -119,8 +122,8 @@ function AdminProductList() {
               }}
             >
               <option value={"all"}>All</option>
-              {filterProducts.length &&
-                filterProducts.map((item) => (
+              {copyData.length &&
+                copyData.map((item) => (
                   <option value={item.category}>{`${item.category}`}</option>
                 ))}
             </Form.Select>

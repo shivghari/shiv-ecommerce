@@ -6,11 +6,15 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import HomeIcon from "@mui/icons-material/Home";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 import AddProduct from "./AddProduct/AddProduct";
 import AdminProductList from "./AdminProductList/AdminProductList";
 import AdminEditProduct from "./AdminEditProduct/AdminEditProduct";
 import Orders from "./Orders/Orders";
+import HomepageControl from "./HomepageControl/HomepageControl";
+import ManageUser from "./ManageUser/ManageUser";
 
 function AdminPanel() {
   return (
@@ -43,23 +47,17 @@ function AdminPanel() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link className="admin-link-content">
-                --------------------- HomePage Control
+              <Nav.Link
+                eventKey={"homepagecontrol"}
+                className="admin-link-content"
+              >
+                HomePage <HomeIcon />
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link className="admin-link-content">
-                Entrence Products
+              <Nav.Link eventKey={"manageusers"} className="admin-link-content">
+                Users <AdminPanelSettingsIcon />
               </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link className="admin-link-content">Latest Product</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link className="admin-link-content">Discount Items</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link className="admin-link-content">Manage Blogs</Nav.Link>
             </Nav.Item>
           </div>
         </Nav>
@@ -75,6 +73,12 @@ function AdminPanel() {
           </Tab.Pane>
           <Tab.Pane eventKey={"orders"}>
             <Orders />
+          </Tab.Pane>
+          <Tab.Pane eventKey={"homepagecontrol"}>
+            <HomepageControl />
+          </Tab.Pane>
+          <Tab.Pane eventKey={"manageusers"}>
+            <ManageUser />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>

@@ -1,0 +1,20 @@
+.userListHolder {
+    width: 98%;
+    border: 1px solid  rgb(220, 219, 219);
+    border-radius: 8px;
+    margin-left: 1%;
+    padding: 20px;
+}
+
+.headingHolder {
+    width: 100%;
+    border: 1px solid  rgb(220, 219, 219);
+    border-radius: 8px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.headingHolder h1 {
+    font-size: 30px;
+    text-align: left;
+}

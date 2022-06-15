@@ -1,7 +1,8 @@
 import "./TopCategory.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SingleDesignCategory from "./SingleDesignCategory/SingleDesignCategory";
 import { Carousel } from "react-bootstrap";
+import axios from "axios";
 
 function TopCategory() {
   const [index, setIndex] = useState(0);
@@ -9,6 +10,19 @@ function TopCategory() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+
+  const [data, setdata] = useState([]);
+  useEffect(() => {
+    axios
+      .post("http://localhost:3001/topcategory/getAllProducts")
+      .then((response) => {
+        setdata(response.data.response);
+        console.log("top Car", response.data.response);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   return (
     <div className="CategorySliderHolder">
@@ -24,12 +38,18 @@ function TopCategory() {
         >
           <Carousel.Item>
             <div className="CategoryHolderSlider">
-              <SingleDesignCategory />
-              <SingleDesignCategory />
-              <SingleDesignCategory />
-              <SingleDesignCategory />
+              {data.map((item) => (
+                <div>
+                  <SingleDesignCategory
+                    productName={item.prouctname}
+                    price={item.price}
+                    image={item.image}
+                  />
+                </div>
+              ))}
             </div>
           </Carousel.Item>
+
           <Carousel.Item>
             <div className="CategoryHolderSlider">
               <SingleDesignCategory />

@@ -35,6 +35,7 @@ function Login() {
               token: response.data.token,
               username: response.data.username,
               email: response.data.email,
+              role: response.data.role,
             })
           );
           localStorage.setItem(

@@ -19,6 +19,7 @@ function CommonNav() {
 
   const loginUserName = useSelector((state) => state.newUser.username);
   const loginEmail = useSelector((state) => state.newUser.email);
+  const loginUserRole = useSelector((state) => state.newUser.role);
 
   const dispatch = useDispatch();
 
@@ -39,7 +40,9 @@ function CommonNav() {
   console.log(data);
   useEffect(() => {
     if (data) {
-      dispatch(newUser({ email: data.email, username: data.username }));
+      dispatch(
+        newUser({ email: data.email, username: data.username, role: data.role })
+      );
     }
   }, [data]);
 
@@ -85,14 +88,14 @@ function CommonNav() {
           <div
             className="imgAndTag"
             onClick={() => {
-              if (loginUserName === "admin") {
+              if (loginUserRole === "admin") {
                 Navigate("/admin");
               } else {
                 Navigate("/login");
               }
             }}
           >
-            <p>{loginUserName === "admin" ? "Admin Panel" : "Login"}</p>{" "}
+            <p>{loginUserRole === "admin" ? "Admin Panel" : "Login"}</p>{" "}
             <PersonRoundedIcon style={{ marginTop: "10px" }} />
           </div>
           <div className="imgAndTag">

@@ -20,7 +20,7 @@ router.post('/', upload.single(), (req,res)=>{
             if(req.body.email === response[0].email){
                 var token = jwt.sign({userID : response[0]._id},'secretkey')
                 console.log(token)
-                res.status(200).json({ message : "User Login Success", userID : response[0]._id, token, username : response[0].username, email :response[0].email })
+                res.status(200).json({ message : "User Login Success", userID : response[0]._id, token, username : response[0].username, email :response[0].email, role : response[0].role })
             }
             else{
                 res.status(304).json({ message : "Credentials Not Matched" })                

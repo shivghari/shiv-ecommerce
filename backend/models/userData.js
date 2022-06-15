@@ -12,6 +12,10 @@ var UserSchema = new mongoose.Schema({
         required : true
     },
     password: String,
+    role : {
+        type : String,
+        default : "user"
+    }
     // mobile: {
     //     type : String,
     //     unique : true
