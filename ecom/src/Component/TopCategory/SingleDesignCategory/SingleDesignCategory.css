@@ -20,6 +20,7 @@
 .categoryBtn {
     background-color: #08D15F;
     border: #08D15F;
+    width: 100px;
 }
 
 .categoryBtnContainer {

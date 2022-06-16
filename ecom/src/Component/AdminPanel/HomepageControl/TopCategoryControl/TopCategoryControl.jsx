@@ -42,7 +42,12 @@ function TopCategoryControl() {
     axios
       .post(
         "http://localhost:3001/topcategory/addproduct",
-        AddTopCategoryProductData
+        AddTopCategoryProductData,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
       )
       .then((response) => {
         console.log(response);
@@ -55,7 +60,15 @@ function TopCategoryControl() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/topcategory/getAllProducts")
+      .post(
+        "http://localhost:3001/topcategory/getAllProducts",
+        {},
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         setcopyofdata(response.data.response);
       })
@@ -66,7 +79,15 @@ function TopCategoryControl() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/topcategory/getAllProducts")
+      .post(
+        "http://localhost:3001/topcategory/getAllProducts",
+        {},
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         setcopyofdata(response.data.response);
       })
@@ -79,9 +100,17 @@ function TopCategoryControl() {
     if (productID === "Select Product") return "null";
     else {
       axios
-        .post("http://localhost:3001/topcategory/getOneProduct", {
-          productID: productID,
-        })
+        .post(
+          "http://localhost:3001/topcategory/getOneProduct",
+          {
+            productID: productID,
+          },
+          {
+            headers: {
+              Authorization: JSON.parse(localStorage.getItem("token")).token,
+            },
+          }
+        )
         .then((response) => {
           seteditItemId(response.data.response[0]._id);
           setproductName(response.data.response[0].prouctname);
@@ -116,7 +145,11 @@ function TopCategoryControl() {
     EditProductData.append("tags", tags);
 
     axios
-      .post("http://localhost:3001/topcategory/editProduct", EditProductData)
+      .post("http://localhost:3001/topcategory/editProduct", EditProductData, {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("token")).token,
+        },
+      })
       .then((response) => {
         console.log(response);
         refresh();
@@ -128,9 +161,17 @@ function TopCategoryControl() {
 
   const deleteProduct = () => {
     axios
-      .post("http://localhost:3001/topcategory/deleteProduct", {
-        editItemId: editItemId,
-      })
+      .post(
+        "http://localhost:3001/topcategory/deleteProduct",
+        {
+          editItemId: editItemId,
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         refresh();
@@ -163,8 +204,7 @@ function TopCategoryControl() {
           </div>
           <div>
             <Button
-              size="large"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "100px" }}
               onClick={(e) => {
                 setchangeFlag(!changeFlag);
                 handleAddTopCategoryItem(e);
@@ -173,13 +213,12 @@ function TopCategoryControl() {
               Add Item
             </Button>
             <Button
-              variant="contained"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "100px" }}
               onClick={handleEditButton}
             >
               Edit Item
             </Button>
-            <Button variant="contained" onClick={deleteProduct}>
+            <Button onClick={deleteProduct} style={{ width: "120px" }}>
               Delete Item
             </Button>
           </div>

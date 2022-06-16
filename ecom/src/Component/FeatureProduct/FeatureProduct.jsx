@@ -20,7 +20,7 @@ function FeatureProduct() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/featureproduct/getAllProducts")
+      .post("http://localhost:3001/homepageproduct/featureproductgetAllProducts",)
       .then((response) => {
         setdata(response.data.response);
       })

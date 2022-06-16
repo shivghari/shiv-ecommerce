@@ -16,16 +16,12 @@ import { Button } from "react-bootstrap";
 
 function CommonNav() {
   const Navigate = useNavigate();
-
-  const loginUserName = useSelector((state) => state.newUser.username);
-  const loginEmail = useSelector((state) => state.newUser.email);
   const loginUserRole = useSelector((state) => state.newUser.role);
+  const loginUserisLogin = useSelector((state) => state.newUser.isLogin);
 
   const dispatch = useDispatch();
 
   var userId;
-
-  //manageing Sesssion on the userID stored in localStorage
 
   try {
     if (JSON.parse(localStorage.getItem("token")).userID) {
@@ -35,17 +31,22 @@ function CommonNav() {
     console.log(e.message);
     userId = "";
   }
-  const { data } = useGetUserQuery(userId);
 
-  console.log(data);
+  const { data } = useGetUserQuery(userId);
   useEffect(() => {
     if (data) {
       dispatch(
-        newUser({ email: data.email, username: data.username, role: data.role })
+        newUser({
+          // email: data.email,
+          // username: data.username,
+          role: data.role,
+          isLogin: true,
+        })
       );
     }
   }, [data]);
 
+  // setuserData(data);
   return (
     <div className="commonContainer">
       <div className="contentContainer">
@@ -53,11 +54,11 @@ function CommonNav() {
           <div className="hideIcon">
             <MailOutlineIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p className="email">{loginEmail}</p>
+          <p className="email">{data?.email}</p>
           <div className="hideIcon">
             <PhoneInTalkIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p classaName="phone">{loginUserName}</p>
+          <p classaName="phone">{data?.username}</p>
         </div>
         <div className="loginOtherContainer">
           <NativeSelect defaultValue={"English"} sx={{ color: "#fff" }}>
@@ -88,14 +89,22 @@ function CommonNav() {
           <div
             className="imgAndTag"
             onClick={() => {
-              if (loginUserRole === "admin") {
+              if (loginUserRole === "admin" && loginUserisLogin) {
                 Navigate("/admin");
+              } else if (loginUserisLogin) {
+                Navigate("/account");
               } else {
                 Navigate("/login");
               }
             }}
           >
-            <p>{loginUserRole === "admin" ? "Admin Panel" : "Login"}</p>{" "}
+            <p>
+              {loginUserRole === "admin" && loginUserisLogin
+                ? "Admin Panel"
+                : loginUserisLogin
+                ? "Account"
+                : "login"}
+            </p>{" "}
             <PersonRoundedIcon style={{ marginTop: "10px" }} />
           </div>
           <div className="imgAndTag">
@@ -113,15 +122,24 @@ function CommonNav() {
             }}
           />
         </div>
-        <Button
-          onClick={() => {
-            localStorage.clear();
-            Navigate("/");
-            dispatch(newUser({ email: "", username: "" }));
-          }}
-        >
-          Logout
-        </Button>
+        {loginUserisLogin === true ? (
+          <Button
+            style={{
+              height: "35px",
+              marginTop: "5px",
+              padding: "0",
+              width: "100px",
+              marginLeft: "10px",
+            }}
+            onClick={() => {
+              localStorage.clear();
+              Navigate("/");
+              dispatch(newUser({ email: "", username: "" }));
+            }}
+          >
+            Logout
+          </Button>
+        ) : null}
       </div>
     </div>
   );

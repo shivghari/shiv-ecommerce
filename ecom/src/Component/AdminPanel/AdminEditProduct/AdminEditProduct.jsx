@@ -56,7 +56,11 @@ function AdminEditProduct() {
     EditProductData.append("tags", tags);
 
     axios
-      .post("http://localhost:3001/editProduct", EditProductData)
+      .post("http://localhost:3001/editProduct", EditProductData, {
+        headers : {
+          "Authorization" : JSON.parse(localStorage.getItem("token")).token
+        }
+      })
       .then((response) => {
         console.log(response);
       })

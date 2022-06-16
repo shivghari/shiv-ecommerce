@@ -10,8 +10,10 @@ const featureProductRoute = require('./routes/FeatureProductRoute')
 const latestProductRoute = require('./routes/LatestProductRoute')
 const topCategoryRoute = require('./routes/TopCategoryRoute')
 const manageUserRoute = require('./routes/manageUser')
-
 const fetchAllProduct = require('./routes/FetchAllProduct')
+const homePageProductRourte = require('./routes/HomePageProductRoute')
+const userDataManageRoute = require('./routes/UserDataManage')
+
 const path = require('path')
 const app = express()
 
@@ -26,9 +28,11 @@ app.use('/fetchProduct', fetchAllProduct);
 app.use('/deleteProduct', deleteProduct);
 app.use('/editProduct', editProduct);
 app.use('/featureproduct', featureProductRoute);
-app.use('/latestproduct',latestProductRoute );
+app.use('/latestproduct', latestProductRoute);
 app.use('/topcategory', topCategoryRoute);
 app.use('/manageUser', manageUserRoute);
+app.use('/homepageproduct', homePageProductRourte);
+app.use('/userDataManage', userDataManageRoute);
 
 
-app.listen(3001, ()=>{console.log('Server running on 3001')});
+app.listen(3001, () => { console.log('Server running on 3001') });

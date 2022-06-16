@@ -1,6 +1,5 @@
 import "./SingleDesignCategory.css";
 import React from "react";
-import TP1 from "../TP1.png";
 import { Button } from "react-bootstrap";
 
 function SingleDesignCategory({ productName, price, image }) {

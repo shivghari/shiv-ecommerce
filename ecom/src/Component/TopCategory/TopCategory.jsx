@@ -14,7 +14,7 @@ function TopCategory() {
   const [data, setdata] = useState([]);
   useEffect(() => {
     axios
-      .post("http://localhost:3001/topcategory/getAllProducts")
+      .post("http://localhost:3001/homepageproduct/topcategorygetAllProducts")
       .then((response) => {
         setdata(response.data.response);
         console.log("top Car", response.data.response);

@@ -15,13 +15,20 @@ var UserSchema = new mongoose.Schema({
     role : {
         type : String,
         default : "user"
+    },
+    mobile: {
+        type : String,
+    },
+    recidencyaddress : {
+        type :String
+    },
+    deliveryaddress :{
+        type : String
     }
-    // mobile: {
-    //     type : String,
-    //     unique : true
-    // },
-    // address : String,
-    // profileImage : String
+
+    // profileImage : {
+    //     type : String
+    // }
 })
 
 module.exports = mongoose.model("User", UserSchema)

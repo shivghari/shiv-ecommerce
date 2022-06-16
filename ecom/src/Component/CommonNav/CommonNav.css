@@ -15,7 +15,7 @@
 
 .mailPhoneContainer {
     /* background-color: blue; */
-    width: 40%;
+    width: 23%;
     height: 44px;
     display: flex;
     justify-content: space-around;
@@ -34,6 +34,7 @@
     display: flex;
     justify-content: space-between;
 }
+
 .wishLoginContainer {
     display: flex;
     margin-top: 5px;
@@ -68,24 +69,24 @@
         width: 100% !important;
     }
 
-    .mailPhoneContainer .hideIcon{
-       display: none;
-   }
+    .mailPhoneContainer .hideIcon {
+        display: none;
+    }
 
-   .mailPhoneContainer p{
+    .mailPhoneContainer p {
         margin-left: 30px;
-   }
+    }
 
-   .mailPhoneContainer {
+    .mailPhoneContainer {
         margin-left: 14%;
     }
 
-   .loginOtherContainer {
-       display: none;
-   }
+    .loginOtherContainer {
+        display: none;
+    }
 
-   .extraIconForResponsive {
-        display: block;   
+    .extraIconForResponsive {
+        display: block;
     }
 
 }
@@ -96,29 +97,29 @@
         width: 100%;
     }
 
-    .mailPhoneContainer .hideIcon{
-       display: none;
-   }
+    .mailPhoneContainer .hideIcon {
+        display: none;
+    }
 
-   .mailPhoneContainer p{
+    .mailPhoneContainer p {
         margin-left: 30px;
-   }
+    }
 
-   .mailPhoneContainer {
+    .mailPhoneContainer {
         margin-left: 14%;
     }
 
-   .loginOtherContainer {
-       display: none;
-   }
+    .loginOtherContainer {
+        display: none;
+    }
 
-   .extraIconForResponsive {
-        display: block;   
+    .extraIconForResponsive {
+        display: block;
     }
 
 }
 
-@media only screen and (max-width: 375px) { 
+@media only screen and (max-width: 375px) {
     .commonContainer {
         width: 100%;
     }
@@ -133,4 +134,3 @@
         width: 500px;
     }
 }
-

@@ -22,8 +22,13 @@ function ManageUser() {
   };
 
   useEffect(() => {
+    console.log(JSON.parse(localStorage.getItem("token")).token);
     axios
-      .post("http://localhost:3001/manageUser/getAlluser")
+      .get("http://localhost:3001/manageUser/getAlluser", {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("token")).token,
+        },
+      })
       .then((response) => {
         setallUser(response.data.response);
         console.log(response);
@@ -35,9 +40,17 @@ function ManageUser() {
 
   const handleMakeAdmin = (userID) => {
     axios
-      .post("http://localhost:3001/manageUser/makeAdmin", {
-        userID: userID,
-      })
+      .post(
+        "http://localhost:3001/manageUser/makeAdmin",
+        {
+          userID: userID,
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         refresh();
@@ -49,9 +62,17 @@ function ManageUser() {
 
   const handleMakeUser = (userID) => {
     axios
-      .post("http://localhost:3001/manageUser/makeUser", {
-        userID: userID,
-      })
+      .post(
+        "http://localhost:3001/manageUser/makeUser",
+        {
+          userID: userID,
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         refresh();
@@ -92,21 +113,27 @@ function ManageUser() {
                   <TableCell align="left">{user.email}</TableCell>
                   <TableCell align="left">{user.role}</TableCell>
                   <TableCell align="left">
-                    <DropdownButton title={<MoreVertIcon />} className="more">
-                      <Dropdown.Item
-                        onClick={(e) => {
-                          handleMakeAdmin(user._id);
-                        }}
-                      >
-                        Make Admin
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => {
-                          handleMakeUser(user._id);
-                        }}
-                      >
-                        Make User
-                      </Dropdown.Item>
+                    <DropdownButton
+                      title={<MoreVertIcon />}
+                      sx={{ width: "100px" }}
+                    >
+                      {user.role === "user" ? (
+                        <Dropdown.Item
+                          onClick={(e) => {
+                            handleMakeAdmin(user._id);
+                          }}
+                        >
+                          Make Admin
+                        </Dropdown.Item>
+                      ) : (
+                        <Dropdown.Item
+                          onClick={() => {
+                            handleMakeUser(user._id);
+                          }}
+                        >
+                          Make User
+                        </Dropdown.Item>
+                      )}
                     </DropdownButton>
                   </TableCell>
                 </TableRow>

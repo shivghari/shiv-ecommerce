@@ -10,31 +10,35 @@ import Login from './Component/Login/Login';
 import Signin from './Component/Signin/Signin';
 import AdminPanel from './Component/AdminPanel/AdminPanel';
 import AdminProtectedRoute from './Component/AdminPanel/AdminProtectedRoute/AdminProtectedRoute';
+import UserAccount from './Component/UserAccount/UserAccount';
+import ForgotPassword from './Component/ForgotPassword/ForgotPassword';
 
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import Store from './Store/Store'
 
 function App() {
   return (
     <div className="App">
-      <Provider store ={Store}>
-      <BrowserRouter>
-      <CommonNav />
-      <WebNavbar />
-        <Routes>
-          <Route exact path='/' element={<HomePage />}></Route>
-          <Route exact path='/login' element={<Login />}></Route>
-          <Route exact path='/signin' element={<Signin />}></Route>
-          <Route exact path='/admin' element={
-            <>
-              <AdminProtectedRoute>
-                <AdminPanel/>
-              </AdminProtectedRoute>
-            </>
-          }></Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <Provider store={Store}>
+        <BrowserRouter>
+          <CommonNav />
+          <WebNavbar />
+          <Routes>
+            <Route exact path='/' element={<HomePage />}></Route>
+            <Route exact path='/login' element={<Login />}></Route>
+            <Route exact path='/signin' element={<Signin />}></Route>
+            <Route exact path='/admin' element={
+              <>
+                <AdminProtectedRoute>
+                  <AdminPanel />
+                </AdminProtectedRoute>
+              </>
+            }></Route>
+            <Route exact path='/account' element={<UserAccount />}></Route>
+            <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
+          </Routes>
+          <Footer />
+        </BrowserRouter>
       </Provider>
     </div>
   );

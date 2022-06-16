@@ -13,7 +13,7 @@ function NewArrival() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/latestproduct/getAllProducts")
+      .post("http://localhost:3001/homepageproduct/latestgetAllProducts")
       .then((response) => {
         setdata(response.data.response);
         console.log(response.data.response);

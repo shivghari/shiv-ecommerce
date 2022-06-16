@@ -36,6 +36,7 @@ function Login() {
               username: response.data.username,
               email: response.data.email,
               role: response.data.role,
+              isLogin : response.data ? true : false
             })
           );
           localStorage.setItem(
@@ -46,6 +47,8 @@ function Login() {
             })
           );
           setloginStatus("green");
+
+          Navigate('/')
         })
         .catch((err) => {
           console.log(err);
@@ -77,7 +80,9 @@ function Login() {
               }}
               style={{ borderColor: loginStatus }}
             />
-            <p>Forget Password?</p>
+            <p onClick={()=>{
+              Navigate("/forgotPassword")
+            }}>Forget Password?</p>
             <div className="loginBtnHolder">
               <Button
                 className="loginBtn"

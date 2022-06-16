@@ -13,28 +13,36 @@
     padding-top: 35px;
 }
 
-.LoginHeading h1{
+.LoginHeading h1 {
     font-size: 32px;
     color: #000000;
 }
 
-.LoginHeading p{
+.LoginHeading p {
     font-size: 17px;
     color: #9096B2;
-    
+
 }
 
-.inputHolder input{
+.inputHolder input {
     border: 1px solid #C2C5E1;
     width: 100%;
     margin-bottom: 20px;
     padding: 20px;
 }
 
-.inputHolder p{
+.inputHolder p {
     font-size: 17px;
-    color : #9096B2;
+    color: #9096B2;
     text-align: left;
+    cursor: pointer;
+}
+
+.inputHolder p:hover {
+    font-size: 17px;
+    color: #6c7392;
+    text-align: left;
+    cursor: pointer;
 }
 
 .loginBtn {
@@ -48,7 +56,7 @@
     background-color: #df2777;
 }
 
-.signUpLink p{
+.signUpLink p {
     margin-top: 20px;
     font-size: 17px;
     color: #9096B2;
@@ -60,13 +68,13 @@
 }
 
 @media only screen and (max-width: 420px) {
-  .loginCardHolder {
-      width: 100%;
-  }
+    .loginCardHolder {
+        width: 100%;
+    }
 
 }
 
-@media only screen and (max-width: 820px) and ( min-width: 421px) {
+@media only screen and (max-width: 820px) and (min-width: 421px) {
     .loginCardHolder {
         width: 60%;
     }
@@ -74,7 +82,4 @@
 }
 
 
-@media only screen and (max-width: 1200px) and ( min-width: 821px) {
-    
-}
-
+@media only screen and (max-width: 1200px) and (min-width: 821px) {}

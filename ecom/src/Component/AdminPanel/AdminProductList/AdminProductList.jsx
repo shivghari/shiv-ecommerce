@@ -53,7 +53,11 @@ function AdminProductList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/fetchProduct")
+      .get("http://localhost:3001/fetchProduct",{
+        headers : {
+          "Authorization" : JSON.parse(localStorage.getItem("token")).token
+        }
+      })
       .then((response) => {
         setfilterProducts(response.data);
         setcopyData(response.data);
@@ -66,7 +70,11 @@ function AdminProductList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/fetchProduct")
+      .get("http://localhost:3001/fetchProduct",{
+        headers : {
+          "Authorization" : JSON.parse(localStorage.getItem("token")).token
+        }
+      })
       .then((response) => {
         setfilterProducts(response.data);
         setcopyData(response.data);
@@ -83,7 +91,11 @@ function AdminProductList() {
   const deleteProduct = (productId) => {
     console.log(productId);
     axios
-      .post("http://localhost:3001/deleteProduct", { productId })
+      .post("http://localhost:3001/deleteProduct", { productId }, {
+        headers : {
+          "Authorization" : JSON.parse(localStorage.getItem("token")).token
+        }
+      })
       .then((response) => {
         console.log("Delete Success", response);
       })

@@ -31,7 +31,11 @@ function AddProduct() {
     AddProductData.append("tags", tags);
 
     axios
-      .post("http://localhost:3001/addproduct", AddProductData)
+      .post("http://localhost:3001/addproduct", AddProductData, {
+        headers : {
+          "Authorization" : JSON.parse(localStorage.getItem("token")).token
+        }
+      })
       .then((response) => {
         console.log("Data Submmited ", response);
       })

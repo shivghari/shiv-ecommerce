@@ -43,7 +43,12 @@ function FeatureProductControl() {
     axios
       .post(
         "http://localhost:3001/featureproduct/addproduct",
-        AddFeatureProductData
+        AddFeatureProductData,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
       )
       .then((response) => {
         console.log(response);
@@ -56,7 +61,15 @@ function FeatureProductControl() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/featureproduct/getAllProducts")
+      .post(
+        "http://localhost:3001/featureproduct/getAllProducts",
+        {},
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         setcopyofdata(response.data.response);
       })
@@ -67,7 +80,15 @@ function FeatureProductControl() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/featureproduct/getAllProducts")
+      .post(
+        "http://localhost:3001/featureproduct/getAllProducts",
+        {},
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         setcopyofdata(response.data.response);
       })
@@ -80,9 +101,17 @@ function FeatureProductControl() {
     if (productID === "Select Product") return "null";
     else {
       axios
-        .post("http://localhost:3001/featureproduct/getOneProduct", {
-          productID: productID,
-        })
+        .post(
+          "http://localhost:3001/featureproduct/getOneProduct",
+          {
+            productID: productID,
+          },
+          {
+            headers: {
+              Authorization: JSON.parse(localStorage.getItem("token")).token,
+            },
+          }
+        )
         .then((response) => {
           seteditItemId(response.data.response[0]._id);
           setproductName(response.data.response[0].prouctname);
@@ -117,7 +146,15 @@ function FeatureProductControl() {
     EditProductData.append("tags", tags);
 
     axios
-      .post("http://localhost:3001/featureproduct/editProduct", EditProductData)
+      .post(
+        "http://localhost:3001/featureproduct/editProduct",
+        EditProductData,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         refresh();
@@ -129,9 +166,17 @@ function FeatureProductControl() {
 
   const deleteProduct = () => {
     axios
-      .post("http://localhost:3001/featureproduct/deleteProduct", {
-        editItemId: editItemId,
-      })
+      .post(
+        "http://localhost:3001/featureproduct/deleteProduct",
+        {
+          editItemId: editItemId,
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         refresh();
@@ -165,8 +210,7 @@ function FeatureProductControl() {
           </div>
           <div>
             <Button
-              size="large"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "100px" }}
               onClick={(e) => {
                 setchangeFlag(!changeFlag);
                 handleAddFeatureItem(e);
@@ -175,13 +219,12 @@ function FeatureProductControl() {
               Add Item
             </Button>
             <Button
-              variant="contained"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "100px" }}
               onClick={handleEditButton}
             >
               Edit Item
             </Button>
-            <Button variant="contained" onClick={deleteProduct}>
+            <Button onClick={deleteProduct} style={{ width: "130px" }}>
               Delete Item
             </Button>
           </div>

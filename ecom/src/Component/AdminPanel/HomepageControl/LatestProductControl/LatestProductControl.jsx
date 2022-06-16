@@ -42,7 +42,12 @@ function LatestProductControl() {
     axios
       .post(
         "http://localhost:3001/latestproduct/addproduct",
-        AddLatestProductData
+        AddLatestProductData,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
       )
       .then((response) => {
         console.log(response);
@@ -55,7 +60,15 @@ function LatestProductControl() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/latestproduct/getAllProducts")
+      .post(
+        "http://localhost:3001/latestproduct/getAllProducts",
+        {},
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         setcopyofdata(response.data.response);
       })
@@ -66,7 +79,15 @@ function LatestProductControl() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/latestproduct/getAllProducts")
+      .post(
+        "http://localhost:3001/latestproduct/getAllProducts",
+        {},
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         setcopyofdata(response.data.response);
       })
@@ -79,9 +100,17 @@ function LatestProductControl() {
     if (productID === "Select Product") return "null";
     else {
       axios
-        .post("http://localhost:3001/latestproduct/getOneProduct", {
-          productID: productID,
-        })
+        .post(
+          "http://localhost:3001/latestproduct/getOneProduct",
+          {
+            productID: productID,
+          },
+          {
+            headers: {
+              Authorization: JSON.parse(localStorage.getItem("token")).token,
+            },
+          }
+        )
         .then((response) => {
           seteditItemId(response.data.response[0]._id);
           setproductName(response.data.response[0].prouctname);
@@ -116,7 +145,15 @@ function LatestProductControl() {
     EditProductData.append("tags", tags);
 
     axios
-      .post("http://localhost:3001/latestproduct/editProduct", EditProductData)
+      .post(
+        "http://localhost:3001/latestproduct/editProduct",
+        EditProductData,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         refresh();
@@ -128,9 +165,17 @@ function LatestProductControl() {
 
   const deleteProduct = () => {
     axios
-      .post("http://localhost:3001/latestproduct/deleteProduct", {
-        editItemId: editItemId,
-      })
+      .post(
+        "http://localhost:3001/latestproduct/deleteProduct",
+        {
+          editItemId: editItemId,
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         refresh();
@@ -164,8 +209,7 @@ function LatestProductControl() {
           </div>
           <div>
             <Button
-              size="large"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "100px" }}
               onClick={(e) => {
                 setchangeFlag(!changeFlag);
                 handleAddLatestItem(e);
@@ -174,13 +218,12 @@ function LatestProductControl() {
               Add Item
             </Button>
             <Button
-              variant="contained"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "100px" }}
               onClick={handleEditButton}
             >
               Edit Item
             </Button>
-            <Button variant="contained" onClick={deleteProduct}>
+            <Button onClick={deleteProduct} style={{ width: "120px" }}>
               Delete Item
             </Button>
           </div>
