@@ -17,7 +17,6 @@ function WebNavbar() {
     <Navbar bg="light" expand="lg" className="webnav">
       <Container fluid>
         <Navbar.Brand
-          href=""
           className="logo"
           onClick={() => {
             Navigate("/");
@@ -33,24 +32,25 @@ function WebNavbar() {
             navbarScroll
             id="scrollNav"
           >
-            <Nav.Link href="#action1" className="links">
+            <Nav.Link
+              className="links"
+              onClick={() => {
+                Navigate("/");
+              }}
+            >
               Home
             </Nav.Link>
-            <Nav.Link href="#action2" className="links">
-              Pages
-            </Nav.Link>
-            <Nav.Link href="#action2" className="links">
+            <Nav.Link
+              className="links"
+              onClick={() => {
+                Navigate("/productpage");
+              }}
+            >
               Product
             </Nav.Link>
-            <Nav.Link href="#action2" className="links">
-              Blog
-            </Nav.Link>
-            <Nav.Link href="#action2" className="links">
-              Shop
-            </Nav.Link>
-            <Nav.Link href="#action2" className="links">
-              Contact
-            </Nav.Link>
+            <Nav.Link className="links">Blog</Nav.Link>
+            <Nav.Link className="links">Shop</Nav.Link>
+            <Nav.Link className="links">Contact</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <FormControl

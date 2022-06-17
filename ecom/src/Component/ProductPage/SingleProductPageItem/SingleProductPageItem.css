@@ -1,0 +1,60 @@
+.imgiconHolder {
+    background-color: #F6F7FB;
+    display: flex;
+    justify-content: space-between;
+    padding : 30px;
+}
+
+.productCard {
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+.iconGrid {
+    display: block;
+    margin-bottom: 15px;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.iconHolder {
+    height: 100px;
+    margin-top: 40px;
+    padding-right: 10px;
+}
+
+.dataHolder{
+    width: 100%;
+    margin: auto;
+}
+
+.dataHolder p {
+    color : #151875;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0%;
+}
+
+.priceHolder {
+    margin: 0%;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+.priceHolder p {
+    color : #151875;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.priceHolder strike {
+    color : #929297;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.productCard:hover .iconGrid{
+    visibility:visible; ;
+}

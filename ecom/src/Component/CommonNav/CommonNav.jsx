@@ -8,6 +8,7 @@ import NativeSelect from "@mui/material/NativeSelect";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import Badge from "@mui/material/Badge";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetUserQuery } from "../../Feature/FindUserSlice";
@@ -18,6 +19,8 @@ function CommonNav() {
   const Navigate = useNavigate();
   const loginUserRole = useSelector((state) => state.newUser.role);
   const loginUserisLogin = useSelector((state) => state.newUser.isLogin);
+
+  const cartProduct = useSelector((state) => state.cart.totalItem);
 
   const dispatch = useDispatch();
 
@@ -110,8 +113,10 @@ function CommonNav() {
           <div className="imgAndTag">
             <p>Wishlist</p> <FavoriteBorderIcon style={{ marginTop: "10px" }} />
           </div>
-          <div className="imgAndTag">
-            <ShoppingCartOutlinedIcon style={{ marginTop: "10px" }} />
+          <div className="imgAndTag" style={{ marginTop: "10px" }}>
+            <Badge badgeContent={cartProduct} color="primary">
+              <ShoppingCartOutlinedIcon style={{ marginTop: "10px" }} />
+            </Badge>
           </div>
         </div>
         <div className="extraIconForResponsive">

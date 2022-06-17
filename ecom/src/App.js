@@ -12,6 +12,7 @@ import AdminPanel from './Component/AdminPanel/AdminPanel';
 import AdminProtectedRoute from './Component/AdminPanel/AdminProtectedRoute/AdminProtectedRoute';
 import UserAccount from './Component/UserAccount/UserAccount';
 import ForgotPassword from './Component/ForgotPassword/ForgotPassword';
+import ProductPage from './Component/ProductPage/ProductPage';
 
 import { Provider } from 'react-redux'
 import Store from './Store/Store'
@@ -36,6 +37,7 @@ function App() {
             }></Route>
             <Route exact path='/account' element={<UserAccount />}></Route>
             <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
+            <Route exact path="/productpage" element={<ProductPage />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -13,6 +13,9 @@ const manageUserRoute = require('./routes/manageUser')
 const fetchAllProduct = require('./routes/FetchAllProduct')
 const homePageProductRourte = require('./routes/HomePageProductRoute')
 const userDataManageRoute = require('./routes/UserDataManage')
+const forgotPasswordRoute = require('./routes/ForgotPassword')
+const mongoDbProduct = require('./routes/mongoDbProduct')
+const productPage = require('./routes/ProductPage')
 
 const path = require('path')
 const app = express()
@@ -33,6 +36,10 @@ app.use('/topcategory', topCategoryRoute);
 app.use('/manageUser', manageUserRoute);
 app.use('/homepageproduct', homePageProductRourte);
 app.use('/userDataManage', userDataManageRoute);
+app.use('/forgotPassword', forgotPasswordRoute);
+app.use('/productPage', productPage)
+
+app.use('/thisProd', mongoDbProduct)
 
 
 app.listen(3001, () => { console.log('Server running on 3001') });
