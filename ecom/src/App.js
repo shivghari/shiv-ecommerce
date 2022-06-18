@@ -13,6 +13,7 @@ import AdminProtectedRoute from './Component/AdminPanel/AdminProtectedRoute/Admi
 import UserAccount from './Component/UserAccount/UserAccount';
 import ForgotPassword from './Component/ForgotPassword/ForgotPassword';
 import ProductPage from './Component/ProductPage/ProductPage';
+import AddToCart from './Component/AddToCart/AddToCart';
 
 import { Provider } from 'react-redux'
 import Store from './Store/Store'
@@ -38,6 +39,7 @@ function App() {
             <Route exact path='/account' element={<UserAccount />}></Route>
             <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
             <Route exact path="/productpage" element={<ProductPage />}></Route>
+            <Route exact path="/addtocart" element={<AddToCart />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

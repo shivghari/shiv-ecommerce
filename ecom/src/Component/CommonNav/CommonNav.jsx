@@ -115,7 +115,12 @@ function CommonNav() {
           </div>
           <div className="imgAndTag" style={{ marginTop: "10px" }}>
             <Badge badgeContent={cartProduct} color="primary">
-              <ShoppingCartOutlinedIcon style={{ marginTop: "10px" }} />
+              <ShoppingCartOutlinedIcon
+                style={{ marginTop: "10px" }}
+                onClick={() => {
+                  Navigate("/addtocart");
+                }}
+              />
             </Badge>
           </div>
         </div>
