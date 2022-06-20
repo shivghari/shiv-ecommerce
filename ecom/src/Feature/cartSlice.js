@@ -13,12 +13,24 @@ const cartSlice = createSlice({
     reducers : {
         addItem : (state, action)=>{
             if(state.cartItem[action.payload.productID]){
-                state.cartItem[action.payload.productID] ++
-                state.totalItem ++
+               
+                if(action.payload.total){
+                    state.cartItem[action.payload.productID] = state.cartItem[action.payload.productID] + action.payload.total
+                    state.totalItem = state.totalItem + action.payload.total    
+                }else{
+                    state.cartItem[action.payload.productID] ++
+                    state.totalItem ++
+                }
                 state.totalAmount = state.totalAmount + action.payload.price
             }else{
-                state.cartItem[action.payload.productID] = 1
-                state.totalItem ++
+                
+                if(action.payload.total){
+                    state.cartItem[action.payload.productID] =  action.payload.total
+                    state.totalItem = state.totalItem + action.payload.total
+                }else{
+                    state.totalItem ++
+                    state.cartItem[action.payload.productID] = 1
+                }
                 state.totalAmount = state.totalAmount + action.payload.price
             }
         },
@@ -26,7 +38,7 @@ const cartSlice = createSlice({
         removeItem : (state, action)=>{
             if(state.cartItem[action.payload.productID] > 0){
                 state.totalItem--
-                state.totalAmount = state.totalAmount = action.payload.price
+                state.totalAmount = state.totalAmount - action.payload.price
                 state.cartItem[action.payload.productID]--
             }
         },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./WebNavbar.css";
 import {
   Navbar,
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 function WebNavbar() {
   const Navigate = useNavigate();
+
   return (
     <Navbar bg="light" expand="lg" className="webnav">
       <Container fluid>

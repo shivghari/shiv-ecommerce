@@ -52,8 +52,18 @@
 }
 
 .productLists {
-    width: 100%;
-    height: 80px;
+    width: 50%;
+    height: 100px;
     border: 1px solid gray;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.productLists p {
+    margin: 0%;
+}
+
+.cartproductDetailsHolder {
+    margin-top: 10%;
 }

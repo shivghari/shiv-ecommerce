@@ -25,7 +25,8 @@ var UserSchema = new mongoose.Schema({
     deliveryaddress :{
         type : String
     },
-    cart : [{ productID : String , count : Number }]
+    cart : [{ productID : String , count : Number, price : String }],
+    wishlist : [String],
 })
 
 module.exports = mongoose.model("User", UserSchema)

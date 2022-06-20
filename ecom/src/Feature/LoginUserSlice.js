@@ -23,9 +23,15 @@ const loginUserSlice = createSlice({
             state.email = action.payload.email
             state.role = action.payload.role
             state.isLogin = action.payload.isLogin
-        }
+        },
+
+        logoutUser: (state)=>{
+            state.userID = ""  
+            state.username = ""
+            state.email = ""
+        },
     }
 })
 
 export default loginUserSlice.reducer
-export const { newUser } = loginUserSlice.actions
+export const { newUser, logoutUser } = loginUserSlice.actions

@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import TP1 from "./TP1.png";
 
 function UserAccount() {
   const [username, setusername] = useState("");
@@ -184,7 +185,15 @@ function UserAccount() {
           <div>
             <h2>UserCart</h2>
           </div>
-          <div className="productLists">kajshfl</div>
+          <div className="productLists">
+            <div>
+              <img src={TP1} alt="cartImg" width="100" height="100" />
+            </div>
+            <div className="cartproductDetailsHolder">
+              <p>Cantileber Chair</p>
+              <p>12$</p>
+            </div>
+          </div>
           <div className="productLists">kajshfl</div>
           <div className="productLists">kajshfl</div>
           <div className="productLists">kajshfl</div>

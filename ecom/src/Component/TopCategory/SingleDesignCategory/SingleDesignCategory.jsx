@@ -1,8 +1,10 @@
 import "./SingleDesignCategory.css";
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function SingleDesignCategory({ productName, price, image }) {
+  const Navigate = useNavigate();
   return (
     <div>
       <div className="CategoryhoverHolder">
@@ -14,7 +16,14 @@ function SingleDesignCategory({ productName, price, image }) {
             width="170px"
           />
           <div className="categoryBtnContainer">
-            <Button className="categoryBtn">View Shop</Button>
+            <Button
+              className="categoryBtn"
+              onClick={() => {
+                Navigate("/productpage");
+              }}
+            >
+              View Shop
+            </Button>
           </div>
         </div>
         <div className="categoryDisplay">

@@ -29,7 +29,7 @@ function Signin() {
       setpassCheck("red");
       setalert(<Alert severity="error">Password Not Matched!!</Alert>);
     }
-  }, [rePass]);
+  }, [rePass, pass]);
 
   const handleSignin = (e) => {
     e.preventDefault();

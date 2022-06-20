@@ -12,8 +12,10 @@ import Badge from "@mui/material/Badge";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetUserQuery } from "../../Feature/FindUserSlice";
-import { newUser } from "../../Feature/LoginUserSlice";
+import { newUser, logoutUser } from "../../Feature/LoginUserSlice";
 import { Button } from "react-bootstrap";
+import axios from "axios";
+import { addItem, clearCart } from "../../Feature/cartSlice";
 
 function CommonNav() {
   const Navigate = useNavigate();
@@ -21,10 +23,16 @@ function CommonNav() {
   const loginUserisLogin = useSelector((state) => state.newUser.isLogin);
 
   const cartProduct = useSelector((state) => state.cart.totalItem);
+  const cartAlldata = useSelector((state) => state.cart);
+  console.log("check cart data ", cartAlldata);
 
   const dispatch = useDispatch();
 
   var userId;
+
+  const refresh = () => {
+    window.location.reload(false);
+  };
 
   try {
     if (JSON.parse(localStorage.getItem("token")).userID) {
@@ -46,6 +54,26 @@ function CommonNav() {
           isLogin: true,
         })
       );
+
+      axios
+        .post("http://localhost:3001/productPage/fetchCart", {
+          userID: JSON.parse(localStorage.getItem("token")).userID,
+        })
+        .then((response) => {
+          console.log(response.data.data[0].cart);
+          response.data.data[0].cart.map((i) => {
+            dispatch(
+              addItem({
+                productID: i.productID,
+                price: parseInt(i.count) * parseInt(i.price),
+                total: parseInt(i.count),
+              })
+            );
+          });
+        })
+        .catch((err) => {
+          console.log(err, "err");
+        });
     }
   }, [data]);
 
@@ -61,7 +89,7 @@ function CommonNav() {
           <div className="hideIcon">
             <PhoneInTalkIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p classaName="phone">{data?.username}</p>
+          <p className="phone">{data?.username}</p>
         </div>
         <div className="loginOtherContainer">
           <NativeSelect defaultValue={"English"} sx={{ color: "#fff" }}>
@@ -143,8 +171,10 @@ function CommonNav() {
             }}
             onClick={() => {
               localStorage.clear();
+              dispatch(logoutUser());
+              dispatch(clearCart());
               Navigate("/");
-              dispatch(newUser({ email: "", username: "" }));
+              refresh();
             }}
           >
             Logout

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SingleProductPageItem.css";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useDispatch, useSelector } from "react-redux";
+
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+
+import { useDispatch } from "react-redux";
 import { addItem } from "../../../Feature/cartSlice";
 import axios from "axios";
 
@@ -16,11 +19,15 @@ function SingleProductPageItem({
 }) {
   const dispatch = useDispatch();
 
-  const addToCart = () => {
+  const [liked, setliked] = useState(false);
+  const [unlike, setunlike] = useState(true);
+
+  const addToCart = (price) => {
     axios
       .post("http://localhost:3001/productPage/addToCart", {
         userID: JSON.parse(localStorage.getItem("token")).userID,
         productID: productID,
+        productPrice: price,
       })
       .then((response) => {
         console.log(response);
@@ -29,6 +36,21 @@ function SingleProductPageItem({
         console.log(err);
       });
   };
+
+  const addATowish = (productID) => {
+    axios
+      .post("http://localhost:3001/productPage/addTowish", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+        productID: productID,
+      })
+      .then((response) => {
+        console.log("data", response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       <div className="productCard">
@@ -42,12 +64,18 @@ function SingleProductPageItem({
                   addItem({
                     productID: productID,
                     price: parseInt(price),
+                    total: 1,
                   })
                 );
-                addToCart();
+                addToCart(price);
               }}
             />
-            <FavoriteBorderIcon className="iconGrid" />
+            <FavoriteBorderIcon
+              className="iconGrid"
+              onClick={() => {
+                addATowish(productID);
+              }}
+            />
           </div>
           <div>
             <img

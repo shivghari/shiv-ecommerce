@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { newUser } from "../../Feature/LoginUserSlice";
+import { addItem } from "../../Feature/cartSlice";
 
 function Login() {
   const [useEmail, setuseEmail] = useState("");
@@ -36,7 +37,7 @@ function Login() {
               username: response.data.username,
               email: response.data.email,
               role: response.data.role,
-              isLogin : response.data ? true : false
+              isLogin: response.data ? true : false,
             })
           );
           localStorage.setItem(
@@ -48,7 +49,35 @@ function Login() {
           );
           setloginStatus("green");
 
-          Navigate('/')
+          //setting Up users cart
+
+          // axios
+          //   .post("http://localhost:3001/productPage/fetchCart", {
+          //     userID: JSON.parse(localStorage.getItem("token")).userID,
+          //   })
+          //   .then((response) => {
+          //     console.log(response.data.data[0].cart);
+          //     response.data.data[0].cart.map((i) => {
+          //       dispatch(
+          //         addItem({
+          //           productID: i.productID,
+          //           price: parseInt(i.count) * parseInt(i.price),
+          //           total: parseInt(i.count),
+          //         })
+          //       );
+          //     });
+          //   })
+          //   .catch((err) => {
+          //     console.log(err, "err");
+          //   });
+
+          //end setting uo users cart
+
+          //checking Redux
+
+          //end Checking
+
+          // Navigate("/");
         })
         .catch((err) => {
           console.log(err);
@@ -80,9 +109,13 @@ function Login() {
               }}
               style={{ borderColor: loginStatus }}
             />
-            <p onClick={()=>{
-              Navigate("/forgotPassword")
-            }}>Forget Password?</p>
+            <p
+              onClick={() => {
+                Navigate("/forgotPassword");
+              }}
+            >
+              Forget Password?
+            </p>
             <div className="loginBtnHolder">
               <Button
                 className="loginBtn"
