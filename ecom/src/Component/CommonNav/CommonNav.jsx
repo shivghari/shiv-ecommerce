@@ -138,7 +138,12 @@ function CommonNav() {
             </p>{" "}
             <PersonRoundedIcon style={{ marginTop: "10px" }} />
           </div>
-          <div className="imgAndTag">
+          <div
+            className="imgAndTag"
+            onClick={() => {
+              Navigate("/wishlist");
+            }}
+          >
             <p>Wishlist</p> <FavoriteBorderIcon style={{ marginTop: "10px" }} />
           </div>
           <div className="imgAndTag" style={{ marginTop: "10px" }}>

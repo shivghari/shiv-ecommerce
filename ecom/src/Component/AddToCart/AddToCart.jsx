@@ -10,6 +10,10 @@ import { IconButton } from "@mui/material";
 
 import { Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import cc from "./cc.png";
+
 import {
   addItem,
   removeItem,
@@ -17,21 +21,93 @@ import {
   setUser,
 } from "../../Feature/cartSlice";
 
+//patment Script Loading Function
+
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => {
+      resolve(true);
+    };
+    script.onerror = () => {
+      resolve(false);
+    };
+    document.body.appendChild(script);
+  });
+}
+
 function AddToCart() {
   const [cartdata, setCartdata] = useState([]);
   const [displayProduct, setDisplayProduct] = useState([]);
 
+  const [purchase, setpurchase] = useState([]);
+
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const totalItem = useSelector((state) => state.cart.totalItem);
   const itemList = useSelector((state) => state.cart.cartItem);
 
-  console.log(itemList, "check list");
-
   const refresh = () => {
     window.location.reload(false);
   };
+
+  //payment function
+
+  async function displayRazorpay() {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const data = await fetch("http://localhost:3001/razorpay", {
+      method: "POST",
+      body: JSON.stringify({
+        amount: totalAmount + 30,
+      }),
+
+      // Adding headers to the request
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }).then((t) => t.json());
+
+    console.log(data);
+
+    const options = {
+      key: "rzp_test_uPoswECZOQZFCj",
+      currency: data.currency,
+      amount: data.amount.toString(),
+      order_id: data.id,
+      name: "Hecto Pay",
+      description: "Thank you For Shopping..!",
+      image: cc,
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+        checkout();
+        dispatch(clearCart());
+        clearUserCart();
+        Navigate("/ordercomplete");
+      },
+      prefill: {
+        name: "Shiv",
+        email: "shiv@gmail.com",
+        phone_number: "9664893918",
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  }
+
+  //end patment function
 
   useEffect(() => {
     axios
@@ -39,6 +115,8 @@ function AddToCart() {
         userID: JSON.parse(localStorage.getItem("token")).userID,
       })
       .then((response) => {
+        console.log(response.data.data[0].cart, "check Item ");
+        setpurchase(response.data.data[0].cart);
         setCartdata(response.data.data[0].cart);
         var productIdArr = [];
         response.data.data[0].cart.map((i) => {
@@ -61,6 +139,21 @@ function AddToCart() {
         console.log(err, "err");
       });
   }, []);
+
+  const checkout = () => {
+    console.log(purchase, "purchase");
+    axios
+      .post("http://localhost:3001/productPage/checkout", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+        itemList: purchase,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
 
   const clearUserCart = () => {
     axios.post("http://localhost:3001/productPage/clearCart", {
@@ -155,6 +248,7 @@ function AddToCart() {
                       defaultValue={0}
                       value={itemList[item._id]}
                       className="numberHolder"
+                      readOnly={true}
                     />
                     <ArrowDropDownOutlinedIcon
                       className="iconscart"
@@ -228,7 +322,14 @@ function AddToCart() {
             >
               Clear Cart
             </Button>
-            <Button className="btn-checkout">Check Out</Button>
+            <Button
+              className="btn-checkout"
+              onClick={() => {
+                displayRazorpay();
+              }}
+            >
+              Check Out
+            </Button>
           </div>
         </div>
       </div>

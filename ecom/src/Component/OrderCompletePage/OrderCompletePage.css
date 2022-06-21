@@ -1,0 +1,48 @@
+.OrderPageContainer {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: 400px;
+}
+
+.orderCompletetextHolder {
+    text-align: center;
+    margin: auto;
+    width: 70%;
+    border-left: 3px #e3e5ee dashed;
+    padding: 40px;
+}
+
+.orderCompletetextHolder h1 {
+    color: #101750;
+    font-size: 36px;
+    font-style: "Josefin Sans";
+}
+
+.orderCompletetextHolder p{
+    color: #8D92A7;
+    font-size: 16px;
+    font-style: "Lato";
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.orderCompleteButton {
+    background-color: #FF1788;
+    border-color: #FF1788;
+    height: 45px;
+    width: 180px;
+    border-radius: 0%s;
+}
+
+.orderCompleteButton:hover {
+    background-color: #ff007b;
+    border-color: #ff007b;
+}
+
+.notepadImg {
+    margin-top: 300px;
+}

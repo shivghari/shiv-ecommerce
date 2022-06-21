@@ -191,10 +191,6 @@ router.post('/deductProduct', (req,res)=>{
 
 
 router.post('/addTowish', (req, res)=>{
-    console.log(req.body.productID, "productID")
-    console.log(req.body.userID)
-
-
     User.find({ _id : req.body.userID }).then((result)=>{
         if(result[0].wishlist.includes(req.body.productID)){
             console.log('Product Already in wish list')
@@ -202,7 +198,6 @@ router.post('/addTowish', (req, res)=>{
             User.updateOne({ _id : req.body.userID }, {"$push" : {
                 wishlist : [req.body.productID]
             } }).then((response)=>{
-                console.log(response)
                 res.status(200).json({ message : "product Added to the wish list " })
             }).catch((err)=>{
                 res.status(300).json({ message : "something went Wrng" })
@@ -212,9 +207,61 @@ router.post('/addTowish', (req, res)=>{
     }).catch((err)=>{
         console.log(err)
     })
+})
 
 
-   
+router.post('/removeFromwish', (req,res)=>{
+    User.findOne({ _id : req.body.userID }).then((response)=>{
+        var newArr = response.wishlist
+        var LatestWishList = newArr.filter((item)=>{
+            if(item !== req.body.productID){
+                return item
+            }
+        })
+        User.updateOne({ _id : req.body.userID }, {$set : {
+            wishlist : LatestWishList
+        }}).then((result)=>{
+            res.status(200).json({ message : "product Removed from WishList" })
+        }).catch((err)=>{
+            res.status(300).json({ mnessage : "Something Went Wrong" })
+        })
+    }).catch((err)=>{
+        console.log(err,'err')
+    })
+})
+
+
+router.post('/getWishListUser', (req,res)=>{
+    User.findOne({ _id : req.body.userID }).then((response)=>{
+        res.status(200).json({ wishlist : response.wishlist })
+    }).catch((err)=>{
+        res.status(300).json({ message :  "something Went Wrong"})
+    })
+})
+
+
+router.post('/checkout', (req,res)=>{
+    console.log(req.body.itemList)
+    console.log(req.body.userID)
+    User.updateOne({ _id : req.body.userID }, {$push : {
+        orderhistory : req.body.itemList
+    }}).then((response)=>{
+        console.log(response)
+        res.status(200).json({ message : "product added to order Histoory" })
+    }).catch((err)=>{
+        console.log(err)
+        res.status(300).json({ message : "Something Went Wrong" })
+    })
+})
+
+router.post('/getoOrderHistoryUser', (req,res)=>{
+    User.findOne({_id : req.body.userID}).then((response)=>{
+        console.log(response.orderhistory)
+        res.status(200).json({ orderhistory : response.orderhistory })
+    }).catch((err)=>{
+        console.log(err,'err')
+        res.status(300).json({ message : "something Went Wrong" })
+    })
 })
 
 module.exports = router

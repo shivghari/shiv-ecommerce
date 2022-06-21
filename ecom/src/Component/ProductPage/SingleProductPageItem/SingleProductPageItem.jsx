@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SingleProductPageItem.css";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -19,8 +19,25 @@ function SingleProductPageItem({
 }) {
   const dispatch = useDispatch();
 
-  const [liked, setliked] = useState(false);
+  const [liked, setliked] = useState();
   const [unlike, setunlike] = useState(true);
+  const [check, setCheck] = useState();
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:3001/productPage/getWishListUser", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+      })
+      .then((response) => {
+        if (response.data.wishlist.includes(productID)) {
+          setliked(true);
+          setCheck(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const addToCart = (price) => {
     axios
@@ -51,6 +68,20 @@ function SingleProductPageItem({
       });
   };
 
+  const removeFromWish = (productID) => {
+    axios
+      .post("http://localhost:3001/productPage/removeFromwish", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+        productID: productID,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
+
   return (
     <div>
       <div className="productCard">
@@ -70,12 +101,27 @@ function SingleProductPageItem({
                 addToCart(price);
               }}
             />
-            <FavoriteBorderIcon
-              className="iconGrid"
-              onClick={() => {
-                addATowish(productID);
-              }}
-            />
+            {unlike && !check ? (
+              <FavoriteBorderIcon
+                className="iconGrid"
+                onClick={() => {
+                  addATowish(productID);
+                  setliked(true);
+                  setunlike(false);
+                  setCheck(true);
+                }}
+              />
+            ) : liked ? (
+              <FavoriteOutlinedIcon
+                className="iconGrid"
+                onClick={() => {
+                  removeFromWish(productID);
+                  setliked(false);
+                  setunlike(true);
+                  setCheck(false);
+                }}
+              />
+            ) : null}
           </div>
           <div>
             <img

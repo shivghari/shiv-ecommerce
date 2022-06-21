@@ -52,18 +52,22 @@
 }
 
 .productLists {
-    width: 50%;
-    height: 100px;
-    border: 1px solid gray;
+    height: 120px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     margin-bottom: 10px;
     display: flex;
     justify-content: flex-start;
+
 }
 
 .productLists p {
     margin: 0%;
+    text-align: left;
+    font-weight: 500;
 }
 
 .cartproductDetailsHolder {
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-left: 10%;
 }

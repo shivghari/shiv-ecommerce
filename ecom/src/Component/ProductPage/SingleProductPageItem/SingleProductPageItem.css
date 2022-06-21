@@ -11,7 +11,7 @@
 }
 
 .iconGrid {
-    display: block;
+    display: block !important;
     margin-bottom: 15px;
     visibility: hidden;
     cursor: pointer;
@@ -21,6 +21,7 @@
     height: 100px;
     margin-top: 40px;
     padding-right: 10px;
+
 }
 
 .dataHolder{
@@ -56,5 +57,5 @@
 }
 
 .productCard:hover .iconGrid{
-    visibility:visible; ;
+    visibility:visible;
 }

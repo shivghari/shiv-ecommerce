@@ -14,6 +14,8 @@ import UserAccount from './Component/UserAccount/UserAccount';
 import ForgotPassword from './Component/ForgotPassword/ForgotPassword';
 import ProductPage from './Component/ProductPage/ProductPage';
 import AddToCart from './Component/AddToCart/AddToCart';
+import WishListPage from './Component/WishListPage/WishListPage';
+import OrderCompletePage from './Component/OrderCompletePage/OrderCompletePage';
 
 import { Provider } from 'react-redux'
 import Store from './Store/Store'
@@ -40,6 +42,8 @@ function App() {
             <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
             <Route exact path="/productpage" element={<ProductPage />}></Route>
             <Route exact path="/addtocart" element={<AddToCart />}></Route>
+            <Route exact path="/wishlist" element={<WishListPage />}></Route>
+            <Route exact path="/ordercomplete" element={<OrderCompletePage />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

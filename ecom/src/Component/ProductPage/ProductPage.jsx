@@ -39,8 +39,8 @@ function ProductPage() {
       <Row>
         {isFetching === false
           ? productData &&
-            productData.map((item) => (
-              <Col lg={3}>
+            productData.map((item, index) => (
+              <Col lg={3} key={index}>
                 <SingleProductPageItem
                   image={item.image}
                   productname={item.prouctname}

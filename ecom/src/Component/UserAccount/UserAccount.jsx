@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./UserAccount.css";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import TP1 from "./TP1.png";
 
 function UserAccount() {
   const [username, setusername] = useState("");
@@ -12,6 +11,8 @@ function UserAccount() {
   const [residentAddress, setresidentAddress] = useState("");
   const [deliveryAddress, setdeliveryAddress] = useState("");
   const [mobNumber, setmobNumber] = useState("");
+
+  const [orderHistory, setorderHistory] = useState([]);
 
   const Navigate = useNavigate();
 
@@ -53,6 +54,34 @@ function UserAccount() {
       })
       .catch((err) => {
         console.log(err.message);
+      });
+
+    axios
+      .post("http://localhost:3001/productPage/getoOrderHistoryUser", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+      })
+      .then((response) => {
+        console.log(response);
+
+        var productIdArr = [];
+        response.data.orderhistory.map((i) => {
+          productIdArr.push(i.productID);
+        });
+
+        axios
+          .post("http://localhost:3001/thisProd", {
+            productIDs: productIdArr,
+          })
+          .then((response) => {
+            console.log(response.data.cartdata, "products");
+            setorderHistory(response.data.cartdata);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err, "err");
       });
   }, []);
 
@@ -185,20 +214,28 @@ function UserAccount() {
           <div>
             <h2>UserCart</h2>
           </div>
-          <div className="productLists">
-            <div>
-              <img src={TP1} alt="cartImg" width="100" height="100" />
-            </div>
-            <div className="cartproductDetailsHolder">
-              <p>Cantileber Chair</p>
-              <p>12$</p>
-            </div>
-          </div>
-          <div className="productLists">kajshfl</div>
-          <div className="productLists">kajshfl</div>
-          <div className="productLists">kajshfl</div>
-          <div className="productLists">kajshfl</div>
-          <div className="productLists">kajshfl</div>
+
+          <Row>
+            {orderHistory &&
+              orderHistory.map((item) => (
+                <Col>
+                  <div className="productLists">
+                    <div>
+                      <img
+                        src={`http://localhost:3001/static/${item.image}`}
+                        alt="cartImg"
+                        width="80px"
+                        height="80px"
+                      />
+                    </div>
+                    <div className="cartproductDetailsHolder">
+                      <p>{item.prouctname}</p>
+                      <p>{item.price}₹</p>
+                    </div>
+                  </div>
+                </Col>
+              ))}
+          </Row>
         </div>
       </div>
     </div>

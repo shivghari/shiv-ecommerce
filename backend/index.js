@@ -16,6 +16,7 @@ const userDataManageRoute = require('./routes/UserDataManage')
 const forgotPasswordRoute = require('./routes/ForgotPassword')
 const mongoDbProduct = require('./routes/mongoDbProduct')
 const productPage = require('./routes/ProductPage')
+const razorpayRoute = require('./routes/Razorpay')
 
 const path = require('path')
 const app = express()
@@ -38,8 +39,8 @@ app.use('/homepageproduct', homePageProductRourte);
 app.use('/userDataManage', userDataManageRoute);
 app.use('/forgotPassword', forgotPasswordRoute);
 app.use('/productPage', productPage)
-
 app.use('/thisProd', mongoDbProduct)
+app.use('/razorpay', razorpayRoute)
 
 
 app.listen(3001, () => { console.log('Server running on 3001') });

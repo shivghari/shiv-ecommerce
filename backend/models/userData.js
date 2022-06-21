@@ -27,6 +27,8 @@ var UserSchema = new mongoose.Schema({
     },
     cart : [{ productID : String , count : Number, price : String }],
     wishlist : [String],
+    orderhistory : [{ productID : String , count : Number, price : String }],
+
 })
 
 module.exports = mongoose.model("User", UserSchema)
