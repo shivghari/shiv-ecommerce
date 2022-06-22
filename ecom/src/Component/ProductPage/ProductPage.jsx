@@ -17,8 +17,8 @@ function ProductPage() {
     axios
       .get("http://localhost:3001/productPage/getAllProduct")
       .then((response) => {
-        console.log(response.data);
-        setproductData(response.data.arr);
+        console.log(response.data.response);
+        setproductData(response.data.response);
         setisFetching(false);
         dispatch(
           setUser({ userID: JSON.parse(localStorage.getItem("token")).userID })

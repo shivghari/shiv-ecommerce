@@ -19,7 +19,7 @@ import ManageUser from "./ManageUser/ManageUser";
 function AdminPanel() {
   return (
     <div className="mainAdminbar">
-      <Tab.Container defaultActiveKey={"ProductList"}>
+      <Tab.Container defaultActiveKey={"orders"}>
         <Nav className="navLinkContainer">
           <div className="adminLinks">
             <Nav.Item>

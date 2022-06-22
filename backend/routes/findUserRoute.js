@@ -10,6 +10,9 @@ const User = require('../models/userData')
 const jwt = require('jsonwebtoken')
 const verifyToken = require('../middleware/jwtVerificationMid')
 
+router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.json())
+
 
 router.get('/:userID', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, result) => {
@@ -25,5 +28,36 @@ router.get('/:userID', verifyToken, (req, res) => {
     })
 
 })
+
+
+router.post('/allUserdata',(req, res) => {
+
+        console.log('Finding The user')
+        const userID = req.body.userID
+        console.log(userID)
+        User.find({ _id: userID }).populate("orderID").populate({path: "orderID",
+        populate : {path : "orderlist", populate: {path : "productID", model: "Product"}}
+        }).then((reponse) => {
+            res.status(200).json({reponse})
+        }).catch((err) => {
+            console.log(err)
+            res.send("something")
+        })
+})
+
+
+router.post('/allUsersDetails',verifyToken,(req, res) => {
+    jwt.verify(req.token, 'secretkey', (err, result) => {
+    User.find().populate("orderID").populate({path: "orderID",
+    populate : {path : "orderlist", populate: {path : "productID", model: "Product"}}
+    }).then((reponse) => {
+        res.status(200).json({reponse})
+    }).catch((err) => {
+        console.log(err)
+        res.send("something")
+    })
+    })
+})
+
 
 module.exports = router

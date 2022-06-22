@@ -1,7 +1,3 @@
-.UserInfoHeading {
-    border: 1px solid rgb(238, 236, 236);
-}
-
 .formHolder h2 {
     text-align: left;
 }
@@ -19,8 +15,9 @@
     border: 1px solid rgb(174, 174, 174);
     border-radius: 8px;
     height: 50px;
-    padding-left: 5px;
+    padding-left: 10px;
     font-size: 17px;
+    font-weight: 500;
 }
 
 .formHolder label {
@@ -70,4 +67,22 @@
 .cartproductDetailsHolder {
     margin-top: 5%;
     margin-left: 10%;
+}
+
+.PurchasedProductHEading {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.PurchasedProductHEading h2 {
+    font-size: 25px;
+    color: #151875;
+    font-style: 'Lato';
+}
+
+.UserInfoHeading h1 {
+    font-size: 36px;
+    color: #151875;
+    font-style: 'Lato';
+    border: none;
 }

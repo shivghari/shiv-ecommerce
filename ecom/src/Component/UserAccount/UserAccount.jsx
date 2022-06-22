@@ -12,13 +12,45 @@ function UserAccount() {
   const [deliveryAddress, setdeliveryAddress] = useState("");
   const [mobNumber, setmobNumber] = useState("");
 
-  const [orderHistory, setorderHistory] = useState([]);
+  const [flag, setflag] = useState(false);
+
+  const [orderIDs, setorderIDs] = useState([]);
+  const [productList, setproductList] = useState([]);
 
   const Navigate = useNavigate();
 
   const refresh = () => {
     window.location.reload(false);
   };
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:3001/findUser/allUserdata", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+      })
+      .then((response) => {
+        console.log(response.data.reponse[0].orderID, "orderID");
+        setorderIDs(response.data.reponse[0].orderID);
+        var productArr = [];
+        orderIDs.map((item) => {
+          item.orderlist.map((i) => {
+            var dataObj = {
+              productName: i.productID.prouctname,
+              price: i.productID.price,
+              image: i.productID.image,
+            };
+            // setproductList([...productList, dataObj]);
+            productArr.push(dataObj);
+          });
+        });
+        console.log(productArr, "check all product");
+        setproductList(productArr);
+        setflag(true);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  }, [flag]);
 
   useEffect(() => {
     axios
@@ -54,34 +86,6 @@ function UserAccount() {
       })
       .catch((err) => {
         console.log(err.message);
-      });
-
-    axios
-      .post("http://localhost:3001/productPage/getoOrderHistoryUser", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
-      })
-      .then((response) => {
-        console.log(response);
-
-        var productIdArr = [];
-        response.data.orderhistory.map((i) => {
-          productIdArr.push(i.productID);
-        });
-
-        axios
-          .post("http://localhost:3001/thisProd", {
-            productIDs: productIdArr,
-          })
-          .then((response) => {
-            console.log(response.data.cartdata, "products");
-            setorderHistory(response.data.cartdata);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err, "err");
       });
   }, []);
 
@@ -211,31 +215,35 @@ function UserAccount() {
           </div>
         </div>
         <div className="userCart">
-          <div>
-            <h2>UserCart</h2>
+          <div className="PurchasedProductHEading">
+            <h2>Product Purchased By You</h2>
           </div>
 
-          <Row>
-            {orderHistory &&
-              orderHistory.map((item) => (
-                <Col>
-                  <div className="productLists">
-                    <div>
-                      <img
-                        src={`http://localhost:3001/static/${item.image}`}
-                        alt="cartImg"
-                        width="80px"
-                        height="80px"
-                      />
+          {flag ? (
+            <Row>
+              {productList &&
+                productList?.map((item, index) => (
+                  <Col lg={6} key={index}>
+                    <div className="productLists">
+                      <div>
+                        <img
+                          src={`http://localhost:3001/static/${item.image}`}
+                          alt="cartImg"
+                          width="80px"
+                          height="80px"
+                        />
+                      </div>
+                      <div className="cartproductDetailsHolder">
+                        <p>{item.productName}</p>
+                        <p>{item.price}₹</p>
+                      </div>
                     </div>
-                    <div className="cartproductDetailsHolder">
-                      <p>{item.prouctname}</p>
-                      <p>{item.price}₹</p>
-                    </div>
-                  </div>
-                </Col>
-              ))}
-          </Row>
+                  </Col>
+                ))}
+            </Row>
+          ) : (
+            <h1>Loading</h1>
+          )}
         </div>
       </div>
     </div>

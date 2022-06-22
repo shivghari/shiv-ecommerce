@@ -43,12 +43,16 @@ function AddToCart() {
 
   const [purchase, setpurchase] = useState([]);
 
+  const [paymentDetails, setpaymentDetails] = useState();
+
   const dispatch = useDispatch();
   const Navigate = useNavigate();
 
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const totalItem = useSelector((state) => state.cart.totalItem);
   const itemList = useSelector((state) => state.cart.cartItem);
+
+  var data;
 
   const refresh = () => {
     window.location.reload(false);
@@ -66,7 +70,7 @@ function AddToCart() {
       return;
     }
 
-    const data = await fetch("http://localhost:3001/razorpay", {
+    data = await fetch("http://localhost:3001/razorpay", {
       method: "POST",
       body: JSON.stringify({
         amount: totalAmount + 30,
@@ -79,6 +83,7 @@ function AddToCart() {
     }).then((t) => t.json());
 
     console.log(data);
+    setpaymentDetails(data);
 
     const options = {
       key: "rzp_test_uPoswECZOQZFCj",
@@ -92,6 +97,8 @@ function AddToCart() {
         alert(response.razorpay_payment_id);
         alert(response.razorpay_order_id);
         alert(response.razorpay_signature);
+        localStorage.setItem("payamount", data.amount);
+        localStorage.setItem("payid", data.id);
         checkout();
         dispatch(clearCart());
         clearUserCart();
@@ -141,14 +148,17 @@ function AddToCart() {
   }, []);
 
   const checkout = () => {
-    console.log(purchase, "purchase");
     axios
       .post("http://localhost:3001/productPage/checkout", {
         userID: JSON.parse(localStorage.getItem("token")).userID,
         itemList: purchase,
+        totalamount: parseInt(localStorage.getItem("payamount")) / 100,
+        paymentid: localStorage.getItem("payid"),
       })
       .then((response) => {
         console.log(response);
+        localStorage.removeItem("payamount");
+        localStorage.removeItem("payid");
       })
       .catch((err) => {
         console.log(err, "err");
@@ -225,10 +235,8 @@ function AddToCart() {
                   </div>
                   <div className="cartProductDetailsHolder">
                     <p className="cartprodName">{item.prouctname}</p>
-                    <p className="cartProdDetails">
-                      tihi oisb thae redsvsueait s
-                    </p>
-                    <p>{item.price}</p>
+                    <p className="cartProdDetails">{item.desc}</p>
+                    <p>{item.price}₹</p>
                   </div>
                   <div className="manageQuetity">
                     <ArrowDropUpOutlinedIcon

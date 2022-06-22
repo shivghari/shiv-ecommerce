@@ -31,6 +31,7 @@ function AdminProductList() {
   const [filterProducts, setfilterProducts] = useState([]);
   const [deleteFlag, setdeleteFlag] = useState(false);
   const [copyData, setcopyData] = useState([]);
+  const [filterMenu, setfilterMenu] = useState([]);
 
   // const Newdata = useSelector((state) => state.products);
   // console.log("new Data", Newdata.products.data);
@@ -53,14 +54,25 @@ function AdminProductList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/fetchProduct",{
-        headers : {
-          "Authorization" : JSON.parse(localStorage.getItem("token")).token
-        }
+      .get("http://localhost:3001/fetchProduct", {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("token")).token,
+        },
       })
       .then((response) => {
         setfilterProducts(response.data);
         setcopyData(response.data);
+
+        var filterArr = [];
+        response.data.map((item) => {
+          if (!filterArr.includes(item.category)) {
+            filterArr.push(item.category);
+          }
+        });
+
+        setfilterMenu(filterArr);
+        console.log(filterArr, "filter Arr");
+
         console.log(response.data);
       })
       .catch((err) => {
@@ -70,10 +82,10 @@ function AdminProductList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/fetchProduct",{
-        headers : {
-          "Authorization" : JSON.parse(localStorage.getItem("token")).token
-        }
+      .get("http://localhost:3001/fetchProduct", {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("token")).token,
+        },
       })
       .then((response) => {
         setfilterProducts(response.data);
@@ -91,11 +103,15 @@ function AdminProductList() {
   const deleteProduct = (productId) => {
     console.log(productId);
     axios
-      .post("http://localhost:3001/deleteProduct", { productId }, {
-        headers : {
-          "Authorization" : JSON.parse(localStorage.getItem("token")).token
+      .post(
+        "http://localhost:3001/deleteProduct",
+        { productId },
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("token")).token,
+          },
         }
-      })
+      )
       .then((response) => {
         console.log("Delete Success", response);
       })
@@ -134,9 +150,9 @@ function AdminProductList() {
               }}
             >
               <option value={"all"}>All</option>
-              {copyData.length &&
-                copyData.map((item) => (
-                  <option value={item.category}>{`${item.category}`}</option>
+              {filterMenu.length &&
+                filterMenu.map((item) => (
+                  <option value={item}>{`${item}`}</option>
                 ))}
             </Form.Select>
           </div>

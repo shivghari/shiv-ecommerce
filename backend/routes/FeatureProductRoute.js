@@ -27,16 +27,17 @@ router.post('/addproduct', upload.single('productImg'), verifyToken, (req, res) 
                 console.log('File Uploaded')
             })
 
-            var newProduct = new DisplayProductSchema({
+            var newProduct = new Product({
                 prouctname: req.body.productName,
                 image: newFilename,
                 desc: req.body.Desc,
-                category: req.body.category,
+                category: req.body.tags,
                 tags: req.body.tags,
                 tax: req.body.tax,
                 price: req.body.netprice,
                 costofitem: req.body.costofItem,
                 stakedprice: req.body.stakedPrice,
+                types: 'Feature Product'
             })
 
             newProduct.save().then(() => {
@@ -52,7 +53,7 @@ router.post('/addproduct', upload.single('productImg'), verifyToken, (req, res) 
 
 router.post('/getAllProducts', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, result) => {
-        DisplayProductSchema.find({ category: "Featured Product" }).then((response) => {
+        Product.find({ types: "Feature Product" }).then((response) => {
             res.status(200).json({ message: "data Found", response })
         })
     })
@@ -62,8 +63,7 @@ router.post('/getAllProducts', verifyToken, (req, res) => {
 router.post('/getOneProduct', verifyToken, (req, res) => {
 
     jwt.verify(req.token, 'secretkey', (err, result) => {
-        console.log(req.body)
-        DisplayProductSchema.find({ _id: req.body.productID }).then((response) => {
+        Product.find({ _id: req.body.productID }).then((response) => {
             console.log(response)
             res.status(200).json({ message: "data Found", response })
         })
@@ -79,17 +79,18 @@ router.post('/editProduct', upload.single('productImg'), verifyToken, (req, res)
             fs.rename(path.resolve(process.cwd(), `uploads/${req.file.filename}`), path.resolve(process.cwd(), `uploads/${newFilename}`), (data) => {
                 console.log('File Uploaded')
             })
-            DisplayProductSchema.updateOne({ _id: req.body.productId }, {
+            Product.updateOne({ _id: req.body.productId }, {
                 $set: {
                     "prouctname": req.body.productName,
                     "image": newFilename,
                     "desc": req.body.Desc,
-                    "category": "Featured Product",
+                    "category": req.body.tags,
                     "tags": req.body.tags,
                     "tax": req.body.tax,
                     "price": req.body.netprice,
                     "costofitem": req.body.costofItem,
                     "stakedprice": req.body.stakedPrice,
+                    "types" :"Feature Product",
                 }
             }).then((response) => {
                 res.status(200).json({ message: "Product Updated", response })
@@ -99,16 +100,17 @@ router.post('/editProduct', upload.single('productImg'), verifyToken, (req, res)
 
         }
         else {
-            DisplayProductSchema.updateOne({ _id: req.body.productId }, {
+            Product.updateOne({ _id: req.body.productId }, {
                 $set: {
                     "prouctname": req.body.productName,
                     "desc": req.body.Desc,
-                    "category": "Featured Product",
+                    "category": req.body.tags,
                     "tags": req.body.tags,
                     "tax": req.body.tax,
                     "price": req.body.netprice,
                     "costofitem": req.body.costofItem,
                     "stakedprice": req.body.stakedPrice,
+                    "types" :"Feature Product"
                 }
             }).then((response) => {
                 res.status(200).json({ message: "Product Updated" })
@@ -123,7 +125,7 @@ router.post('/editProduct', upload.single('productImg'), verifyToken, (req, res)
 router.post('/deleteProduct', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, result) => {
         console.log(req.body)
-        DisplayProductSchema.deleteOne({ _id: req.body.editItemId }).then((response) => {
+        Product.deleteOne({ _id: req.body.editItemId }).then((response) => {
             console.log(response)
             res.status(200).json({ message: "data Found", response })
         })

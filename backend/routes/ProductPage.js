@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const User = require('../models/userData')
 const Product = require('../models/product')
 const DisplayProductSchema = require('../models/homeControl')
+const Orderhistory = require('../models/orderHistory')
 
 const jwt = require('jsonwebtoken')
 const verifyToken = require('../middleware/jwtVerificationMid');
@@ -19,15 +20,8 @@ router.use(bodyParser.urlencoded({ extended: true }))
 router.use(bodyParser.json())
 
 router.get('/getAllProduct', (req,res)=>{
-    var arr = []
     Product.find().then((response)=>{
-        var productSchema = [...response]
-        DisplayProductSchema.find().then((result)=>{
-            arr = [...productSchema , ...result]
-            res.status(200).json({ arr })
-        }).catch((err)=>{
-            console.log(err)
-        })
+        res.status(200).json({ response })
     }).catch((err)=>{
         console.log(err)
     })
@@ -241,16 +235,27 @@ router.post('/getWishListUser', (req,res)=>{
 
 
 router.post('/checkout', (req,res)=>{
-    console.log(req.body.itemList)
-    console.log(req.body.userID)
-    User.updateOne({ _id : req.body.userID }, {$push : {
-        orderhistory : req.body.itemList
-    }}).then((response)=>{
-        console.log(response)
-        res.status(200).json({ message : "product added to order Histoory" })
-    }).catch((err)=>{
-        console.log(err)
-        res.status(300).json({ message : "Something Went Wrong" })
+    // console.log(req.body, 'HCeck Chekout')
+    // res.status(200).json({ messsage : req.body })
+    // console.log(req.body.userID)
+
+    const newOrder = new Orderhistory({
+        userID : req.body.userID,
+        orderlist : req.body.itemList,
+        totalamount : req.body.totalamount,
+        paymentid : req.body.paymentid
+    })
+
+    newOrder.save().then((response)=>{
+        Orderhistory.find({userID : req.body.userID},'_id').then((result)=>{
+            User.updateOne({ _id : req.body.userID }, {
+                orderID : result
+            }).then((answer)=>{
+                res.status(200).json({answer})
+            }).catch((err)=>{
+                res.status(300).json({ err })
+            })
+        })
     })
 })
 

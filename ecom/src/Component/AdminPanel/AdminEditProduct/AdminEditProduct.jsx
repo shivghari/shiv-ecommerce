@@ -57,9 +57,9 @@ function AdminEditProduct() {
 
     axios
       .post("http://localhost:3001/editProduct", EditProductData, {
-        headers : {
-          "Authorization" : JSON.parse(localStorage.getItem("token")).token
-        }
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("token")).token,
+        },
       })
       .then((response) => {
         console.log(response);
@@ -85,6 +85,7 @@ function AdminEditProduct() {
               handleViewButton(e.target.value);
             }}
           >
+            <option>Select Product</option>
             {data &&
               data.map((item) => (
                 <option
