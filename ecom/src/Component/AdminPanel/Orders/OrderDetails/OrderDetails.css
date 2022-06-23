@@ -1,0 +1,47 @@
+.productContainerOrder {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    padding: 20px;
+}
+
+.orderProductDetails p{
+    margin: 0%;
+    font-weight: 500;
+    color: #151875;
+}
+
+.userInfoOrder p{
+    font-weight: 500;
+    color: #151875;
+    margin: 0%;
+    margin-right: 50px;
+}
+
+.userInfoOrder {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    align-content: flex-start;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-left: -25px;
+}
+
+.totalOrderAmount p{
+    font-weight: 500;
+    color: #151875;
+}
+
+.totalOrderAmount {
+    margin-top: 30px;
+}
+
+.userDataMob {
+    display: flex;
+    justify-content: space-evenly;
+    width: fit-content;
+    align-content: flex-start;
+}
+
+.userDataMob p{
+    margin-right: 30px;
+}

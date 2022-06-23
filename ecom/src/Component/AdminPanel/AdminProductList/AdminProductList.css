@@ -53,3 +53,27 @@
     background-color: #fff !important;
     border-color: #fff !important;
 } */
+
+.dot-limited {
+    height: 10px;
+    width: 10px;
+    background-color: #fc6603;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot-instock {
+    height: 10px;
+    width: 10px;
+    background-color: #02b50e;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot-outofStock {
+    height: 10px;
+    width: 10px;
+    background-color: #ff0707;
+    border-radius: 50%;
+    display: inline-block;
+  }

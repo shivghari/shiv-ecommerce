@@ -26,4 +26,15 @@ router.get('/', verifyToken, (req, res) => {
     })
 })
 
+router.post('/getPerticularProduct', verifyToken, (req, res)=>{
+    jwt.verify(req.token, 'secretkey', (err, result) => {
+        console.log('req headers', req.headers['authorization'])
+        Product.findOne({ _id : req.body.productID }).then((response) => {
+            res.status(200).json(response)
+        }).catch((err)=>{
+            res.status(300).json({ message : "Something Went Worng" })
+        })
+    })
+})
+
 module.exports = router

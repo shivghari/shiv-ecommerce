@@ -3,6 +3,7 @@ import "./CommonNav.css";
 
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import NativeSelect from "@mui/material/NativeSelect";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
@@ -87,7 +88,7 @@ function CommonNav() {
           </div>
           <p className="email">{data?.email}</p>
           <div className="hideIcon">
-            <PhoneInTalkIcon sx={{ marginTop: "10px" }} />
+            <AccountCircleIcon sx={{ marginTop: "10px" }} />
           </div>
           <p className="phone">{data?.username}</p>
         </div>

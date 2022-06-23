@@ -3,6 +3,8 @@ import "./AddToCart.css";
 import { useEffect } from "react";
 import axios from "axios";
 
+import ProductRatingPage from "./ProductRatingPage/ProductRatingPage";
+
 import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined";
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -11,6 +13,9 @@ import { IconButton } from "@mui/material";
 import { Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 
 import cc from "./cc.png";
 
@@ -37,6 +42,18 @@ function loadScript(src) {
   });
 }
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  height: "fitContent",
+};
+
 function AddToCart() {
   const [cartdata, setCartdata] = useState([]);
   const [displayProduct, setDisplayProduct] = useState([]);
@@ -51,6 +68,11 @@ function AddToCart() {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const totalItem = useSelector((state) => state.cart.totalItem);
   const itemList = useSelector((state) => state.cart.cartItem);
+
+  //model controoller
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   var data;
 
@@ -157,8 +179,6 @@ function AddToCart() {
       })
       .then((response) => {
         console.log(response);
-        localStorage.removeItem("payamount");
-        localStorage.removeItem("payid");
       })
       .catch((err) => {
         console.log(err, "err");
@@ -275,14 +295,6 @@ function AddToCart() {
                       }}
                     />
                   </div>
-                  {/* <Button
-                    className="DeleteProductBtn"
-                    onClick={() => {
-                      deductProduct(item._id);
-                    }}
-                  >
-                    Delete Product
-                  </Button> */}
                   <IconButton
                     className="DeleteProductBtn"
                     sx={{ marginLeft: "50px", color: "red" }}
@@ -338,8 +350,25 @@ function AddToCart() {
             >
               Check Out
             </Button>
+            <Button
+              onClick={() => {
+                handleOpen();
+              }}
+            >
+              Like
+            </Button>
           </div>
         </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <ProductRatingPage paymentID={localStorage.getItem("payid")} />
+          </Box>
+        </Modal>
       </div>
     </div>
   );

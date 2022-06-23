@@ -1,4 +1,6 @@
 import "./AdminProductList.css";
+import ProductDetailPage from "./ProductDetailPage/ProductDetailPage";
+
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -15,6 +17,9 @@ import Paper from "@mui/material/Paper";
 import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+
 import Form from "react-bootstrap/Form";
 
 import axios from "axios";
@@ -22,6 +27,18 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 // import { getProduct } from "../../../Feature/productManage";
 // import { useDispatch, useSelector } from "react-redux";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  height: "fitContent",
+};
 
 function AdminProductList() {
   // const dispatch = useDispatch();
@@ -32,6 +49,13 @@ function AdminProductList() {
   const [deleteFlag, setdeleteFlag] = useState(false);
   const [copyData, setcopyData] = useState([]);
   const [filterMenu, setfilterMenu] = useState([]);
+
+  const [SelectedproductID, setSelectedproductID] = useState();
+
+  //model control
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   // const Newdata = useSelector((state) => state.products);
   // console.log("new Data", Newdata.products.data);
@@ -132,12 +156,39 @@ function AdminProductList() {
     } else setfilterProducts(copyData);
   };
 
+  const searchProduct = (searchString) => {
+    const newArr = copyData.filter((item) => {
+      if (item.prouctname.toLowerCase().includes(searchString.toLowerCase())) {
+        return item;
+      }
+    });
+    if (newArr.length !== 0) {
+      setfilterProducts(newArr);
+    } else setfilterProducts(copyData);
+  };
+
+  // const orderSearch = (paymentID) => {
+  //   const newArr = CopyData.filter((item) => {
+  //     if (item.paymentID.toLowerCase().includes(paymentID.toLowerCase())) {
+  //       return item;
+  //     }
+  //   });
+  //   if (newArr.length !== 0) {
+  //     setorderDataList(newArr);
+  //   } else setorderDataList(CopyData);
+  // };
+
   return (
     <div>
       <div className="listHolder">
         <div className="search-select-holder">
           <div className="search-bar-holder">
-            <input placeholder="Search.." />
+            <input
+              placeholder="Search.."
+              onChange={(e) => {
+                searchProduct(e.target.value);
+              }}
+            />
             <Button variant="contained" sx={{ marginTop: "-5px" }}>
               <SearchIcon />
             </Button>
@@ -191,7 +242,13 @@ function AdminProductList() {
                             width="50px"
                             alt="Product"
                           />
-                          <h6 style={{ marginTop: "16px" }}>
+                          <h6
+                            style={{
+                              marginTop: "16px",
+                              width: "150px",
+                              marginLeft: "10px",
+                            }}
+                          >
                             {item.prouctname}
                           </h6>
                         </div>
@@ -199,7 +256,31 @@ function AdminProductList() {
                       <TableCell align="left">{item.category}</TableCell>
                       <TableCell align="left">{item.price} ₹</TableCell>
                       <TableCell align="left">{item.costofitem}</TableCell>
-                      <TableCell align="left">In stock</TableCell>
+                      <TableCell align="left">
+                        {/* {item.costofitem < 10 ? (
+                          <p>
+                            <span class="dot-limited"></span> Limited Stock
+                          </p>
+                        ) : (
+                          <p>
+                            <span class="dot-instock"></span> In Stock
+                          </p>
+                        )} */}
+
+                        {item.costofitem <= 0 ? (
+                          <p>
+                            <span class="dot-outofStock"></span> Out Of Stock
+                          </p>
+                        ) : item.costofitem < 5 ? (
+                          <p>
+                            <span class="dot-limited"></span> Limited Stock
+                          </p>
+                        ) : (
+                          <p>
+                            <span class="dot-instock"></span> In Stock
+                          </p>
+                        )}
+                      </TableCell>
                       <TableCell align="left">
                         <DropdownButton
                           title={<MoreVertIcon />}
@@ -213,7 +294,13 @@ function AdminProductList() {
                           >
                             Delete
                           </Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">
+                          <Dropdown.Item
+                            href="#/action-2"
+                            onClick={() => {
+                              handleOpen();
+                              setSelectedproductID(item._id);
+                            }}
+                          >
                             Preview
                           </Dropdown.Item>
                         </DropdownButton>
@@ -224,6 +311,16 @@ function AdminProductList() {
             </Table>
           </TableContainer>
         </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <ProductDetailPage SelectedproductID={SelectedproductID} />
+          </Box>
+        </Modal>
       </div>
     </div>
   );

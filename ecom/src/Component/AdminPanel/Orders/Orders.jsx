@@ -30,10 +30,11 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "50%",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
+  height: "fitContent",
 };
 
 function Orders() {
@@ -41,11 +42,18 @@ function Orders() {
   const [OrderUser, setOrderUser] = useState([]);
   const [CopyData, setCopyData] = useState([]);
 
+  //orderDetails Page Props State
+  const [custName, setcustName] = useState("");
+  const [selectedorderDate, setselectedorderDate] = useState("");
+  const [totalOrderAmount, settotalOrderAmount] = useState("");
+  const [selectedUserID, setselectedUserID] = useState("");
+
+  //model controoller
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [selectedUserId, setselectedUserId] = useState("");
+  const [selectedPatmentId, setselectedPatmentId] = useState("");
 
   useEffect(() => {
     axios
@@ -192,7 +200,13 @@ function Orders() {
                           <Dropdown.Item
                             onClick={() => {
                               console.log(item.paymentID);
-                              setselectedUserId(item.userID);
+                              setselectedPatmentId(item.paymentID);
+                              settotalOrderAmount(item.orderAmount);
+                              setselectedorderDate(
+                                item.orderDate.split("T")[0]
+                              );
+                              setcustName(item.username);
+                              setselectedUserID(item.userID);
                               handleOpen();
                             }}
                           >
@@ -209,7 +223,13 @@ function Orders() {
                   aria-describedby="modal-modal-description"
                 >
                   <Box sx={style}>
-                    <OrderDetails userID={selectedUserId} />
+                    <OrderDetails
+                      paymentID={selectedPatmentId}
+                      totalOrderAmount={totalOrderAmount}
+                      selectedorderDate={selectedorderDate}
+                      custName={custName}
+                      selectedUserID={selectedUserID}
+                    />
                   </Box>
                 </Modal>
               </TableBody>

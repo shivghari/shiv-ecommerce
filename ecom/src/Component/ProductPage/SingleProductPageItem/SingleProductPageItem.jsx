@@ -10,12 +10,15 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../../Feature/cartSlice";
 import axios from "axios";
 
+import Rating from "@mui/material/Rating";
+
 function SingleProductPageItem({
   image,
   productname,
   price,
   stakedPrice,
   productID,
+  rating,
 }) {
   const dispatch = useDispatch();
 
@@ -132,6 +135,7 @@ function SingleProductPageItem({
             />
           </div>
         </div>
+        <Rating defaultValue={rating} precision={1} readOnly />
         <div className="dataHolder">
           <p>{productname}</p>
           <div className="priceHolder">

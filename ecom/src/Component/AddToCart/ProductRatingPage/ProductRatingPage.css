@@ -1,0 +1,9 @@
+.ratingPageContainer {
+    display: flex;
+    justify-content: space-evenly;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+.RatingHeading {
+    margin-bottom: 20px;
+}

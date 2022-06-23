@@ -35,9 +35,9 @@ function UserAccount() {
         orderIDs.map((item) => {
           item.orderlist.map((i) => {
             var dataObj = {
-              productName: i.productID.prouctname,
-              price: i.productID.price,
-              image: i.productID.image,
+              productName: i.productID?.prouctname,
+              price: i.productID?.price,
+              image: i.productID?.image,
             };
             // setproductList([...productList, dataObj]);
             productArr.push(dataObj);
@@ -228,7 +228,7 @@ function UserAccount() {
                       <div>
                         <img
                           src={`http://localhost:3001/static/${item.image}`}
-                          alt="cartImg"
+                          alt="Product Deleted"
                           width="80px"
                           height="80px"
                         />

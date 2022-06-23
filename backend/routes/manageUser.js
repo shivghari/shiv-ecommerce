@@ -6,6 +6,7 @@ const multer = require('multer');
 const upload = multer({ dest: 'uploads' })
 const mongoose = require('mongoose');
 const User = require('../models/userData')
+const Orderhistory = require('../models/orderHistory')
 const jwt = require('jsonwebtoken')
 const verifyToken = require('../middleware/jwtVerificationMid')
 
@@ -50,4 +51,29 @@ router.post('/makeUser', verifyToken, (req, res) => {
     })
 })
 
+router.post('/userOrder', verifyToken,(req,res)=>{  
+    jwt.verify(req.token, 'secretkey', (err, result) => {
+        Orderhistory.find({paymentid : req.body.paymentID}).populate({path: "orderlist", populate: {path : "productID", model : "Product"}}).then((response)=>{
+            console.log(response)
+            res.status(200).json({ response })
+        }).catch((err)=>{
+            console.log(err,'err')
+        })
+    })
+})
+
+router.post('/getPerticularUser', verifyToken, (req, res)=>{
+
+    jwt.verify(req.token, 'secretkey', (err, result) => {
+       User.find({ _id : req.body.userID }).then((response)=>{
+        console.log(response[0])
+        res.status(200).json({ deliveryAddress: response[0].deliveryaddress, mobile: response[0].mobile})
+       }).catch((err)=>{
+        res.status(300).json({ message : "Something Went Wring in ManageUser.js /getPerticularUser" })
+        console.log('err',err)
+       })
+
+    })
+
+})
 module.exports = router

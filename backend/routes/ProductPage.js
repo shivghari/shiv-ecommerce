@@ -15,6 +15,7 @@ const Orderhistory = require('../models/orderHistory')
 
 const jwt = require('jsonwebtoken')
 const verifyToken = require('../middleware/jwtVerificationMid');
+const product = require('../models/product')
 
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(bodyParser.json())
@@ -36,13 +37,9 @@ router.post('/addToCart', (req,res)=>{
     //     })
     // })
 
-
-
-    console.log('req ID',req.body.productID)
     User.findOne({ _id : req.body.userID }, {cart : 1, _id :0}).then((response)=>{
         var hasEntry = false
         var optArr = response.cart
-        console.log('check arr', optArr)
         if(optArr.length){
             optArr &&  optArr.map((item)=>{
                 if(item.productID === req.body.productID){
@@ -61,7 +58,7 @@ router.post('/addToCart', (req,res)=>{
         User.updateOne({ _id : req.body.userID }, {
             "$set" : {cart : optArr}
         }).then((response)=>{
-            console.log(response)
+            res.status(200).json({ message : response })
         }).catch((err)=>{
             console.log(err)
         })
@@ -235,23 +232,38 @@ router.post('/getWishListUser', (req,res)=>{
 
 
 router.post('/checkout', (req,res)=>{
-    // console.log(req.body, 'HCeck Chekout')
     // res.status(200).json({ messsage : req.body })
-    // console.log(req.body.userID)
-
+    // console.log(req.body.itemList)
     const newOrder = new Orderhistory({
         userID : req.body.userID,
         orderlist : req.body.itemList,
         totalamount : req.body.totalamount,
         paymentid : req.body.paymentid
     })
-
     newOrder.save().then((response)=>{
         Orderhistory.find({userID : req.body.userID},'_id').then((result)=>{
             User.updateOne({ _id : req.body.userID }, {
                 orderID : result
             }).then((answer)=>{
                 res.status(200).json({answer})
+                //decreasing Product Count
+                req.body.itemList.map((item)=>{
+                    Product.findOne({_id : item.productID}, {costofitem : 1, _id : 0}).then((result)=>{
+                        if(result.costofitem > item.count){
+                            var newCount = parseInt(result.costofitem) - parseInt(item.count)
+                            product.updateOne({ _id : item.productID }, {$set :{
+                                costofitem : newCount
+                            }}).then((answer)=>{
+                                console.log(answer, 'answer')
+                            }).catch((err)=>{
+                                console.log(err,'err')
+                            })
+                        }
+                    }).catch((err)=>{
+                        console.log(err,'err')
+                    })
+                })
+                //done with count
             }).catch((err)=>{
                 res.status(300).json({ err })
             })
@@ -266,6 +278,15 @@ router.post('/getoOrderHistoryUser', (req,res)=>{
     }).catch((err)=>{
         console.log(err,'err')
         res.status(300).json({ message : "something Went Wrong" })
+    })
+})
+
+router.post('/getOrderData', (req,res)=>{
+    Orderhistory.find({ paymentid : req.body.paymentID }).populate({path: 'orderlist', populate : {path : "productID", model : "Product"}}).then((response)=>{
+        res.status(200).json({ response })
+    }).catch((err)=>{
+        console.log(err,'err')  
+        res.status(300).json({ message : "Something Went Wrong" })
     })
 })
 

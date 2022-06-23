@@ -1,0 +1,20 @@
+.imageAndDetailsSide {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-content: flex-start;
+}
+
+.allProductDataContainer {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    width: 100%;
+}
+
+.productDeatilsContainerDetailsPage {
+    width: 50%;
+}
+
+.productDeatilsContainerDetailsPage {
+    font-weight: 500;
+    color: #151875;
+}
