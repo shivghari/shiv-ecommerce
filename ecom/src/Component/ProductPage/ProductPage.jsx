@@ -48,6 +48,7 @@ function ProductPage() {
                   stakedPrice={item.stakedprice}
                   productID={item._id}
                   rating={item.rating}
+                  ratevotecount={item.ratevotecount}
                 />
               </Col>
             ))

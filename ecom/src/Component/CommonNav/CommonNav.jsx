@@ -147,10 +147,14 @@ function CommonNav() {
           >
             <p>Wishlist</p> <FavoriteBorderIcon style={{ marginTop: "10px" }} />
           </div>
-          <div className="imgAndTag" style={{ marginTop: "10px" }}>
-            <Badge badgeContent={cartProduct} color="primary">
+          <div className="imgAndTag" style={{ marginTop: "2px" }}>
+            <Badge
+              badgeContent={cartProduct}
+              color="primary"
+              sx={{ marginTop: "10px" }}
+            >
               <ShoppingCartOutlinedIcon
-                style={{ marginTop: "10px" }}
+                style={{ marginTop: "0px" }}
                 onClick={() => {
                   Navigate("/addtocart");
                 }}

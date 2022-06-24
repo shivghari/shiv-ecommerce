@@ -10,7 +10,9 @@ var ProductSchema = new mongoose.Schema({
     price : {type : String},
     costofitem : {type : String},
     stakedprice : {type : String},
-    types : {type : String}
+    types : {type : String},
+    rating : {type : Number, default : 0},
+    ratevotecount : {type : Number, default : 0}
 })
 
 module.exports = mongoose.model("Product", ProductSchema)

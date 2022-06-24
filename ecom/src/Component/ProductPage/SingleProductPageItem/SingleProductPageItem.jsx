@@ -19,6 +19,7 @@ function SingleProductPageItem({
   stakedPrice,
   productID,
   rating,
+  ratevotecount,
 }) {
   const dispatch = useDispatch();
 
@@ -135,7 +136,10 @@ function SingleProductPageItem({
             />
           </div>
         </div>
-        <Rating defaultValue={rating} precision={1} readOnly />
+        <div className="ratingAndVote">
+          <Rating defaultValue={rating} precision={1} readOnly />
+          <p>{ratevotecount}</p>
+        </div>
         <div className="dataHolder">
           <p>{productname}</p>
           <div className="priceHolder">

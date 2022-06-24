@@ -51,7 +51,14 @@ function WebNavbar() {
             </Nav.Link>
             <Nav.Link className="links">Blog</Nav.Link>
             <Nav.Link className="links">Shop</Nav.Link>
-            <Nav.Link className="links">Contact</Nav.Link>
+            <Nav.Link
+              className="links"
+              onClick={() => {
+                Navigate("/contactus");
+              }}
+            >
+              Contact
+            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <FormControl

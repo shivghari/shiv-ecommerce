@@ -1,14 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 import "./ProductRatingPage.css";
 
 import Rating from "@mui/material/Rating";
+import { useNavigate } from "react-router-dom";
 
 function ProductRatingPage({ paymentID }) {
   const [alldata, setalldata] = useState([]);
   const [dataTouse, setdataTouse] = useState([]);
+
+  const Navigate = useNavigate();
+
+  const productRating = new Map();
 
   useEffect(() => {
     axios
@@ -37,6 +42,27 @@ function ProductRatingPage({ paymentID }) {
         console.log(err, "err");
       });
   }, []);
+
+  const manageReview = () => {
+    var newArr = [];
+    productRating.forEach(function (value, key) {
+      var newObj = {};
+      newObj["productID"] = key;
+      newObj["rating"] = value;
+      newArr.push(newObj);
+    });
+    axios
+      .post("http://localhost:3001/productRating/addRating", {
+        ratingData: newArr,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
+
   return (
     <div>
       <div className="RatingHeading">
@@ -61,20 +87,25 @@ function ProductRatingPage({ paymentID }) {
               </div>
               <br />
               <Rating
-                defaultValue={2}
+                defaultValue={0}
                 precision={1}
                 size="large"
                 onChange={(e) => {
-                  console.log(
-                    e.target.value,
-                    item.productID,
-                    "rating value for product"
-                  );
+                  productRating.set(item.productID, e.target.value);
+                  console.log(productRating);
                 }}
               />
             </Col>
           ))}
       </Row>
+      <Button
+        onClick={() => {
+          manageReview();
+          Navigate("/ordercomplete");
+        }}
+      >
+        Submit Review
+      </Button>
     </div>
   );
 }

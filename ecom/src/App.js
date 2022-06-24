@@ -16,6 +16,7 @@ import ProductPage from './Component/ProductPage/ProductPage';
 import AddToCart from './Component/AddToCart/AddToCart';
 import WishListPage from './Component/WishListPage/WishListPage';
 import OrderCompletePage from './Component/OrderCompletePage/OrderCompletePage';
+import ContactUsPage from './Component/ContactUsPage/ContactUsPage';
 
 import { Provider } from 'react-redux'
 import Store from './Store/Store'
@@ -44,6 +45,7 @@ function App() {
             <Route exact path="/addtocart" element={<AddToCart />}></Route>
             <Route exact path="/wishlist" element={<WishListPage />}></Route>
             <Route exact path="/ordercomplete" element={<OrderCompletePage />}></Route>
+            <Route exact path="/contactus" element={<ContactUsPage />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

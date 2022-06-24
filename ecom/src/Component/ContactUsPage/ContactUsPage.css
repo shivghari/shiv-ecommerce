@@ -1,0 +1,194 @@
+.contactUsContainer {
+    width: 80%;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.contactud-row-1 {
+    display: flex;
+}
+
+.aboutusdiv h1 {
+    font-size: 36px;
+    color : #151875;
+    font-style: 'Josefin Sans';
+    text-align: left;
+}
+
+.aboutusdiv p {
+    font-size: 16px;
+    color: #8A8FB9;
+    font-style: 'Lato';
+    font-weight: 400;
+    text-align: left;
+}
+
+.aboutusdiv {
+    width: 50%;
+}
+
+.purpleCircle {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #5625DF;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.greenCircle {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color:#FF27B7;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.blueCircle {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #37DAF3;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.dotContainer {
+    width: fit-content;
+    align-content: flex-start;
+}
+
+.contactwaydiv {
+    width: 50%;
+    /* margin: auto; */
+}
+
+.contactrow {
+    display: flex;
+    /* justify-content: space-evenly; */
+    margin-bottom: 30px;
+    width: 500px;
+    justify-content: space-between;
+}
+
+.detailHolderContact {
+    display:flex;
+    width: 400px;
+}
+
+.detailHolder p{
+    margin: 0%;
+    text-align: left;
+    font-size: 16px;
+    font-style: "Lato";
+    color : #8A8FB9;
+
+}
+
+.purpleCircleBig {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #5625DF;
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.pinkCircleBig {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #FB2E86;
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 5px;
+
+}
+
+.orangeCircleBig {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #FFB265;
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 5px;
+
+}
+
+.greenCircleBig {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-color: #1BE982;
+    display: inline-block;
+    margin-right: 15px;
+    margin-top: 5px;
+
+}
+
+.deatlRowContainer {
+    margin-left: 100px;
+    margin-top: 30px;
+}
+
+.contactwaydiv h1 {
+    font-size: 36px;
+    color : #151875;
+}
+
+.inputFieldforContact {
+    border: 1px solid rgba(164, 182, 200, 0.7);
+    border-radius: 3px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    color: #717386;
+}
+
+.actualform {
+    width: 45%;
+    text-align: left;
+}
+
+.partedInputField {
+    display: flex;   
+    justify-content: space-between;
+}
+
+.sort {
+    width: 48%;
+}
+
+.textAreaHolder {
+    width: 100%;
+    padding-left: 10px;
+    border: 1px solid rgba(164, 182, 200, 0.7);
+    border-radius: 3px;
+    color :#717386
+}
+
+.sendMailButton {
+    border-radius: 0%;
+    background-color: #FB2E86;
+    border-color: #FB2E86;
+    margin-top: 20px;
+}
+
+.sendMailButton:hover{
+    background-color: #ff1279;
+    border-color: #FB2E86;
+}
+
+.contactud-row-2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.textAreaHolder:focus {
+    outline: 0;
+}

@@ -13,6 +13,7 @@ import Paper from "@mui/material/Paper";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { DropdownButton, Dropdown } from "react-bootstrap";
+import { Avatar } from "@mui/material";
 
 function ManageUser() {
   const [allUser, setallUser] = useState([]);
@@ -20,6 +21,15 @@ function ManageUser() {
   const refresh = () => {
     window.location.reload(false);
   };
+
+  var colors = [
+    "#FBC02D",
+    "#4CAF50",
+    "rgb(4, 209, 130)",
+    "rgb(250, 140, 22)",
+    "rgb(255, 107, 114)",
+    "rgb(24, 144, 255)",
+  ];
 
   useEffect(() => {
     console.log(JSON.parse(localStorage.getItem("token")).token);
@@ -107,8 +117,20 @@ function ManageUser() {
                   <TableCell component="th" scope="row">
                     {user._id}
                   </TableCell>
-                  <TableCell align="left">
-                    <h6 style={{ marginTop: "16px" }}>{user.username}</h6>
+                  <TableCell align="center">
+                    <div style={{ display: "flex" }}>
+                      <Avatar
+                        sx={{
+                          backgroundColor:
+                            colors[Math.floor(Math.random() * colors.length)],
+                        }}
+                      >
+                        {user.username[0].toUpperCase()}
+                      </Avatar>
+                      <h6 style={{ marginTop: "10px", marginLeft: "10px" }}>
+                        {user.username}
+                      </h6>
+                    </div>
                   </TableCell>
                   <TableCell align="left">{user.email}</TableCell>
                   <TableCell align="left">{user.role}</TableCell>

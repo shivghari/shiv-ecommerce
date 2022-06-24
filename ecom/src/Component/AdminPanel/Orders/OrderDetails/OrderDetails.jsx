@@ -53,10 +53,10 @@ function OrderDetails({
         var newArr = [];
         response.data.response[0].orderlist.map((item) => {
           var newObj = {};
-          newObj["productName"] = item.productID.prouctname;
-          newObj["price"] = item.productID.price;
-          newObj["image"] = item.productID.image;
-          newObj["itemCount"] = item.count;
+          newObj["productName"] = item.productID?.prouctname;
+          newObj["price"] = item.productID?.price;
+          newObj["image"] = item.productID?.image;
+          newObj["itemCount"] = item?.count;
           newArr.push(newObj);
         });
         setdata(newArr);
@@ -81,7 +81,7 @@ function OrderDetails({
                 <div>
                   <img
                     src={`http://localhost:3001/static/${item.image}`}
-                    alt="product"
+                    alt="Product Deleted"
                     height="100px"
                     width="100px"
                   />

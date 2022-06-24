@@ -1,6 +1,6 @@
 import "./OrderCompletePage.css";
 
-import React from "react";
+import React, { useEffect } from "react";
 import clock from "./clock.png";
 import notepad from "./notepad.png";
 
@@ -11,6 +11,12 @@ import { Button } from "react-bootstrap";
 
 function OrderCompletePage() {
   const Navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.removeItem("payamount");
+    localStorage.removeItem("payid");
+  }, []);
+
   return (
     <div>
       <div className="OrderPageContainer">

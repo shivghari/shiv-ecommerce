@@ -122,9 +122,9 @@ function AddToCart() {
         localStorage.setItem("payamount", data.amount);
         localStorage.setItem("payid", data.id);
         checkout();
+        handleOpen();
         dispatch(clearCart());
         clearUserCart();
-        Navigate("/ordercomplete");
       },
       prefill: {
         name: "Shiv",
@@ -349,13 +349,6 @@ function AddToCart() {
               }}
             >
               Check Out
-            </Button>
-            <Button
-              onClick={() => {
-                handleOpen();
-              }}
-            >
-              Like
             </Button>
           </div>
         </div>

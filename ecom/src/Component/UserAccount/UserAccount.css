@@ -46,6 +46,15 @@
 
 .userCart {
     width: 40%;
+    height: 500px;
+    overflow: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    margin-top: 50px;
+}
+
+.userCart::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 .productLists {
@@ -70,7 +79,6 @@
 }
 
 .PurchasedProductHEading {
-    margin-top: 30px;
     margin-bottom: 30px;
 }
 
