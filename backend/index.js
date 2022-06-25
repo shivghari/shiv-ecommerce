@@ -18,6 +18,7 @@ const mongoDbProduct = require('./routes/mongoDbProduct')
 const productPage = require('./routes/ProductPage')
 const razorpayRoute = require('./routes/Razorpay')
 const productRating = require('./routes/ProductRating')
+const contactus = require('./routes/contactus')
 
 const path = require('path')
 const app = express()
@@ -43,6 +44,7 @@ app.use('/productPage', productPage)
 app.use('/thisProd', mongoDbProduct)
 app.use('/razorpay', razorpayRoute)
 app.use('/productRating', productRating)
+app.use('/contactus', contactus)
 
 
 app.listen(3001, () => { console.log('Server running on 3001') });

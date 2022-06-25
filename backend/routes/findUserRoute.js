@@ -16,7 +16,7 @@ router.use(bodyParser.json())
 
 router.get('/:userID', verifyToken, (req, res) => {
     jwt.verify(req.token, 'secretkey', (err, result) => {
-        console.log('Finding The user')
+       
         const userID = req.params.userID
         console.log(userID)
         User.find({ _id: userID }).then((reponse) => {
@@ -32,9 +32,9 @@ router.get('/:userID', verifyToken, (req, res) => {
 
 router.post('/allUserdata',(req, res) => {
 
-        console.log('Finding The user')
+        
         const userID = req.body.userID
-        console.log(userID)
+       
         User.find({ _id: userID }).populate("orderID").populate({path: "orderID",
         populate : {path : "orderlist", populate: {path : "productID", model: "Product"}}
         }).then((reponse) => {

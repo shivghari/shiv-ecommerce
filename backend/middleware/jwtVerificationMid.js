@@ -7,7 +7,7 @@ function verifyToken(req, res, next) {
         req.token = token
         next()
     } else {
-        console.log('in else')
+        console.log('Token is not verified')
         res.send('403 in middleWare')
     }
 }

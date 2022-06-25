@@ -6,12 +6,18 @@ import Sponsers from "../Sponsers/Sponsers";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../../Feature/FindUserSlice";
 import { useEffect } from "react";
+import axios from "axios";
+
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 function ContactUsPage() {
   const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [subject, setsubject] = useState("");
   const [message, setmessage] = useState("");
+
+  const [messageAlert, setmessageAlert] = useState(null);
 
   const { data } = useGetUserQuery(
     JSON.parse(localStorage.getItem("token")).userID
@@ -25,10 +31,38 @@ function ContactUsPage() {
   }, [data]);
 
   const sendMessage = () => {
-    console.log(username, "username");
-    console.log(email, "email");
-    console.log(subject, "subject");
-    console.log(message, "message");
+    var messageData = new FormData();
+    messageData.append(
+      "userID",
+      JSON.parse(localStorage.getItem("token")).userID
+        ? JSON.parse(localStorage.getItem("token")).userID
+        : ""
+    );
+    messageData.append("username", username);
+    messageData.append("email", email);
+    messageData.append("subject", subject);
+    messageData.append("message", message);
+
+    axios
+      .post("http://localhost:3001/contactus/userMessage", messageData)
+      .then((response) => {
+        console.log(response);
+        setmessageAlert(
+          <Alert severity="success">
+            <AlertTitle>Message Sent</AlertTitle>
+            Admin will contact you soon on: — <strong>{email}</strong>
+          </Alert>
+        );
+      })
+      .catch((err) => {
+        console.log(err, "err");
+        setmessageAlert(
+          <Alert severity="error">
+            <AlertTitle>Fail</AlertTitle>
+            Something went Wrong — <strong>Please try again later</strong>
+          </Alert>
+        );
+      });
   };
 
   return (
@@ -117,6 +151,7 @@ function ContactUsPage() {
                 onChange={(e) => {
                   setusername(e.target.value);
                 }}
+                required
               />
               <input
                 type="text"
@@ -126,6 +161,7 @@ function ContactUsPage() {
                 onChange={(e) => {
                   setemail(e.target.value);
                 }}
+                required
               />
             </div>
             <input
@@ -135,6 +171,7 @@ function ContactUsPage() {
               onChange={(e) => {
                 setsubject(e.target.value);
               }}
+              required
             />
             <br />
             <textarea
@@ -145,6 +182,7 @@ function ContactUsPage() {
               onChange={(e) => {
                 setmessage(e.target.value);
               }}
+              required
             ></textarea>
             <Button
               className="sendMailButton"
@@ -155,6 +193,8 @@ function ContactUsPage() {
               Send Message
             </Button>
           </div>
+          <br />
+          {messageAlert}
         </div>
         <div className="avatarImage">
           <img

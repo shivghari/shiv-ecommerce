@@ -8,6 +8,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import HomeIcon from "@mui/icons-material/Home";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 import AddProduct from "./AddProduct/AddProduct";
 import AdminProductList from "./AdminProductList/AdminProductList";
@@ -15,6 +16,7 @@ import AdminEditProduct from "./AdminEditProduct/AdminEditProduct";
 import Orders from "./Orders/Orders";
 import HomepageControl from "./HomepageControl/HomepageControl";
 import ManageUser from "./ManageUser/ManageUser";
+import UserMailManagePage from "./UserMailManagePage/UserMailManagePage";
 
 function AdminPanel() {
   return (
@@ -59,6 +61,11 @@ function AdminPanel() {
                 Users <AdminPanelSettingsIcon />
               </Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey={"mail"} className="admin-link-content">
+                Mails <ContactMailIcon />
+              </Nav.Link>
+            </Nav.Item>
           </div>
         </Nav>
         <Tab.Content className="adminContent">
@@ -79,6 +86,9 @@ function AdminPanel() {
           </Tab.Pane>
           <Tab.Pane eventKey={"manageusers"}>
             <ManageUser />
+          </Tab.Pane>
+          <Tab.Pane eventKey={"mail"}>
+            <UserMailManagePage />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>
