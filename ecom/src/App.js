@@ -17,6 +17,7 @@ import AddToCart from './Component/AddToCart/AddToCart';
 import WishListPage from './Component/WishListPage/WishListPage';
 import OrderCompletePage from './Component/OrderCompletePage/OrderCompletePage';
 import ContactUsPage from './Component/ContactUsPage/ContactUsPage';
+import Pagination from './Component/Pagination/Pagination'
 
 import { Provider } from 'react-redux'
 import Store from './Store/Store'
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/wishlist" element={<WishListPage />}></Route>
             <Route exact path="/ordercomplete" element={<OrderCompletePage />}></Route>
             <Route exact path="/contactus" element={<ContactUsPage />}></Route>
+            <Route exact path="/pagination" element={<Pagination />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>
