@@ -92,4 +92,12 @@ Thank you, Regards.
         })
     })
 })
+
+router.post('/getUserByID', (req,res)=>{
+    User.findOne({ _id : req.body.userID }).then((response)=>{
+        res.status(200).json({ response })
+    }).catch((err)=>{
+        res.status(300).json({ message: "Something Went Wrong." })
+    })
+})
 module.exports = router

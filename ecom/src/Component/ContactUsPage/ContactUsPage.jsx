@@ -19,25 +19,54 @@ function ContactUsPage() {
 
   const [messageAlert, setmessageAlert] = useState(null);
 
-  const { data } = useGetUserQuery(
-    JSON.parse(localStorage.getItem("token")).userID
-  );
+  // try{
+  //   const { data } = useGetUserQuery(
+  //     JSON.parse(localStorage.getItem("token")).userID
+  //   );
+  // }catch(err){
+  //   console.log('user id not logged in ')
+  // }
 
-  useEffect(() => {
-    if (data) {
-      setusername(data.username);
-      setemail(data.email);
+
+
+  // useEffect(() => {
+  //   if (data != undefined) {
+  //     setusername(data?.username);
+  //     setemail(data?.email);
+  //   }else{
+  //     console.log('user is not logged in ')
+  //   }
+  // }, [data]);
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')!= null){
+      axios.post("http://localhost:3001/contactus/getUserByID", {
+        userID: JSON.parse(localStorage.getItem('token')).userID
+      }).then((response)=>{
+        console.log(response, 'please check data')
+        setusername(response.data.response.username)
+        setemail(response.data.response.email)
+      }).catch((err)=>{
+        console.log(err, 'err')
+      })
+    }else{
+      setusername('')
+      setemail('')
     }
-  }, [data]);
+  },[])
 
   const sendMessage = () => {
     var messageData = new FormData();
-    messageData.append(
-      "userID",
-      JSON.parse(localStorage.getItem("token")).userID
-        ? JSON.parse(localStorage.getItem("token")).userID
-        : ""
-    );
+    if(localStorage.getItem('token') != null){
+      messageData.append(
+        "userID",
+        JSON.parse(localStorage.getItem("token")) 
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "62a41371914075fe73ccdd95"
+      );
+    }else{
+      messageData.append('userID', "62a41371914075fe73ccdd95")
+    }
     messageData.append("username", username);
     messageData.append("email", email);
     messageData.append("subject", subject);
