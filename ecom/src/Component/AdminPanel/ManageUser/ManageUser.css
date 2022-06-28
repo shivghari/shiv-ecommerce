@@ -1,20 +1,33 @@
 .userListHolder {
-    width: 98%;
-    border: 1px solid  rgb(220, 219, 219);
-    border-radius: 8px;
-    margin-left: 1%;
-    padding: 20px;
+  width: 98%;
+  border: 1px solid rgb(220, 219, 219);
+  border-radius: 8px;
+  margin-left: 1%;
+  padding: 20px;
 }
 
 .headingHolder {
-    width: 100%;
-    border: 1px solid  rgb(220, 219, 219);
-    border-radius: 8px;
-    padding-left: 20px;
-    margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid rgb(220, 219, 219);
+  border-radius: 8px;
+  padding-left: 20px;
+  margin-bottom: 10px;
 }
 
 .headingHolder h1 {
-    font-size: 30px;
-    text-align: left;
+  font-size: 30px;
+  text-align: left;
+}
+
+.passwordEntryField {
+  height: 40px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.changeRoleButton {
+  margin-bottom: 10px;
+  border-radius: 0px;
 }

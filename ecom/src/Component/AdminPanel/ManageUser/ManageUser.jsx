@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./ManageUser.css";
 
 import Table from "@mui/material/Table";
@@ -12,18 +12,21 @@ import Paper from "@mui/material/Paper";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import { useTheme } from '@mui/material/styles';
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { useTheme } from "@mui/material/styles";
 import { IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
-
-import { DropdownButton, Dropdown } from "react-bootstrap";
+import { DropdownButton, Dropdown, Button } from "react-bootstrap";
 import { Avatar } from "@mui/material";
 
 //table pagination Actions manage Function
@@ -54,28 +57,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -83,16 +94,39 @@ function TablePaginationActions(props) {
 
 //here ends
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  height: "fitContent",
+};
 
 function ManageUser() {
+  const input = useRef();
   const [allUser, setallUser] = useState([]);
+  const [adminPass, setadminPass] = useState("");
+  const [selectedUserRole, setselectedUserRole] = useState("");
+  const [selectedUserID, setselectedUserID] = useState("");
+  const [roleChange, setroleChange] = useState(false);
+
+  const [passAlert, setpassAlert] = useState(null);
+  console.log(passAlert);
 
   const refresh = () => {
     window.location.reload(false);
   };
 
-  
-  //Table Pagination Logic 
+  //model controller
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  //Table Pagination Logic
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -135,7 +169,7 @@ function ManageUser() {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  }, [roleChange]);
 
   const handleMakeAdmin = (userID) => {
     axios
@@ -143,6 +177,7 @@ function ManageUser() {
         "http://localhost:3001/manageUser/makeAdmin",
         {
           userID: userID,
+          adminPass: input.current.value,
         },
         {
           headers: {
@@ -151,20 +186,32 @@ function ManageUser() {
         }
       )
       .then((response) => {
-        console.log(response);
-        refresh();
+        setpassAlert(
+          <Alert severity="success">
+            <AlertTitle>User Role Changed</AlertTitle>
+            User role is successfuly changed — <strong>TO ADMIN</strong>
+          </Alert>
+        );
+        setroleChange(!roleChange);
       })
       .catch((err) => {
-        console.log(err.messsage);
+        setpassAlert(
+          <Alert severity="error">
+            <AlertTitle>User Role Not Changed</AlertTitle>
+            Please enter correct password — <strong>Ask Admin.</strong>
+          </Alert>
+        );
       });
   };
 
   const handleMakeUser = (userID) => {
+    console.log("make User");
     axios
       .post(
         "http://localhost:3001/manageUser/makeUser",
         {
           userID: userID,
+          adminPass: input.current.value,
         },
         {
           headers: {
@@ -173,11 +220,23 @@ function ManageUser() {
         }
       )
       .then((response) => {
-        console.log(response);
-        refresh();
+        setpassAlert(
+          <Alert severity="success">
+            <AlertTitle>User Role Changed</AlertTitle>
+            User role is successfuly changed — <strong>TO USER</strong>
+          </Alert>
+        );
+        setroleChange(!roleChange);
+        // setTimeout(refresh, 2000);
       })
       .catch((err) => {
-        console.log(err.messsage);
+        console.log("holaa");
+        setpassAlert(
+          <Alert severity="error">
+            <AlertTitle>User Role Not Changed</AlertTitle>
+            Please enter correct password — <strong>Ask Admin.</strong>
+          </Alert>
+        );
       });
   };
 
@@ -198,91 +257,141 @@ function ManageUser() {
             </TableRow>
           </TableHead>
           <TableBody>
-
-          {(rowsPerPage > 0
-                  ? allUser.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : allUser
-                ).map((user) => (
-                  <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {user._id}
-                  </TableCell>
-                  <TableCell align="center">
-                    <div style={{ display: "flex" }}>
-                      <Avatar
-                        sx={{
-                          backgroundColor:
-                            colors[Math.floor(Math.random() * colors.length)],
+            {(rowsPerPage > 0
+              ? allUser.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+              : allUser
+            ).map((user) => (
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {user._id}
+                </TableCell>
+                <TableCell align="center">
+                  <div style={{ display: "flex" }}>
+                    <Avatar
+                      sx={{
+                        backgroundColor:
+                          colors[Math.floor(Math.random() * colors.length)],
+                      }}
+                    >
+                      {user.username[0].toUpperCase()}
+                    </Avatar>
+                    <h6 style={{ marginTop: "10px", marginLeft: "10px" }}>
+                      {user.username}
+                    </h6>
+                  </div>
+                </TableCell>
+                <TableCell align="left">{user.email}</TableCell>
+                <TableCell align="left">{user.role}</TableCell>
+                <TableCell align="left">
+                  <DropdownButton
+                    title={<MoreVertIcon />}
+                    sx={{ width: "100px" }}
+                  >
+                    {user.role === "user" ? (
+                      <Dropdown.Item
+                        onClick={(e) => {
+                          // handleMakeAdmin(user._id);
+                          setselectedUserRole(user.role);
+                          setselectedUserID(user._id);
+                          handleOpen();
                         }}
                       >
-                        {user.username[0].toUpperCase()}
-                      </Avatar>
-                      <h6 style={{ marginTop: "10px", marginLeft: "10px" }}>
-                        {user.username}
-                      </h6>
-                    </div>
-                  </TableCell>
-                  <TableCell align="left">{user.email}</TableCell>
-                  <TableCell align="left">{user.role}</TableCell>
-                  <TableCell align="left">
-                    <DropdownButton
-                      title={<MoreVertIcon />}
-                      sx={{ width: "100px" }}
-                    >
-                      {user.role === "user" ? (
-                        <Dropdown.Item
-                          onClick={(e) => {
-                            handleMakeAdmin(user._id);
-                          }}
-                        >
-                          Make Admin
-                        </Dropdown.Item>
-                      ) : (
-                        <Dropdown.Item
-                          onClick={() => {
-                            handleMakeUser(user._id);
-                          }}
-                        >
-                          Make User
-                        </Dropdown.Item>
-                      )}
-                    </DropdownButton>
-                  </TableCell>
-                </TableRow>
-                ))}
+                        Make Admin
+                      </Dropdown.Item>
+                    ) : (
+                      <Dropdown.Item
+                        onClick={(e) => {
+                          // handleMakeUser(user._id);
+                          setselectedUserRole(user.role);
+                          setselectedUserID(user._id);
+                          handleOpen();
+                        }}
+                      >
+                        Make User
+                      </Dropdown.Item>
+                    )}
+                  </DropdownButton>
+                </TableCell>
+              </TableRow>
+            ))}
 
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
           </TableBody>
           <TableFooter>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                    colSpan={3}
-                    count={allUser.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    SelectProps={{
-                      inputProps: {
-                        'aria-label': 'rows per page',
-                      },
-                      native: true,
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                  />
-                </TableRow>
-              </TableFooter>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={3}
+                count={allUser.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    "aria-label": "rows per page",
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
+            </TableRow>
+          </TableFooter>
         </Table>
       </TableContainer>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <h1>Enter Password</h1>
+          <input
+            className="passwordEntryField"
+            placeholder="Enter Password to change Role..."
+            ref={input}
+          />
+          {selectedUserRole === "admin" ? (
+            <div>
+              <Button
+                className="changeRoleButton"
+                onClick={() => {
+                  handleMakeUser(selectedUserID);
+                }}
+              >
+                Make User
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Button
+                className="changeRoleButton"
+                onClick={() => {
+                  handleMakeAdmin(selectedUserID);
+                }}
+              >
+                Make Admin
+              </Button>
+              <br />
+
+              {/* {passAlert ? passAlert : null} */}
+            </div>
+          )}
+          {passAlert}
+        </Box>
+      </Modal>
     </div>
   );
 }
