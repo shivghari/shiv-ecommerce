@@ -20,10 +20,6 @@ function LatestProductControl() {
   const [editDisplayImage, seteditDisplayImage] = useState("");
   const [editItemId, seteditItemId] = useState("");
 
-  const refresh = () => {
-    window.location.reload(false);
-  };
-
   const handleAddLatestItem = (e) => {
     e.preventDefault();
 
@@ -50,32 +46,12 @@ function LatestProductControl() {
         }
       )
       .then((response) => {
-        console.log(response);
-        refresh();
+        setchangeFlag(!changeFlag);
       })
       .catch((err) => {
         console.log("err", err.message);
       });
   };
-
-  useEffect(() => {
-    axios
-      .post(
-        "http://localhost:3001/latestproduct/getAllProducts",
-        {},
-        {
-          headers: {
-            Authorization: JSON.parse(localStorage.getItem("token")).token,
-          },
-        }
-      )
-      .then((response) => {
-        setcopyofdata(response.data.response);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
 
   useEffect(() => {
     axios
@@ -155,8 +131,7 @@ function LatestProductControl() {
         }
       )
       .then((response) => {
-        console.log(response);
-        refresh();
+        setchangeFlag(!changeFlag);
       })
       .catch((err) => {
         console.log(err);
@@ -177,8 +152,7 @@ function LatestProductControl() {
         }
       )
       .then((response) => {
-        console.log(response);
-        refresh();
+        setchangeFlag(!changeFlag);
       })
       .catch((err) => {
         console.log(err);

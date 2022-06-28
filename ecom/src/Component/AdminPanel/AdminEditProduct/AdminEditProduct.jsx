@@ -1,5 +1,5 @@
 import "./AdminEditProduct.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Form from "react-bootstrap/Form";
 import { useGetProductsQuery } from "../../../Feature/FetchProducts";
@@ -19,7 +19,8 @@ function AdminEditProduct() {
 
   const [editDisplayImage, seteditDisplayImage] = useState("");
 
-  const { data, isFetching } = useGetProductsQuery();
+  const [data, setdata] = useState([]);
+  const [changeFlag, setchangeFlag] = useState(false);
 
   const handleViewButton = (productID) => {
     data.map((item) => {
@@ -62,16 +63,31 @@ function AdminEditProduct() {
         },
       })
       .then((response) => {
-        console.log(response);
+        setchangeFlag(!changeFlag);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  if (isFetching) {
-    return <h3>Loading Data...</h3>;
-  }
+  // if (isFetching) {
+  //   return <h3>Loading Data...</h3>;
+  // }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/fetchProduct", {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("token")).token,
+        },
+      })
+      .then((response) => {
+        setdata(response.data);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  }, [changeFlag]);
 
   return (
     <div>

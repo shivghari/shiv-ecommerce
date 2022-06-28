@@ -20,10 +20,6 @@ function TopCategoryControl() {
   const [editDisplayImage, seteditDisplayImage] = useState("");
   const [editItemId, seteditItemId] = useState("");
 
-  const refresh = () => {
-    window.location.reload(false);
-  };
-
   const handleAddTopCategoryItem = (e) => {
     e.preventDefault();
 
@@ -50,32 +46,12 @@ function TopCategoryControl() {
         }
       )
       .then((response) => {
-        console.log(response);
-        refresh();
+        setchangeFlag(!changeFlag);
       })
       .catch((err) => {
         console.log("err", err.message);
       });
   };
-
-  useEffect(() => {
-    axios
-      .post(
-        "http://localhost:3001/topcategory/getAllProducts",
-        {},
-        {
-          headers: {
-            Authorization: JSON.parse(localStorage.getItem("token")).token,
-          },
-        }
-      )
-      .then((response) => {
-        setcopyofdata(response.data.response);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
 
   useEffect(() => {
     axios
@@ -151,8 +127,7 @@ function TopCategoryControl() {
         },
       })
       .then((response) => {
-        console.log(response);
-        refresh();
+        setchangeFlag(!changeFlag);
       })
       .catch((err) => {
         console.log(err);
@@ -173,8 +148,7 @@ function TopCategoryControl() {
         }
       )
       .then((response) => {
-        console.log(response);
-        refresh();
+        setchangeFlag(!changeFlag);
       })
       .catch((err) => {
         console.log(err);
