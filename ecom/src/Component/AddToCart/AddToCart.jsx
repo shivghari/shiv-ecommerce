@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import { Rating } from "@mui/material";
 
 import cc from "./cc.png";
 
@@ -257,6 +258,12 @@ function AddToCart() {
                     <p className="cartprodName">{item.prouctname}</p>
                     <p className="cartProdDetails">{item.desc}</p>
                     <p>{item.price}₹</p>
+                    <Rating
+                      defaultValue={item.rating}
+                      precision={1}
+                      readOnly
+                      sx={{ display: "flex" }}
+                    />
                   </div>
                   <div className="manageQuetity">
                     <ArrowDropUpOutlinedIcon

@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./FeatureProduct.css";
 import FeatureSec1 from "../FeatureSec1/FeatureSec1";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Col, Row } from "react-bootstrap";
 
 import axios from "axios";
-
-import FP1 from "../FeatureSec1/FP1.png";
-import FP2 from "../FeatureSec1/FP2.png";
-import FP3 from "../FeatureSec1/FP3.png";
-import FP4 from "../FeatureSec1/FP4.png";
 
 function FeatureProduct() {
   const [index, setIndex] = useState(0);
@@ -20,7 +15,9 @@ function FeatureProduct() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/homepageproduct/featureproductgetAllProducts",)
+      .post(
+        "http://localhost:3001/homepageproduct/featureproductgetAllProducts"
+      )
       .then((response) => {
         setdata(response.data.response);
       })
@@ -34,7 +31,18 @@ function FeatureProduct() {
       <div className="featureProduct-heading">
         <h1>Featured Product</h1>
         <div className="productDisplay">
-          <Carousel
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            {data.map((item) => (
+              <FeatureSec1
+                productPhoto={`http://localhost:3001/static/${item.image}`}
+                productname={item.prouctname}
+                productCode={item._id}
+                productPrice={item.price}
+                productRating={item.rating}
+              />
+            ))}
+          </div>
+          {/* <Carousel
             activeIndex={index}
             onSelect={handleSelect}
             variant="dark"
@@ -108,7 +116,7 @@ function FeatureProduct() {
                 />
               </div>
             </Carousel.Item>
-          </Carousel>
+          </Carousel> */}
         </div>
       </div>
     </div>

@@ -6,6 +6,8 @@ import SingleProductPageItem from "../ProductPage/SingleProductPageItem/SinglePr
 function WishListPage() {
   const [productList, setproductList] = useState();
 
+  const [reaction, setreaction] = useState(false);
+
   useEffect(() => {
     axios
       .post("http://localhost:3001/productPage/getWishListUser", {
@@ -25,7 +27,7 @@ function WishListPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [reaction]);
 
   return (
     <div>
@@ -43,6 +45,8 @@ function WishListPage() {
                   price={item.price}
                   stakedPrice={item.stakedprice}
                   productID={item._id}
+                  rating={item.rating}
+                  setreaction={setreaction}
                 />
               </Col>
             ))}

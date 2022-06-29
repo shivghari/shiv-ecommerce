@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./FeatureSec1.css";
 
 // import Card from "@mui/material/Card";
@@ -8,8 +8,84 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ZoomInOutlinedIcon from "@mui/icons-material/ZoomInOutlined";
 import Button from "@mui/material/Button";
+import Rating from "@mui/material/Rating";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../Feature/cartSlice";
+import axios from "axios";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-function FeatureSec1({ productPhoto, productname, productCode, productPrice }) {
+function FeatureSec1({
+  productPhoto,
+  productname,
+  productCode,
+  productPrice,
+  productRating,
+}) {
+  const [liked, setliked] = useState();
+  const [unlike, setunlike] = useState(true);
+  const [check, setCheck] = useState();
+
+  const dispatch = useDispatch();
+
+  const addToCart = (price) => {
+    axios
+      .post("http://localhost:3001/productPage/addToCart", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+        productID: productCode,
+        productPrice: productPrice,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const addATowish = (productID) => {
+    axios
+      .post("http://localhost:3001/productPage/addTowish", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+        productID: productCode,
+      })
+      .then((response) => {
+        console.log("data", response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const removeFromWish = (productID) => {
+    axios
+      .post("http://localhost:3001/productPage/removeFromwish", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+        productID: productCode,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:3001/productPage/getWishListUser", {
+        userID: JSON.parse(localStorage.getItem("token")).userID,
+      })
+      .then((response) => {
+        if (response.data.wishlist.includes(productCode)) {
+          setliked(true);
+          setCheck(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
       <div className="cardContainer">
@@ -26,13 +102,52 @@ function FeatureSec1({ productPhoto, productname, productCode, productPrice }) {
                   sx={{
                     fontSize: "18px",
                     color: "#1389FF",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    dispatch(
+                      addItem({
+                        productID: productCode,
+                        price: parseInt(productPrice),
+                        total: 1,
+                      })
+                    );
+                    addToCart(productPrice);
                   }}
                 />
-                <FavoriteBorderOutlinedIcon
-                  sx={{ fontSize: "18px", color: "#1389FF" }}
-                />
+
+                {unlike && !check ? (
+                  <FavoriteBorderOutlinedIcon
+                    sx={{
+                      fontSize: "18px",
+                      color: "#1389FF",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      addATowish(productCode);
+                      setliked(true);
+                      setunlike(false);
+                      setCheck(true);
+                    }}
+                  />
+                ) : liked ? (
+                  <FavoriteIcon
+                    sx={{
+                      fontSize: "18px",
+                      color: "#1389FF",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      removeFromWish(productCode);
+                      setliked(false);
+                      setunlike(true);
+                      setCheck(false);
+                    }}
+                  />
+                ) : null}
+
                 <ZoomInOutlinedIcon
-                  sx={{ fontSize: "18px", color: "#1389FF" }}
+                  sx={{ fontSize: "18px", color: "#1389FF", cursor: "pointer" }}
                 />
               </div>
             </div>
@@ -54,10 +169,11 @@ function FeatureSec1({ productPhoto, productname, productCode, productPrice }) {
                 </Button>
               </div>
             </div>
+            <Rating defaultValue={productRating} precision={1} readOnly />
             <div className="productDescription">
               <p className="productName">{productname}</p>
               <p className="productCode">{productCode}</p>
-              <p className="productPrice">{productPrice}</p>
+              <p className="productPrice">{productPrice} ₹</p>
             </div>
           </CardContent>
         </Card>
