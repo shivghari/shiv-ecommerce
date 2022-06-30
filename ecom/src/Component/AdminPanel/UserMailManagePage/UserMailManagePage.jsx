@@ -10,13 +10,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import { useTheme } from '@mui/material/styles';
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { useTheme } from "@mui/material/styles";
 import { IconButton } from "@mui/material";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -68,28 +68,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -106,7 +114,7 @@ function UserMailManagePage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  //Table Pagination Logic 
+  //Table Pagination Logic
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -142,25 +150,26 @@ function UserMailManagePage() {
   return (
     <div className="mailContactHolder">
       <div className="listHolder">
-      <div>
-        <h2>Mails</h2>
-      </div>
-      <div className="table-holder">
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="left">Customer Name</TableCell>
-                <TableCell align="left">Mail</TableCell>
-                <TableCell align="left">Date</TableCell>
-                <TableCell align="left"></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-
-              
-            {(rowsPerPage > 0
-                  ? mailData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        <div>
+          <h2>Mails</h2>
+        </div>
+        <div className="table-holder">
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left">Customer Name</TableCell>
+                  <TableCell align="left">Mail</TableCell>
+                  <TableCell align="left">Date</TableCell>
+                  <TableCell align="left"></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? mailData.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
                   : mailData
                 ).map((item) => (
                   <TableRow
@@ -203,19 +212,24 @@ function UserMailManagePage() {
                     <TableCell colSpan={6} />
                   </TableRow>
                 )}
-            </TableBody>
-            <TableFooter>
+              </TableBody>
+              <TableFooter>
                 <TableRow>
                   <TableCell></TableCell>
                   <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                    rowsPerPageOptions={[
+                      5,
+                      10,
+                      25,
+                      { label: "All", value: -1 },
+                    ]}
                     colSpan={3}
                     count={mailData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{
                       inputProps: {
-                        'aria-label': 'rows per page',
+                        "aria-label": "rows per page",
                       },
                       native: true,
                     }}
@@ -225,19 +239,21 @@ function UserMailManagePage() {
                   />
                 </TableRow>
               </TableFooter>
-          </Table>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <MailDetailView selectedConversationID={selectedConversationID} />
-            </Box>
-          </Modal>
-        </TableContainer>
-      </div>
+            </Table>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <MailDetailView
+                  selectedConversationID={selectedConversationID}
+                />
+              </Box>
+            </Modal>
+          </TableContainer>
+        </div>
       </div>
     </div>
   );

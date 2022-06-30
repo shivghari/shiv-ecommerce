@@ -2,16 +2,28 @@ import React from "react";
 import "./WriteBlog.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
+import axios from "axios";
 
 function WriteBlog() {
   // text area auto resizing Logic
   var minRows = 10;
+  const [blogTitle, setblogTitle] = useState("");
   const [rows, setRows] = React.useState(minRows);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(``);
 
   const submitBlog = (e) => {
     e.preventDefault();
-    console.log(value);
+    axios
+      .post("http://localhost:3001/handleBlog/addBlog", {
+        title: blogTitle,
+        content: value,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   React.useEffect(() => {
@@ -32,6 +44,9 @@ function WriteBlog() {
             placeholder="Title"
             className="writeInput"
             autoFocus={true}
+            onChange={(e) => {
+              setblogTitle(e.target.value);
+            }}
           />
         </div>
         <div className="writeFormGroup">

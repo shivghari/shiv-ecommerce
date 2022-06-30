@@ -1,0 +1,12 @@
+.BlogSmallHolder {
+  width: 400px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 30px;
+}
+
+.AuthorAndDate {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
