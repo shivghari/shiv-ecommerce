@@ -4,8 +4,10 @@ import BackEclipsPink from "./BackEclipsdPink.png";
 import "./SpecialProductDisplay1.css";
 import { Button } from "react-bootstrap";
 import Chair from "./Chair.png";
+import { useNavigate } from "react-router-dom";
 
 function SpecialProductDisplay1() {
+  const Navigate = useNavigate();
   return (
     <div className="specialProductAllDeaitlsHolder">
       <div className="specialProductAndDecHolder">
@@ -47,7 +49,14 @@ function SpecialProductDisplay1() {
             </p>
           </div>
           <div className="buttonAndDetailsHolder">
-            <Button className="specialAddtoCart">Add to Cart</Button>
+            <Button
+              className="specialAddtoCart"
+              onClick={() => {
+                Navigate("/productpage");
+              }}
+            >
+              Start Shopping
+            </Button>
             <div className="specialProductDetails">
               <p className="specialProductName">B&amp;B Italian Sofa</p>
               <p className="specialProductPrice">$32.00</p>

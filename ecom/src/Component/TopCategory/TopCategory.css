@@ -1,29 +1,36 @@
 .CategorySliderHolder {
-    width: 80%;
-    margin: auto;
-
+  margin: auto;
+  width: 80%;
 }
 
 .topCategotyHeading {
-    font-size: 42px;
-    color: #151875;
+  font-size: 42px;
+  color: #151875;
+  margin-bottom: 50px;
 }
 
 .CategoryHolderSlider {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 200px;
 }
 
 .SliderMainDiv {
-    margin-top: 60px
+  margin-top: 60px;
+  overflow-x: scroll;
+  /* margin: auto; */
+}
+
+.SliderMainDiv::-webkit-scrollbar {
+  display: none;
 }
 
 .CategorySliderContainer {
-    padding : 30px;
+  padding: 30px;
 }
 
 @media only screen and (max-width: 420px) {
-    /* .CategorySliderHolder {
+  /* .CategorySliderHolder {
         margin: 0%;
         margin-top: 60px;
     }
@@ -33,13 +40,8 @@
     } */
 }
 
-@media only screen and (max-width: 820px) and ( min-width: 421px) {
-    
+@media only screen and (max-width: 820px) and (min-width: 421px) {
 }
 
-
-@media only screen and (max-width: 1200px) and ( min-width: 821px) {
-  
+@media only screen and (max-width: 1200px) and (min-width: 821px) {
 }
-
-

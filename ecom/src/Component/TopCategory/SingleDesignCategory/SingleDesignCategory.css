@@ -1,76 +1,72 @@
 .categoryCard {
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 50%;
-    width: fit-content;
-    height: 230px;
-    width: 230px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  width: fit-content;
+  height: 230px;
+  width: 230px;
 }
 
 .categoryCard:hover {
- /* -webkit-box-shadow: -12px 16px 0px -9px rgba(152,119,231,1);
+  /* -webkit-box-shadow: -12px 16px 0px -9px rgba(152,119,231,1);
  -moz-box-shadow: -12px 16px 0px -9px rgba(152,119,231,1);
  box-shadow: -12px 16px 0px -9px rgba(152,119,231,1); */
 
- -webkit-box-shadow: -2px 4px 0px 0px rgba(152,119,231,1);
- -moz-box-shadow: -2px 4px 0px 0px rgba(152,119,231,1);
- box-shadow: -2px 4px 0px 0px rgba(152,119,231,1);
-
+  -webkit-box-shadow: -2px 4px 0px 0px rgba(152, 119, 231, 1);
+  -moz-box-shadow: -2px 4px 0px 0px rgba(152, 119, 231, 1);
+  box-shadow: -2px 4px 0px 0px rgba(152, 119, 231, 1);
 }
 
 .categoryBtn {
-    background-color: #08D15F;
-    border: #08D15F;
-    width: 100px;
+  background-color: #08d15f;
+  border: #08d15f;
+  width: 100px;
 }
 
 .categoryBtnContainer {
-    display: none;
+  display: none;
 }
 
 .CategoryhoverHolder {
-    width: fit-content;
+  width: fit-content;
 }
 
-.CategoryhoverHolder:hover  .categoryBtnContainer{
-    display: block;
+.CategoryhoverHolder:hover .categoryBtnContainer {
+  display: block;
 }
 
 .categoryDisplay {
-    margin: 5px;
+  margin: 5px;
 }
 
 .categoryDisplay p {
-    margin : 0;
+  margin: 0;
 }
 
 .categoryProductName {
-    font-size: 20px;
-    color: #151875;
-    font-weight: 600;
+  font-size: 20px;
+  color: #151875;
+  font-weight: 600;
 }
 
 .categoryProductPrice {
-    font-size: 16px;
-    color : #151875;
-    font-weight: 500;
+  font-size: 16px;
+  color: #151875;
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 420px) {
-    .CategoryhoverHolder {
-        width: 300px;
-        margin-left: -35%;
-    }
+  .CategoryhoverHolder {
+    width: 300px;
+    margin-left: -35%;
+  }
 
-    .categoryDisplay {
-        margin-left: -30%;
-    }
+  .categoryDisplay {
+    margin-left: -30%;
+  }
 }
 
-@media only screen and (max-width: 820px) and ( min-width: 421px) {
-    
+@media only screen and (max-width: 820px) and (min-width: 421px) {
 }
 
-
-@media only screen and (max-width: 1200px) and ( min-width: 821px) {
-  
+@media only screen and (max-width: 1200px) and (min-width: 821px) {
 }

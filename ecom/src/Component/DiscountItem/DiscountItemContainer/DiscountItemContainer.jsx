@@ -1,16 +1,19 @@
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import CheckIcon from "@mui/icons-material/Check";
-import DI1 from "./DI1.png";
+
+import { useNavigate } from "react-router-dom";
 import "./DiscountItemContainer.css";
 
 function DiscountItemContainer({ Heading, Name, Image }) {
+  const Navigate = useNavigate();
+
   return (
     <div className="soloDiscountHolder">
       <div className="discountDesc">
-        <h1>20% Discount Of All Product</h1>
+        <h1>{Heading}</h1>
         <div>
-          <p className="discountProductName">Eams Sofa Compact</p>
+          <p className="discountProductName">{Name}</p>
         </div>
         <div>
           <p className="discountProductDetails">
@@ -36,16 +39,23 @@ function DiscountItemContainer({ Heading, Name, Image }) {
             </Row>
           </div>
           <div className="discountItemBtnHolder">
-            <Button className="discountItemBtn">Shop Now</Button>
+            <Button
+              className="discountItemBtn"
+              onClick={() => {
+                Navigate("/productpage");
+              }}
+            >
+              Shop Now
+            </Button>
           </div>
         </div>
       </div>
-      <div className="discountImg">
+      <div className="discountImg" style={{ marginTop: "40px" }}>
         <img
-          src={DI1}
+          src={Image}
           alt="Discount Item"
-          height="497px"
-          width="560px"
+          height="400px"
+          width="400px"
           className="discountImagecss"
         />
       </div>

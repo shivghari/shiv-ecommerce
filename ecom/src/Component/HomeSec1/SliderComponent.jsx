@@ -19,8 +19,8 @@ function SliderComponent({ Lamp, Eclips, Chair, Button, BigHeading }) {
               <h1>{BigHeading}</h1>
             </div>
             <div className="extra-desc">
-              Loream Ipsom and very iasoaj akjshnfa kasf ksflafas kahsoifas
-              aisasfalsi
+              “Your home should be a story of who you are, and be a collection
+              of what you love.” — Nate Berkus
             </div>
             <div className="btnContainer">
               <Button

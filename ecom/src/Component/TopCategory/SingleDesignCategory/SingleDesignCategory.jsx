@@ -2,8 +2,9 @@ import "./SingleDesignCategory.css";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Rating } from "@mui/material";
 
-function SingleDesignCategory({ productName, price, image }) {
+function SingleDesignCategory({ productName, price, image, rating }) {
   const Navigate = useNavigate();
   return (
     <div>
@@ -30,6 +31,7 @@ function SingleDesignCategory({ productName, price, image }) {
           <p className="categoryProductName">{productName}</p>
           <p className="categoryProductPrice">{`$${price}`}</p>
         </div>
+        <Rating defaultValue={rating} precision={1} readOnly />
       </div>
     </div>
   );
