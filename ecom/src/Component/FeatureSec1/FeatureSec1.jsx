@@ -30,7 +30,9 @@ function FeatureSec1({
   const addToCart = (price) => {
     axios
       .post("http://localhost:3001/productPage/addToCart", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: JSON.parse(localStorage.getItem("token"))
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
         productID: productCode,
         productPrice: productPrice,
       })
@@ -38,7 +40,7 @@ function FeatureSec1({
         console.log(response);
       })
       .catch((err) => {
-        console.log(err);
+        console.count(err);
       });
   };
 
@@ -52,28 +54,32 @@ function FeatureSec1({
         console.log("data", response);
       })
       .catch((err) => {
-        console.log(err);
+        console.count(err);
       });
   };
 
   const removeFromWish = (productID) => {
     axios
       .post("http://localhost:3001/productPage/removeFromwish", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: JSON.parse(localStorage.getItem("token"))
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
         productID: productCode,
       })
       .then((response) => {
         console.log(response);
       })
       .catch((err) => {
-        console.log(err, "err");
+        console.count(err, "err");
       });
   };
 
   useEffect(() => {
     axios
       .post("http://localhost:3001/productPage/getWishListUser", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: JSON.parse(localStorage.getItem("token"))
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
       })
       .then((response) => {
         if (response.data.wishlist.includes(productCode)) {
@@ -82,7 +88,7 @@ function FeatureSec1({
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.count(err);
       });
   }, []);
 

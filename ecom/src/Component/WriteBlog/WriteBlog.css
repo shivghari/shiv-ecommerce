@@ -1,0 +1,63 @@
+.write {
+  padding-top: 50px;
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.writeForm {
+  position: relative;
+  margin: auto;
+}
+
+.writeFormGroup {
+  display: flex;
+  margin-top: 30px;
+}
+
+.fileInputField {
+  display: none;
+}
+
+.writeInput {
+  font-size: 40px;
+  padding: 10px;
+  width: 70vw;
+  border: none;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.writeInput:focus {
+  border: none;
+  outline: none;
+}
+
+.writeText {
+  /* height: 70vh !important; */
+  font-size: 20px;
+  border: none;
+  padding-left: 10px;
+  resize: none;
+  text-align: left;
+}
+
+.writeText::-webkit-scrollbar {
+  display: none;
+}
+
+.writeText:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.writeSubmit {
+  position: absolute;
+  top: 1px;
+  right: 50px;
+  color: white;
+  background-color: teal;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}

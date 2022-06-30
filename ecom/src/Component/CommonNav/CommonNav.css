@@ -1,136 +1,138 @@
 .commonContainer {
-    width: 100%;
-    height: 44px;
-    background-color: #7E33E0;
+  width: 100%;
+  height: 44px;
+  background-color: #7e33e0;
 }
 
 .contentContainer {
-    /* background-color: rgb(47, 185, 185); */
-    width: 80%;
-    margin: auto;
-    height: 44px;
-    display: flex;
-    justify-content: space-between;
+  /* background-color: rgb(47, 185, 185); */
+  width: 80%;
+  margin: auto;
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .mailPhoneContainer {
-    /* background-color: blue; */
-    width: 23%;
-    height: 44px;
-    display: flex;
-    justify-content: space-around;
-    color: #fff;
+  /* background-color: blue; */
+  width: 23%;
+  height: 44px;
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
 }
 
 .mailPhoneContainer p {
-    margin-top: 10px;
-    color: #fff;
+  margin-top: 10px;
+  color: #fff;
 }
 
 .loginOtherContainer {
-    /* background-color: bisque; */
-    width: 50%;
-    height: 44px;
-    display: flex;
-    justify-content: space-between;
+  /* background-color: bisque; */
+  width: 50%;
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .wishLoginContainer {
-    display: flex;
-    margin-top: 5px;
-    justify-content: space-between;
-    width: 100%;
-    color: #fff;
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-between;
+  width: 100%;
+  color: #fff;
 }
 
 .imgAndTag {
-    display: flex;
-    justify-content: space-evenly;
-    color: #fff;
-    cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  color: #fff;
+  cursor: pointer;
 }
 
 .imgAndTag p {
-    margin-top: 10px;
-    color: #fff;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.blogSec p {
+  margin-top: 10px;
+  color: #fff;
+  cursor: pointer;
 }
 
 .options {
-    color: #000;
+  color: #000;
 }
 
 .extraIconForResponsive {
-    display: none;
+  display: none;
 }
 
 @media only screen and (max-width: 420px) {
+  .commonContainer {
+    width: 100% !important;
+  }
 
-    .commonContainer {
-        width: 100% !important;
-    }
+  .mailPhoneContainer .hideIcon {
+    display: none;
+  }
 
-    .mailPhoneContainer .hideIcon {
-        display: none;
-    }
+  .mailPhoneContainer p {
+    margin-left: 30px;
+  }
 
-    .mailPhoneContainer p {
-        margin-left: 30px;
-    }
+  .mailPhoneContainer {
+    margin-left: 14%;
+  }
 
-    .mailPhoneContainer {
-        margin-left: 14%;
-    }
+  .loginOtherContainer {
+    display: none;
+  }
 
-    .loginOtherContainer {
-        display: none;
-    }
-
-    .extraIconForResponsive {
-        display: block;
-    }
-
+  .extraIconForResponsive {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 770px) {
+  .commonContainer {
+    width: 100%;
+  }
 
-    .commonContainer {
-        width: 100%;
-    }
+  .mailPhoneContainer .hideIcon {
+    display: none;
+  }
 
-    .mailPhoneContainer .hideIcon {
-        display: none;
-    }
+  .mailPhoneContainer p {
+    margin-left: 30px;
+  }
 
-    .mailPhoneContainer p {
-        margin-left: 30px;
-    }
+  .mailPhoneContainer {
+    margin-left: 14%;
+  }
 
-    .mailPhoneContainer {
-        margin-left: 14%;
-    }
+  .loginOtherContainer {
+    display: none;
+  }
 
-    .loginOtherContainer {
-        display: none;
-    }
-
-    .extraIconForResponsive {
-        display: block;
-    }
-
+  .extraIconForResponsive {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 375px) {
-    .commonContainer {
-        width: 100%;
-    }
+  .commonContainer {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1000) {
-    .commonContainer {
-        width: 100%;
-    }
+  .commonContainer {
+    width: 100%;
+  }
 
-    .loginOtherContainer {
-        width: 500px;
-    }
+  .loginOtherContainer {
+    width: 500px;
+  }
 }

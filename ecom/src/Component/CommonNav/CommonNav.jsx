@@ -139,14 +139,17 @@ function CommonNav() {
             </p>{" "}
             <PersonRoundedIcon style={{ marginTop: "10px" }} />
           </div>
-          <div
-            className="imgAndTag"
-            onClick={() => {
-              Navigate("/wishlist");
-            }}
-          >
-            <p>Wishlist</p> <FavoriteBorderIcon style={{ marginTop: "10px" }} />
-          </div>
+          {loginUserisLogin && localStorage.getItem("token") !== null ? (
+            <div
+              className="imgAndTag"
+              onClick={() => {
+                Navigate("/wishlist");
+              }}
+            >
+              <p>Wishlist</p>{" "}
+              <FavoriteBorderIcon style={{ marginTop: "10px" }} />
+            </div>
+          ) : null}
           {localStorage.getItem("token") != null ? (
             <div className="imgAndTag" style={{ marginTop: "2px" }}>
               <Badge
@@ -161,6 +164,19 @@ function CommonNav() {
                   }}
                 />
               </Badge>
+            </div>
+          ) : null}
+        </div>
+        <div>
+          {loginUserRole === "admin" &&
+          localStorage.getItem("token") !== null ? (
+            <div
+              className="blogSec"
+              onClick={() => {
+                Navigate("/writeblog");
+              }}
+            >
+              <p>Blogs</p>
             </div>
           ) : null}
         </div>

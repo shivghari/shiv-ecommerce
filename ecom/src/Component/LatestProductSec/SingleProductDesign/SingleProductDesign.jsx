@@ -31,7 +31,9 @@ function SingleProductDesign({
   const addToCart = (price) => {
     axios
       .post("http://localhost:3001/productPage/addToCart", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: JSON.parse(localStorage.getItem("token"))
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
         productID: productCode,
         productPrice: productPrice,
       })
@@ -46,7 +48,9 @@ function SingleProductDesign({
   const addATowish = (productID) => {
     axios
       .post("http://localhost:3001/productPage/addTowish", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: JSON.parse(localStorage.getItem("token"))
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
         productID: productCode,
       })
       .then((response) => {
@@ -60,7 +64,9 @@ function SingleProductDesign({
   const removeFromWish = (productID) => {
     axios
       .post("http://localhost:3001/productPage/removeFromwish", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: JSON.parse(localStorage.getItem("token"))
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
         productID: productCode,
       })
       .then((response) => {
@@ -74,7 +80,9 @@ function SingleProductDesign({
   useEffect(() => {
     axios
       .post("http://localhost:3001/productPage/getWishListUser", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: JSON.parse(localStorage.getItem("token"))
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
       })
       .then((response) => {
         if (response.data.wishlist.includes(productCode)) {
