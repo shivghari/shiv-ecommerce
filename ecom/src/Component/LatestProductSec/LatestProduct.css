@@ -1,45 +1,54 @@
 .latestProductSec {
-    margin-top: 80px;
+  margin-top: 80px;
 }
 .LatestProductHeading h1 {
-    font-size: 42px;
-    color: #151875;
+  font-size: 42px;
+  color: #151875;
 }
 
 .productContainer {
-    margin-top: 30px;   
+  margin: auto;
+  margin-top: 30px;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  overflow-x: scroll;
+  height: 330px;
+  padding-left: 280px;
+}
+
+.productContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .latestProductLinks {
-    width: 40%;
-    display: flex;
-    justify-content: space-around;
-    margin: auto;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500 !important;
-
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+  font-weight: 500 !important;
 }
 
 .nav-link {
-    color : #151875 !important;
-    font-weight: 500 !important;
+  color: #151875 !important;
+  font-weight: 500 !important;
 }
 
 .nav-link:hover {
-    color: #FB2E86 !important;
-    font-weight: 500 !important;
+  color: #fb2e86 !important;
+  font-weight: 500 !important;
 }
 
-
-@media screen and (max-width : 450px) {
-    .latestProductLinks {
-        width: 360px;
-        font-size: small;
-    }
-    .LatestProductHeading {
-        font-size: 30px;
-        width:360px;
-    }
+@media screen and (max-width: 450px) {
+  .latestProductLinks {
+    width: 360px;
+    font-size: small;
+  }
+  .LatestProductHeading {
+    font-size: 30px;
+    width: 360px;
+  }
 }

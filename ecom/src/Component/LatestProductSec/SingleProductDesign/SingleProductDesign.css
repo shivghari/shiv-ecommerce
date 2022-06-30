@@ -1,56 +1,62 @@
 .ImgIconContainer {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  height: 250px;
+  align-items: center;
 }
 
 .iconList {
-    width : 15px;
-    margin-top : 40%;
-    display: none;
+  width: 15px;
+  margin-top: 40%;
+  display: none;
 }
 
 .productDesc {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
 }
+
 .arrivalProductName {
-    color: #151875;
-    font-size: 16px;
-    font-style: "Josefin Sans";
-    font-weight: 500;
+  color: #151875;
+  font-size: 16px;
+  font-style: "Josefin Sans";
+  font-weight: 500;
 }
 
 .arrivalProductPrice {
-    color: #151875;
-    font-size: 14px;
-    font-style: "Josefin Sans";
-    font-weight: 500;
+  color: #151875;
+  font-size: 14px;
+  font-style: "Josefin Sans";
+  font-weight: 500;
 }
 
 .strikedprice {
-    color : #FB2448;
-    font-size: 14px;
-    font-style: "Josefin Sans";
-    font-weight: 500;    
+  color: #fb2448;
+  font-size: 14px;
+  font-style: "Josefin Sans";
+  font-weight: 500;
 }
 
 .SingleproductCardContainer {
-    width: fit-content;
+  width: fit-content;
+  align-items: center;
 }
 
 .SingleproductCardContainer :hover .iconList {
-    display: block;
+  display: block;
 }
 
 .IconListHolder {
-    margin-top : 40%;
-    width: 15px;
+  margin-top: 40%;
+  width: 15px;
+  height: 100%;
 }
 
-@media screen and (max-width : 450px) {
-    .card-content {
-        width: 300px;
-    }
+@media screen and (max-width: 450px) {
+  .card-content {
+    width: 300px;
+  }
 }
