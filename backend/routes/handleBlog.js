@@ -11,31 +11,66 @@ const BlogSchema = require("../models/blogData");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/jwtVerificationMid");
 require("dotenv").config();
+const fs = require("fs");
+const path = require("path");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.post("/addBlog", (req, res) => {
-  const newBlog = new BlogSchema({
-    title: req.body.title,
-    content: req.body.content,
-  });
+router.post("/addBlog", upload.single("blogImage"), (req, res) => {
+  if (req.file) {
+    let fileType = req.file.mimetype.split("/")[1];
+    let newFilename = req.file.filename + "." + fileType;
+    fs.rename(
+      path.resolve(process.cwd(), `uploads/${req.file.filename}`),
+      path.resolve(process.cwd(), `uploads/${newFilename}`),
+      (data) => {
+        console.log("File Uploaded");
+      }
+    );
 
-  newBlog
-    .save()
-    .then((response) => {
-      res.status(200).json({ message: "Blog Saved SuccessFully" });
-    })
-    .catch((err) => {
-      console.log(err, "err blog");
-      res
-        .status(300)
-        .json({ message: "Something went wring in saving the Blog" });
+    const newBlog = new BlogSchema({
+      title: req.body.title,
+      content: req.body.content,
+      authorID: req.body.authorID,
+      blogImage: newFilename,
     });
+
+    newBlog
+      .save()
+      .then((response) => {
+        res.status(200).json({ message: "Blog Saved SuccessFully" });
+      })
+      .catch((err) => {
+        console.log(err, "err blog");
+        res
+          .status(300)
+          .json({ message: "Something went wring in saving the Blog" });
+      });
+  } else {
+    const newBlog = new BlogSchema({
+      title: req.body.title,
+      content: req.body.content,
+      authorID: req.body.authorID,
+    });
+
+    newBlog
+      .save()
+      .then((response) => {
+        res.status(200).json({ message: "Blog Saved SuccessFully" });
+      })
+      .catch((err) => {
+        console.log(err, "err blog");
+        res
+          .status(300)
+          .json({ message: "Something went wring in saving the Blog" });
+      });
+  }
 });
 
 router.get("/getAllBlog", (req, res) => {
   BlogSchema.find()
+    .populate("authorID")
     .then((response) => {
       res.status(200).json({ response });
     })
@@ -47,4 +82,53 @@ router.get("/getAllBlog", (req, res) => {
     });
 });
 
+router.post("/getBlogById", (req, res) => {
+  BlogSchema.findOne({ _id: req.body.blogID })
+    .populate("authorID")
+    .then((response) => {
+      res.status(200).json({ response });
+    })
+    .catch((err) => {
+      console.log("err in Getting Blog", err);
+      res
+        .status(300)
+        .json({ message: "Something went Wrong in Fetching Blog" });
+    });
+});
+
+router.post("/approveBlog", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretkey", (err, result) => {
+    console.log("Approveing");
+    BlogSchema.updateOne(
+      { _id: req.body.blogID },
+      {
+        $set: {
+          approveByAdmin: true,
+        },
+      }
+    )
+      .then((response) => {
+        res.status(200).json({ message: "Blog Approved" });
+      })
+      .catch((err) => {
+        res
+          .status(300)
+          .json({ message: "Something went wrong in approving Blog" });
+      });
+  });
+});
+
+router.post("/deleteBlog", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretkey", (err, result) => {
+    BlogSchema.deleteOne({ _id: req.body.blogID })
+      .then((response) => {
+        res.status(200).json({ message: "BLog Deletedd Successfully" });
+      })
+      .catch((err) => {
+        res
+          .status(300)
+          .json({ message: "Something went wring in deleting the BLog" });
+      });
+  });
+});
 module.exports = router;

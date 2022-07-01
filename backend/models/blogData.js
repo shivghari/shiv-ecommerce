@@ -8,6 +8,14 @@ var BlogSchema = new mongoose.Schema(
     content: {
       type: String,
     },
+    authorID: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    approveByAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    blogImage: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

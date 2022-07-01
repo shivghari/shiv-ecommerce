@@ -1,0 +1,12 @@
+.DeleteBtn {
+  background-color: red;
+  border-color: red;
+  width: 150px;
+  margin-right: 10px;
+}
+
+.ApproveBtn {
+  background-color: rgb(21, 159, 21);
+  border-color: rgb(21, 159, 21);
+  width: 150px;
+}

@@ -10,14 +10,22 @@ function WriteBlog() {
   const [blogTitle, setblogTitle] = useState("");
   const [rows, setRows] = React.useState(minRows);
   const [value, setValue] = React.useState(``);
+  const [image, setImage] = useState();
 
   const submitBlog = (e) => {
     e.preventDefault();
+    var blogdata = new FormData();
+    blogdata.append("title", blogTitle);
+    blogdata.append("content", value);
+    blogdata.append(
+      "authorID",
+      localStorage.getItem("token")
+        ? JSON.parse(localStorage.getItem("token")).userID
+        : ""
+    );
+    blogdata.append("blogImage", image);
     axios
-      .post("http://localhost:3001/handleBlog/addBlog", {
-        title: blogTitle,
-        content: value,
-      })
+      .post("http://localhost:3001/handleBlog/addBlog", blogdata)
       .then((response) => {
         console.log(response);
       })
@@ -38,7 +46,6 @@ function WriteBlog() {
     <div className="write">
       <form className="writeForm">
         <div className="writeFormGroup">
-          <input type="file" id="fileInput" className="fileInputField" />
           <input
             type="text"
             placeholder="Title"
@@ -49,6 +56,15 @@ function WriteBlog() {
             }}
           />
         </div>
+        {image ? (
+          <img
+            src={URL.createObjectURL(image)}
+            alt="uploadedProduct"
+            width="100%"
+            height="300px"
+            style={{ marginTop: "30px", objectFit: "cover" }}
+          />
+        ) : null}
         <div className="writeFormGroup">
           <label htmlFor="fileInput">
             <AddIcon
@@ -64,7 +80,15 @@ function WriteBlog() {
               }}
             />
           </label>
-          <input type="file" id="fileInput" className="fileInputField" />
+          <input
+            type="file"
+            id="fileInput"
+            className="fileInputField"
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+            }}
+            style={{ visibility: "hidden" }}
+          />
           <textarea
             rows={rows}
             onChange={(e) => setValue(e.target.value)}

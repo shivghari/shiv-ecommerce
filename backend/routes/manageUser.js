@@ -77,7 +77,6 @@ router.post("/userOrder", verifyToken, (req, res) => {
         populate: { path: "productID", model: "Product" },
       })
       .then((response) => {
-        console.log(response);
         res.status(200).json({ response });
       })
       .catch((err) => {
@@ -90,7 +89,6 @@ router.post("/getPerticularUser", verifyToken, (req, res) => {
   jwt.verify(req.token, "secretkey", (err, result) => {
     User.find({ _id: req.body.userID })
       .then((response) => {
-        console.log(response[0]);
         res.status(200).json({
           deliveryAddress: response[0].deliveryaddress,
           mobile: response[0].mobile,
