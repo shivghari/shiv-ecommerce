@@ -68,12 +68,14 @@ function BlogAdminDetailView({ blogID }) {
         <p>Date Of Publish : {blogSoloData?.createdAt?.split("T")[0]}</p>
       </div>
       <h1>{blogSoloData.title}</h1>
-      <img
-        src={`http://localhost:3001/static/${blogSoloData?.blogImage}`}
-        width="100%"
-        height="200px"
-        style={{ objectFit: "cover" }}
-      />
+      {blogSoloData.blogImage && (
+        <img
+          src={`http://localhost:3001/static/${blogSoloData?.blogImage}`}
+          width="100%"
+          height="200px"
+          style={{ objectFit: "cover" }}
+        />
+      )}
       {blogSoloData?.content?.split("\n").map((item) => (
         <p>{item}</p>
       ))}

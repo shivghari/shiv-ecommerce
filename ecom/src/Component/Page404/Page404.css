@@ -1,0 +1,23 @@
+.errorPageContainer {
+  margin: 0px 0px 60px 0px;
+}
+
+.errorPageContainer h2 {
+  color: #151875;
+  font-style: "Lato";
+  margin-top: 20px;
+}
+
+.HomeBtn {
+  background-color: #fb2e86;
+  border-color: #fb2e86;
+  margin-top: 20px;
+  border-radius: 0px;
+  padding: 10px;
+  width: 150px;
+}
+
+.HomeBtn:hover {
+  background-color: #e40f6b;
+  border-color: #e40f6b;
+}
