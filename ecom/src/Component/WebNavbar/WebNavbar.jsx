@@ -49,7 +49,14 @@ function WebNavbar() {
             >
               Product
             </Nav.Link>
-            <Nav.Link className="links">Blog</Nav.Link>
+            <Nav.Link
+              className="links"
+              onClick={() => {
+                Navigate("/showblog");
+              }}
+            >
+              Blog
+            </Nav.Link>
             <Nav.Link className="links">Shop</Nav.Link>
             <Nav.Link
               className="links"

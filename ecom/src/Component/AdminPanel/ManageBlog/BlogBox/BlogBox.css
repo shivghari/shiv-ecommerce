@@ -2,6 +2,8 @@
   width: 400px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 30px;
+  margin-bottom: 20px;
+  height: 270px;
 }
 
 .AuthorAndDate {
@@ -9,4 +11,44 @@
   display: flex;
   justify-content: space-between;
   margin: auto;
+}
+
+.AuthorAndDate p {
+  color: #151875;
+  font-weight: 500;
+}
+
+.BlogDataContainer h5 {
+  color: #151875;
+}
+
+.BlogDataContainer p {
+  color: #8a8fb9;
+}
+
+.viewBtn {
+  height: 40px;
+  width: 100px;
+}
+
+.blogStatus {
+  margin-top: 6px;
+}
+
+.Varified {
+  color: green;
+  font-weight: 500;
+}
+
+.notVarified {
+  color: red;
+  font-weight: 500;
+}
+
+.viewAnsStatusContainer {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
 }

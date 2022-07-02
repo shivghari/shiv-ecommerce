@@ -87,14 +87,16 @@ function BlogAdminDetailView({ blogID }) {
       >
         Delete
       </Button>
-      <Button
-        className="ApproveBtn"
-        onClick={() => {
-          approveFunction();
-        }}
-      >
-        Approve
-      </Button>
+      {!blogSoloData?.approveByAdmin ? (
+        <Button
+          className="ApproveBtn"
+          onClick={() => {
+            approveFunction();
+          }}
+        >
+          Approve
+        </Button>
+      ) : null}
     </div>
   );
 }

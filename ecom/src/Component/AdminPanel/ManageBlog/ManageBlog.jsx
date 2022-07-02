@@ -33,6 +33,7 @@ function ManageBlog() {
                 authorName={item.authorID.username}
                 blogID={item._id}
                 setflag={setflag}
+                isVarified={item.approveByAdmin}
               />
             </Col>
           ))}

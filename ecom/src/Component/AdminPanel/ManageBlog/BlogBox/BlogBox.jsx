@@ -14,14 +14,15 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "50%",
+  width: "60%",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
-  height: "fitContent",
+  height: "90%",
+  overflow: "scroll",
 };
 
-function BlogBox({ title, content, time, authorName, blogID, setflag }) {
+function BlogBox({ title, content, time, authorName, blogID, isVarified }) {
   //model controoller
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -37,16 +38,26 @@ function BlogBox({ title, content, time, authorName, blogID, setflag }) {
         <p>{moment(time).fromNow()}</p>
       </div>
       <div className="BlogDataContainer">
-        <h5>{title}</h5>
+        <h5>{title?.length > 30 ? `${title.slice(0, 30)}...` : title}</h5>
         <p>{content?.length > 88 ? `${content.slice(0, 130)}...` : content}</p>
       </div>
-      <Button
-        onClick={() => {
-          handleOpen();
-        }}
-      >
-        View
-      </Button>
+      <div className="viewAnsStatusContainer">
+        <Button
+          onClick={() => {
+            handleOpen();
+          }}
+          className="viewBtn"
+        >
+          View
+        </Button>
+        <div className="blogStatus">
+          {isVarified ? (
+            <p className="Varified">Blog Approved</p>
+          ) : (
+            <p className="notVarified">Blog Not Approved</p>
+          )}
+        </div>
+      </div>
       <Modal
         open={open}
         onClose={handleClose}

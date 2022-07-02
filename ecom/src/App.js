@@ -19,6 +19,7 @@ import OrderCompletePage from "./Component/OrderCompletePage/OrderCompletePage";
 import ContactUsPage from "./Component/ContactUsPage/ContactUsPage";
 import Pagination from "./Component/Pagination/Pagination";
 import WriteBlog from "./Component/WriteBlog/WriteBlog";
+import BlogDisplayPage from "./Component/BlogDisplayPage/BlogDisplayPage";
 
 import Page404 from "./Component/Page404/Page404";
 
@@ -64,6 +65,7 @@ function App() {
             <Route exact path="/contactus" element={<ContactUsPage />}></Route>
             <Route exact path="/pagination" element={<Pagination />}></Route>
             <Route exact path="/writeblog" element={<WriteBlog />}></Route>
+            <Route exact path="/showblog" element={<BlogDisplayPage />}></Route>
             <Route exact path="*" element={<Page404 />}></Route>
           </Routes>
           <Footer />

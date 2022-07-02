@@ -82,6 +82,19 @@ router.get("/getAllBlog", (req, res) => {
     });
 });
 
+router.post("/getAllDisplayBlog", (req, res) => {
+  BlogSchema.find({ approveByAdmin: true })
+    .populate("authorID")
+    .then((response) => {
+      res.status(200).json({ response });
+    })
+    .catch((err) => {
+      res
+        .status(300)
+        .json({ message: "Sometinh went Wrong in fetching Blogs" });
+    });
+});
+
 router.post("/getBlogById", (req, res) => {
   BlogSchema.findOne({ _id: req.body.blogID })
     .populate("authorID")

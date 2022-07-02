@@ -1,0 +1,83 @@
+.blogPage {
+  width: 70%;
+  margin: auto;
+}
+
+.blogPart {
+  width: 90%;
+  text-align: left;
+}
+
+.SoloBlogHolder {
+  width: 80%;
+}
+.singleBlog {
+  margin-bottom: 20px;
+}
+
+.AuthorandDate {
+  display: flex;
+  margin-top: 20px;
+}
+
+.authorName {
+  display: flex;
+  margin-right: 30px;
+}
+
+.authorName p {
+  background-color: #ffe7f9;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.blogDate {
+  display: flex;
+}
+
+.blogDate p {
+  background-color: #ffece2;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.readMore {
+  font-size: 18px;
+  color: #151875;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.blogHeading {
+  font-size: 30px;
+  color: #151875;
+  font-style: "Lato";
+}
+
+.smallBlogContent {
+  font-size: 16px;
+  font-weight: 400;
+  color: #8a8fb9;
+}
+
+.pinkDot {
+  height: 10px;
+  width: 10px;
+  background-color: #fb2e86;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.readMoreBlock {
+  display: flex;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.horizontalLine {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.318);
+}
