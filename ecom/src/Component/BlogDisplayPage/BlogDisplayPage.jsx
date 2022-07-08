@@ -4,9 +4,11 @@ import "./BlogDisplayPage.css";
 import ModeIcon from "@mui/icons-material/Mode";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 function BlogDisplayPage() {
   const [blogdata, setblogdata] = useState([]);
+  const Navigate = useNavigate();
   useEffect(() => {
     axios
       .post("http://localhost:3001/handleBlog/getAllDisplayBlog")
@@ -57,7 +59,14 @@ function BlogDisplayPage() {
                   <p>{moment(item.createdAt).format("MMMM d, YYYY")}</p>
                 </div>
               </div>
-              <h3 className="blogHeading">{item.title}</h3>
+              <h3
+                className="blogHeading"
+                onClick={() => {
+                  Navigate(`/thisBlog/${item._id}`);
+                }}
+              >
+                {item.title}
+              </h3>
               <p className="smallBlogContent">
                 {item.content?.length > 100
                   ? `${item.content.slice(0, 150)}...`

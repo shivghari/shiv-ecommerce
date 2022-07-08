@@ -1,0 +1,43 @@
+.mainrelatedBlogContainer {
+  padding-left: 40px;
+  margin-top: 25%;
+}
+
+.reletedBlogTitle {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+  margin: 0%;
+  cursor: pointer;
+}
+
+.reletedBlogContent {
+  font-size: 16px;
+  color: rgba(41, 41, 41, 1);
+  font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+  margin: 0%;
+}
+
+.reletedBlogDetails {
+  margin-bottom: 40px;
+  width: 300px;
+  margin-left: 20px;
+}
+
+.moreLikethis {
+  font-weight: 700;
+}
+
+.reletedBlogList {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  border-left: 1px solid rgb(232, 232, 232);
+  /* border-left: 1px solid rgb(128, 126, 126); */
+}
+
+.likeAndCommentHolder {
+  width: 50%;
+  display: flex;
+  margin-top: 50px;
+}

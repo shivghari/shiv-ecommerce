@@ -144,4 +144,15 @@ router.post("/deleteBlog", verifyToken, (req, res) => {
       });
   });
 });
+
+router.post("/getThisBlog", (req, res) => {
+  BlogSchema.findOne({ _id: req.body.blogID })
+    .populate("authorID")
+    .then((response) => {
+      res.status(200).json({ response });
+    })
+    .catch((err) => {
+      res.status(300).json({ message: "Fail to fetch this Blog" });
+    });
+});
 module.exports = router;
