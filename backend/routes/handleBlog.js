@@ -155,4 +155,66 @@ router.post("/getThisBlog", (req, res) => {
       res.status(300).json({ message: "Fail to fetch this Blog" });
     });
 });
+
+router.post("/likeBlog", (req, res) => {
+  BlogSchema.findOne({ _id: req.body.blogID })
+    .then((response) => {
+      if (response?.likes?.includes(req.body.userID)) {
+        res.status(200).json({ message: "Post Already liked" });
+      } else {
+        BlogSchema.updateOne(
+          { _id: req.body.blogID },
+          {
+            $push: {
+              likes: [req.body.userID],
+            },
+          }
+        )
+          .then((result) => {
+            res.status(200).json({ message: "Blog Liked Successfully" });
+          })
+          .catch((err) => {
+            res
+              .status(300)
+              .json({ message: "something went wring in liking the Blog" });
+          });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(300)
+        .json({ message: "Something Went Wrong in like Blog route" });
+    });
+});
+
+router.post("/unlikeBlog", (req, res) => {
+  BlogSchema.findOne({ _id: req.body.blogID })
+    .then((response) => {
+      likeArr = response.likes;
+      const newLikeArr = likeArr.filter((item) => {
+        if (req.body.userID != item) {
+          return item;
+        }
+      });
+      BlogSchema.updateOne(
+        { _id: req.body.blogID },
+        {
+          $set: {
+            likes: newLikeArr,
+          },
+        }
+      )
+        .then((result) => {
+          res.status(200).json({ message: "Blog Unlike Successfuly" });
+        })
+        .catch((err) => {
+          res
+            .status(300)
+            .josn({ message: "Something went wrong in unliking blog" });
+        });
+    })
+    .catch((err) => {
+      res.status(300).json({ message: "Something went wrong unlike Route" });
+    });
+});
 module.exports = router;

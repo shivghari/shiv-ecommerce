@@ -7,16 +7,47 @@ import moment from "moment";
 import ReletedBlogCoponent from "../ReletedBlogCoponent/ReletedBlogCoponent";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
-
-const style = {
-  fontSize: "30px",
-  color: "rgb(232, 232, 232)",
-  marginLeft: "20px",
-};
+import { IconButton } from "@mui/material";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 function DisplayBlogDetailView() {
   const Params = useParams();
   const [individualBlog, setindividualBlog] = useState({});
+  const [unlike, setunlike] = useState(true);
+  const [like, setlike] = useState(false);
+
+  const likeBlog = (blogID) => {
+    axios
+      .post("http://localhost:3001/handleBlog/likeBlog", {
+        blogID: blogID,
+        userID: localStorage.getItem("token")
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
+
+  const unlikeBlog = (blogID) => {
+    axios
+      .post("http://localhost:3001/handleBlog/unlikeBlog", {
+        blogID: blogID,
+        userID: localStorage.getItem("token")
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
+
   useEffect(() => {
     axios
       .post("http://localhost:3001/handleBlog/getThisBlog", {
@@ -24,6 +55,17 @@ function DisplayBlogDetailView() {
       })
       .then((response) => {
         setindividualBlog(response.data.response);
+        if (
+          response.data.response.likes.includes(
+            JSON.parse(localStorage.getItem("token")).userID
+          )
+        ) {
+          setlike(true);
+          setunlike(false);
+        } else {
+          setlike(false);
+          setunlike(true);
+        }
       })
       .catch((err) => {
         console.log(err, "err");
@@ -50,6 +92,7 @@ function DisplayBlogDetailView() {
           <img
             src={`http://localhost:3001/static/${individualBlog.blogImage}`}
             className="mainBlogImage"
+            alt="blogPic"
           />
         )}
         <div className="mainblogContentHolder">
@@ -57,21 +100,54 @@ function DisplayBlogDetailView() {
             <p className="blogContentText">{item}</p>
           ))}
         </div>
-        <div className="likeAndCommentHolder">
-          <ThumbUpOutlinedIcon
-            sx={{
-              fontSize: "25px",
-              color: "rgb(128, 126, 126)",
-              marginRight: "20px",
-            }}
-          />
-          <ModeCommentOutlinedIcon
-            sx={{
-              fontSize: "25px",
-              color: "rgb(128, 126, 126)",
-              marginRight: "20px",
-            }}
-          />
+        <div className="mainlikeAndCommentHolder">
+          {unlike === true && like === false ? (
+            <IconButton
+              onClick={() => {
+                setunlike(false);
+                setlike(true);
+                likeBlog(individualBlog._id);
+              }}
+            >
+              <ThumbUpOutlinedIcon
+                sx={{
+                  fontSize: "25px",
+                  color: "rgb(128, 126, 126)",
+                  // marginRight: "20px",
+                  textAlign: "center",
+                }}
+              />
+              <span className="likecount">{individualBlog?.likes?.length}</span>
+            </IconButton>
+          ) : like === true && unlike === false ? (
+            <IconButton
+              onClick={() => {
+                setunlike(true);
+                setlike(false);
+                unlikeBlog(individualBlog._id);
+              }}
+            >
+              <ThumbUpIcon
+                sx={{
+                  fontSize: "25px",
+                  color: "rgb(128, 126, 126)",
+                  // marginRight: "20px",
+                  textAlign: "center",
+                }}
+              />
+              <span className="likecount">{individualBlog?.likes?.length}</span>
+            </IconButton>
+          ) : null}
+
+          <IconButton>
+            <ModeCommentOutlinedIcon
+              sx={{
+                fontSize: "25px",
+                color: "rgb(128, 126, 126)",
+                // marginRight: "20px",
+              }}
+            />
+          </IconButton>
         </div>
       </div>
       <div className="reletedBLogComponent">
