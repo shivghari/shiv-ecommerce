@@ -10,6 +10,7 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { IconButton } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { Button } from "react-bootstrap";
+import { useGetUserQuery } from "../../../Feature/FindUserSlice";
 
 //drawer imports
 import Box from "@mui/material/Box";
@@ -25,12 +26,19 @@ function DisplayBlogDetailView() {
   const [unlike, setunlike] = useState(true);
   const [like, setlike] = useState(false);
 
+  const [comment, setcomment] = useState("");
+  const [commentData, setcommentData] = useState([]);
+  const [toggle, settoggle] = useState(false);
+
+  const { data } = useGetUserQuery(
+    JSON.parse(localStorage.getItem("token")).userID
+      ? JSON.parse(localStorage.getItem("token")).userID
+      : ""
+  );
+
   //drawer implimentation
 
   const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
     right: false,
   });
 
@@ -46,24 +54,70 @@ function DisplayBlogDetailView() {
             <div className="drawerCloseButton">
               <div className="CommentUser">
                 <Avatar sx={{ height: "32px", width: "32px" }}>A</Avatar>
-                <p>Admin</p>
+                <p>{data?.username}</p>
               </div>
               <p onClick={toggleDrawer(anchor, false)}>X</p>
             </div>
-            <textarea placeholder="What are your thought?" />
+            <textarea
+              placeholder="What are your thought?"
+              value={comment}
+              onChange={(e) => {
+                setcomment(e.target.value);
+              }}
+            />
             <div className="btnHolder">
               <Button variant="light" className="commentBtn cancel">
                 Cancel
               </Button>
-              <Button className="commentBtn">Post</Button>
+              <Button
+                className="commentBtn"
+                onClick={() => {
+                  settoggle(!toggle);
+                  postComment(individualBlog._id);
+                  setcomment("");
+                }}
+              >
+                Post
+              </Button>
             </div>
           </div>
         </ListItem>
+        {commentData.map((comment) => (
+          <ListItem>
+            <div className="CommentDataHolder">
+              <div className="postUser">
+                <div className="avatarAndUsername">
+                  <Avatar>{comment?.userID?.username[0].toUpperCase()}</Avatar>
+                  <p>{comment?.userID?.username}</p>
+                </div>
+                <p>{moment(comment?.createdAt).format("MMMM, YYYY")}</p>
+              </div>
+              <p className="commentContent">{comment?.comment}</p>
+            </div>
+          </ListItem>
+        ))}
       </List>
     </Box>
   );
 
   //end drawer implimentation
+
+  const postComment = (blogID) => {
+    axios
+      .post("http://localhost:3001/handleBlog/addComment", {
+        blogID: blogID,
+        userID: localStorage.getItem("token")
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
+        comment: comment,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
 
   const likeBlog = (blogID) => {
     axios
@@ -120,6 +174,20 @@ function DisplayBlogDetailView() {
         console.log(err, "err");
       });
   }, [Params.blogID, like, unlike]);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:3001/handleBlog/fetchComment", {
+        blogID: individualBlog._id,
+      })
+      .then((response) => {
+        setcommentData(response.data.response);
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  }, [toggle, state]);
+
   return (
     <div className="totalblogView">
       <div className="mainBlogViewContainer">

@@ -97,7 +97,7 @@
 }
 
 .userCommentContainer textarea {
-  height: 150px;
+  height: 100px;
   width: 100%;
   resize: none;
   outline: none;
@@ -116,4 +116,33 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.CommentDataHolder {
+  width: 100%;
+  border-bottom: 1px solid rgb(227, 227, 227);
+}
+
+.avatarAndUsername {
+  display: flex;
+}
+
+.avatarAndUsername p {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.commentContent {
+  width: 80%;
+  margin-left: 13%;
+  color: black;
+  margin-top: -15px;
+}
+
+.postUser {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
 }

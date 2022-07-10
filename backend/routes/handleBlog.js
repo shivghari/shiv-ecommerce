@@ -7,6 +7,7 @@ const upload = multer({ dest: "uploads" });
 const mongoose = require("mongoose");
 const User = require("../models/userData");
 const Orderhistory = require("../models/orderHistory");
+const BlogCommentSchema = require("../models/blogComment");
 const BlogSchema = require("../models/blogData");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/jwtVerificationMid");
@@ -215,6 +216,34 @@ router.post("/unlikeBlog", (req, res) => {
     })
     .catch((err) => {
       res.status(300).json({ message: "Something went wrong unlike Route" });
+    });
+});
+
+router.post("/addComment", (req, res) => {
+  const newblogComment = new BlogCommentSchema({
+    blogID: req.body.blogID,
+    userID: req.body.userID,
+    comment: req.body.comment,
+  });
+
+  newblogComment
+    .save()
+    .then((response) => {
+      res.status(200).json({ message: "comment Posted" });
+    })
+    .catch((err) => {
+      res.status(300).json({ message: "comment Not Posted" });
+    });
+});
+
+router.post("/fetchComment", (req, res) => {
+  BlogCommentSchema.find({ blogID: req.body.blogID })
+    .populate("userID")
+    .then((response) => {
+      res.status(200).json({ response });
+    })
+    .catch((err) => {
+      res.status(300).josn({ message: "Commnet not fetch" });
     });
 });
 module.exports = router;
