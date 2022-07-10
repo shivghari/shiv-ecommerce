@@ -125,7 +125,11 @@ function CommonNav() {
           <div
             className="imgAndTag"
             onClick={() => {
-              if (loginUserRole === "admin" && loginUserisLogin) {
+              if (
+                loginUserRole === "admin" &&
+                loginUserisLogin &&
+                localStorage.getItem("token") != null
+              ) {
                 Navigate("/admin");
               } else if (
                 loginUserisLogin &&
@@ -211,6 +215,7 @@ function CommonNav() {
               dispatch(logoutUser());
               dispatch(clearCart());
               Navigate("/");
+              refresh();
             }}
           >
             Logout
