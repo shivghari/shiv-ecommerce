@@ -20,16 +20,19 @@ function ProductPage() {
         console.log(response.data.response);
         setproductData(response.data.response);
         setisFetching(false);
-        dispatch(
-          setUser({ userID: JSON.parse(localStorage.getItem("token")).userID })
-        );
+        if (localStorage.getItem("token")) {
+          dispatch(
+            setUser({
+              userID: JSON.parse(localStorage.getItem("token")).userID,
+            })
+          );
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  console.log("data", productData);
   if (isFetching === true) {
     return <h1>Loading...</h1>;
   }
@@ -42,13 +45,13 @@ function ProductPage() {
             productData.map((item, index) => (
               <Col lg={3} key={index}>
                 <SingleProductPageItem
-                  image={item.image}
-                  productname={item.prouctname}
-                  price={item.price}
-                  stakedPrice={item.stakedprice}
-                  productID={item._id}
-                  rating={item.rating}
-                  ratevotecount={item.ratevotecount}
+                  image={item?.image}
+                  productname={item?.prouctname}
+                  price={item?.price}
+                  stakedPrice={item?.stakedprice}
+                  productID={item?._id}
+                  rating={item?.rating}
+                  ratevotecount={item?.ratevotecount}
                 />
               </Col>
             ))

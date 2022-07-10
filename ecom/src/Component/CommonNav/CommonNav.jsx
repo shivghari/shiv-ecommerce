@@ -86,11 +86,15 @@ function CommonNav() {
           <div className="hideIcon">
             <MailOutlineIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p className="email">{data?.email}</p>
+          <p className="email">
+            {localStorage.getItem("token") ? data?.email : ""}
+          </p>
           <div className="hideIcon">
             <AccountCircleIcon sx={{ marginTop: "10px" }} />
           </div>
-          <p className="phone">{data?.username}</p>
+          <p className="phone">
+            {localStorage.getItem("token") ? data?.username : ""}
+          </p>
         </div>
         <div className="loginOtherContainer">
           <NativeSelect defaultValue={"English"} sx={{ color: "#fff" }}>
@@ -123,7 +127,10 @@ function CommonNav() {
             onClick={() => {
               if (loginUserRole === "admin" && loginUserisLogin) {
                 Navigate("/admin");
-              } else if (loginUserisLogin) {
+              } else if (
+                loginUserisLogin &&
+                localStorage.getItem("token") != null
+              ) {
                 Navigate("/account");
               } else {
                 Navigate("/login");
@@ -131,9 +138,11 @@ function CommonNav() {
             }}
           >
             <p>
-              {loginUserRole === "admin" && loginUserisLogin
+              {loginUserRole === "admin" &&
+              loginUserisLogin &&
+              localStorage.getItem("token") != undefined
                 ? "Admin Panel"
-                : loginUserisLogin
+                : loginUserisLogin && localStorage.getItem("token") != undefined
                 ? "Account"
                 : "login"}
             </p>{" "}
@@ -169,7 +178,7 @@ function CommonNav() {
         </div>
         <div>
           {loginUserRole === "admin" &&
-          localStorage.getItem("token") !== null ? (
+          localStorage.getItem("token") != undefined ? (
             <div
               className="blogSec"
               onClick={() => {
@@ -188,7 +197,7 @@ function CommonNav() {
             }}
           />
         </div>
-        {loginUserisLogin === true ? (
+        {localStorage.getItem("token") != undefined ? (
           <Button
             style={{
               height: "35px",
@@ -202,7 +211,6 @@ function CommonNav() {
               dispatch(logoutUser());
               dispatch(clearCart());
               Navigate("/");
-              refresh();
             }}
           >
             Logout

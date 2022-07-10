@@ -30,7 +30,9 @@ function SingleProductPageItem({
   useEffect(() => {
     axios
       .post("http://localhost:3001/productPage/getWishListUser", {
-        userID: JSON.parse(localStorage.getItem("token")).userID,
+        userID: localStorage.getItem("token")
+          ? JSON.parse(localStorage.getItem("token")).userID
+          : "",
       })
       .then((response) => {
         if (response.data.wishlist.includes(productID)) {
@@ -39,7 +41,7 @@ function SingleProductPageItem({
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Please Login");
       });
   }, []);
 
@@ -95,24 +97,32 @@ function SingleProductPageItem({
             <ShoppingCartIcon
               className="iconGrid"
               onClick={() => {
-                dispatch(
-                  addItem({
-                    productID: productID,
-                    price: parseInt(price),
-                    total: 1,
-                  })
-                );
-                addToCart(price);
+                if (localStorage.getItem("token")) {
+                  dispatch(
+                    addItem({
+                      productID: productID,
+                      price: parseInt(price),
+                      total: 1,
+                    })
+                  );
+                  addToCart(price);
+                } else {
+                  console.log("please Login");
+                }
               }}
             />
             {unlike && !check ? (
               <FavoriteBorderIcon
                 className="iconGrid"
                 onClick={() => {
-                  addATowish(productID);
-                  setliked(true);
-                  setunlike(false);
-                  setCheck(true);
+                  if (localStorage.getItem("token")) {
+                    addATowish(productID);
+                    setliked(true);
+                    setunlike(false);
+                    setCheck(true);
+                  } else {
+                    console.log("Please Login ");
+                  }
                 }}
               />
             ) : liked ? (

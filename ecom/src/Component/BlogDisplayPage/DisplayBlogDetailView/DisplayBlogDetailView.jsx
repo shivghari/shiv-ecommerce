@@ -9,12 +9,61 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { IconButton } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import { Button } from "react-bootstrap";
+
+//drawer imports
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 
 function DisplayBlogDetailView() {
   const Params = useParams();
   const [individualBlog, setindividualBlog] = useState({});
   const [unlike, setunlike] = useState(true);
   const [like, setlike] = useState(false);
+
+  //drawer implimentation
+
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box sx={{ width: "400px" }} role="presentation">
+      <List>
+        <ListItem>
+          <div className="userCommentContainer">
+            <div className="drawerCloseButton">
+              <div className="CommentUser">
+                <Avatar sx={{ height: "32px", width: "32px" }}>A</Avatar>
+                <p>Admin</p>
+              </div>
+              <p onClick={toggleDrawer(anchor, false)}>X</p>
+            </div>
+            <textarea placeholder="What are your thought?" />
+            <div className="btnHolder">
+              <Button variant="light" className="commentBtn cancel">
+                Cancel
+              </Button>
+              <Button className="commentBtn">Post</Button>
+            </div>
+          </div>
+        </ListItem>
+      </List>
+    </Box>
+  );
+
+  //end drawer implimentation
 
   const likeBlog = (blogID) => {
     axios
@@ -70,7 +119,7 @@ function DisplayBlogDetailView() {
       .catch((err) => {
         console.log(err, "err");
       });
-  }, [Params.blogID]);
+  }, [Params.blogID, like, unlike]);
   return (
     <div className="totalblogView">
       <div className="mainBlogViewContainer">
@@ -139,7 +188,7 @@ function DisplayBlogDetailView() {
             </IconButton>
           ) : null}
 
-          <IconButton>
+          <IconButton onClick={toggleDrawer("right", true)}>
             <ModeCommentOutlinedIcon
               sx={{
                 fontSize: "25px",
@@ -153,6 +202,19 @@ function DisplayBlogDetailView() {
       <div className="reletedBLogComponent">
         <ReletedBlogCoponent />
       </div>
+      {/* Deawer Code */}
+      <div>
+        <React.Fragment key={"right"}>
+          <Drawer
+            anchor={"right"}
+            open={state["right"]}
+            onClose={toggleDrawer("right", false)}
+          >
+            {list("right")}
+          </Drawer>
+        </React.Fragment>
+      </div>
+      {/* Drawer Code Finished */}
     </div>
   );
 }

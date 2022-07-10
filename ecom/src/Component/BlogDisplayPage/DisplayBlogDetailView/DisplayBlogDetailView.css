@@ -69,3 +69,51 @@
   width: 70%;
   margin-left: 10px;
 }
+
+.drawerCloseButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.drawerCloseButton p {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.CommentUser {
+  display: flex;
+  justify-content: space-between;
+}
+
+.CommentUser p {
+  margin-left: 10px;
+  margin-top: -2px;
+}
+
+.userCommentContainer {
+  width: 100%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px;
+}
+
+.userCommentContainer textarea {
+  height: 150px;
+  width: 100%;
+  resize: none;
+  outline: none;
+  border: none;
+}
+
+.commentBtn {
+  width: 100px;
+}
+
+.cancel {
+  margin-right: 10px;
+}
+
+.btnHolder {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

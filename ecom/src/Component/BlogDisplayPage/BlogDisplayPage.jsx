@@ -73,7 +73,14 @@ function BlogDisplayPage() {
                   : item.content}
               </p>
               <div className="readMoreBlock">
-                <p className="readMore">Read More</p>
+                <p
+                  className="readMore"
+                  onClick={() => {
+                    Navigate(`/thisBlog/${item._id}`);
+                  }}
+                >
+                  Read More
+                </p>
                 <span className="pinkDot"></span>
               </div>
             </div>
