@@ -66,7 +66,13 @@ function DisplayBlogDetailView() {
               }}
             />
             <div className="btnHolder">
-              <Button variant="light" className="commentBtn cancel">
+              <Button
+                variant="light"
+                className="commentBtn cancel"
+                onClick={() => {
+                  setState({ right: false });
+                }}
+              >
                 Cancel
               </Button>
               <Button
@@ -75,6 +81,7 @@ function DisplayBlogDetailView() {
                   settoggle(!toggle);
                   postComment(individualBlog._id);
                   setcomment("");
+                  updatetheComment();
                 }}
               >
                 Post
@@ -90,7 +97,7 @@ function DisplayBlogDetailView() {
                   <Avatar>{comment?.userID?.username[0].toUpperCase()}</Avatar>
                   <p>{comment?.userID?.username}</p>
                 </div>
-                <p>{moment(comment?.createdAt).format("MMMM, YYYY")}</p>
+                <p>{moment(comment?.createdAt).format("MMMM d, YYYY")}</p>
               </div>
               <p className="commentContent">{comment?.comment}</p>
             </div>
@@ -181,12 +188,25 @@ function DisplayBlogDetailView() {
         blogID: individualBlog._id,
       })
       .then((response) => {
-        setcommentData(response.data.response);
+        setcommentData(response.data.response.reverse());
       })
       .catch((err) => {
         console.log(err, "err");
       });
   }, [toggle, state]);
+
+  const updatetheComment = () => {
+    axios
+      .post("http://localhost:3001/handleBlog/fetchComment", {
+        blogID: individualBlog._id,
+      })
+      .then((response) => {
+        setcommentData(response.data.response.reverse());
+      })
+      .catch((err) => {
+        console.log(err, "err");
+      });
+  };
 
   return (
     <div className="totalblogView">
