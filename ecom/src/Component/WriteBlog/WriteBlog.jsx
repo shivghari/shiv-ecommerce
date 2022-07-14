@@ -3,6 +3,11 @@ import "./WriteBlog.css";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+//Tag Selection input field inports
+import { Select } from "antd";
+import "antd/dist/antd.css";
 
 function WriteBlog() {
   // text area auto resizing Logic
@@ -11,6 +16,22 @@ function WriteBlog() {
   const [rows, setRows] = React.useState(minRows);
   const [value, setValue] = React.useState(``);
   const [image, setImage] = useState();
+
+  const [blogtag, setblogtag] = useState("");
+
+  const Navigate = useNavigate();
+
+  //secetion field
+  const { Option } = Select;
+  const children = [];
+
+  for (let i = 0; i < 5; i++) {
+    children.push(<Option key={i}>{i}</Option>);
+  }
+
+  const handleChange = (value) => {
+    setblogtag(`${value}`);
+  };
 
   const submitBlog = (e) => {
     e.preventDefault();
@@ -24,6 +45,7 @@ function WriteBlog() {
         : ""
     );
     blogdata.append("blogImage", image);
+    blogdata.append("blogtag", blogtag);
     axios
       .post("http://localhost:3001/handleBlog/addBlog", blogdata)
       .then((response) => {
@@ -102,10 +124,19 @@ function WriteBlog() {
           className="writeSubmit"
           onClick={(e) => {
             submitBlog(e);
+            Navigate("/showblog");
           }}
         >
           Publish
         </button>
+        <Select
+          className="selectBar"
+          mode="tags"
+          placeholder="Select Blog Category tags"
+          onChange={handleChange}
+        >
+          {children}
+        </Select>
       </form>
     </div>
   );

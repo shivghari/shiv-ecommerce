@@ -35,6 +35,7 @@ router.post("/addBlog", upload.single("blogImage"), (req, res) => {
       content: req.body.content,
       authorID: req.body.authorID,
       blogImage: newFilename,
+      blogtag: req.body.blogtag,
     });
 
     newBlog
@@ -53,6 +54,7 @@ router.post("/addBlog", upload.single("blogImage"), (req, res) => {
       title: req.body.title,
       content: req.body.content,
       authorID: req.body.authorID,
+      blogtag: req.body.blogtag,
     });
 
     newBlog

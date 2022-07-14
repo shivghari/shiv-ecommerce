@@ -63,3 +63,13 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+.selectBar {
+  width: 60%;
+}
+
+.ant-select {
+  padding: 10px !important;
+  font: 25px !important;
+  color: gray;
+}

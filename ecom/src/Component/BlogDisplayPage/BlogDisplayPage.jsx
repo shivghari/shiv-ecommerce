@@ -13,7 +13,7 @@ function BlogDisplayPage() {
     axios
       .post("http://localhost:3001/handleBlog/getAllDisplayBlog")
       .then((response) => {
-        setblogdata(response.data.response);
+        setblogdata(response.data.response.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -59,6 +59,7 @@ function BlogDisplayPage() {
                   <p>{moment(item.createdAt).format("MMMM d, YYYY")}</p>
                 </div>
               </div>
+
               <h3
                 className="blogHeading"
                 onClick={() => {
@@ -67,6 +68,11 @@ function BlogDisplayPage() {
               >
                 {item.title}
               </h3>
+              <div className="blogtagDiv">
+                {item?.blogtag
+                  ? item?.blogtag?.split(",")?.map((tag) => <p>{tag}</p>)
+                  : null}
+              </div>
               <p className="smallBlogContent">
                 {item.content?.length > 100
                   ? `${item.content.slice(0, 150)}...`

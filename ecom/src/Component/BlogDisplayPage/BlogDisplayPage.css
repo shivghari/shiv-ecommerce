@@ -82,3 +82,16 @@
 .horizontalLine {
   border-bottom: 1px solid rgba(128, 128, 128, 0.318);
 }
+
+.blogtagDiv {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+.blogtagDiv p {
+  margin-left: 10px;
+  background-color: #e7f9ff;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
