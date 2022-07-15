@@ -5,6 +5,7 @@ import ModeIcon from "@mui/icons-material/Mode";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import MostLikedBlog from "./MostLikedBlog/MostLikedBlog";
 
 function BlogDisplayPage() {
   const [blogdata, setblogdata] = useState([]);
@@ -131,6 +132,7 @@ function BlogDisplayPage() {
             ref={searchBLogString}
           ></input>
         </div>
+        <MostLikedBlog />
       </div>
     </div>
   );
