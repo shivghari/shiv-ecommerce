@@ -237,6 +237,11 @@ function DisplayBlogDetailView() {
             <p className="blogContentText">{item}</p>
           ))}
         </div>
+        <div className="tagContainer">
+          {individualBlog?.blogtag?.split(",").map((tag) => (
+            <p>{tag}</p>
+          ))}
+        </div>
         <div className="mainlikeAndCommentHolder">
           {unlike === true && like === false ? (
             <IconButton

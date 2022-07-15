@@ -146,3 +146,18 @@
   display: flex;
   justify-content: space-between;
 }
+
+.tagContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0%;
+}
+
+.tagContainer p {
+  margin-left: 10px;
+  background-color: #ffe7fd;
+  padding: 5px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}

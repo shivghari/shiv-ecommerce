@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./BlogDisplayPage.css";
 import ModeIcon from "@mui/icons-material/Mode";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -8,17 +8,44 @@ import { useNavigate } from "react-router-dom";
 
 function BlogDisplayPage() {
   const [blogdata, setblogdata] = useState([]);
+  const [copyblogdata, setcopyblogdata] = useState([]);
+  const searchBLogString = useRef("");
+
+  const handleBlogSearch = () => {
+    console.log(searchBLogString.current.value);
+    if (searchBLogString.current.value) {
+      var searchBlog = blogdata.filter((blog) => {
+        if (
+          blog.title
+            .toLowerCase()
+            .includes(searchBLogString.current.value.toLowerCase())
+        ) {
+          return blog;
+        }
+      });
+      if (searchBlog.length > 0) {
+        setblogdata(searchBlog);
+      } else {
+        setblogdata(copyblogdata);
+      }
+    } else {
+      setblogdata(copyblogdata);
+    }
+  };
+
   const Navigate = useNavigate();
   useEffect(() => {
     axios
       .post("http://localhost:3001/handleBlog/getAllDisplayBlog")
       .then((response) => {
         setblogdata(response.data.response.reverse());
+        setcopyblogdata(response.data.response.reverse());
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
   return (
     <div className="blogPage">
       <div className="blogPart">
@@ -93,7 +120,18 @@ function BlogDisplayPage() {
           ))}
         </div>
       </div>
-      <div className="filterPart"></div>
+      <div className="filterPart">
+        <div className="searchBarIconContainer">
+          <input
+            placeholder="Search Blog"
+            className="inpuSearchHolder"
+            onChange={() => {
+              handleBlogSearch();
+            }}
+            ref={searchBLogString}
+          ></input>
+        </div>
+      </div>
     </div>
   );
 }
