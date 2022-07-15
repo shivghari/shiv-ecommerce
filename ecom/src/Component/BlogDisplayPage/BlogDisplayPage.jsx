@@ -24,7 +24,7 @@ function BlogDisplayPage() {
         }
       });
       if (searchBlog.length > 0) {
-        setblogdata(searchBlog);
+        setblogdata(searchBlog.reverse());
       } else {
         setblogdata(copyblogdata);
       }
@@ -39,7 +39,7 @@ function BlogDisplayPage() {
       .post("http://localhost:3001/handleBlog/getAllDisplayBlog")
       .then((response) => {
         setblogdata(response.data.response.reverse());
-        setcopyblogdata(response.data.response.reverse());
+        setcopyblogdata(response.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +50,7 @@ function BlogDisplayPage() {
     <div className="blogPage">
       <div className="blogPart">
         <div className="SoloBlogHolder">
-          {blogdata.map((item) => (
+          {blogdata.reverse().map((item) => (
             <div key={item._id} className="singleBlog">
               {item.blogImage && (
                 <img
