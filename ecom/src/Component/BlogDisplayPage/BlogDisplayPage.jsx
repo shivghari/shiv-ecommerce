@@ -12,6 +12,23 @@ function BlogDisplayPage() {
   const [copyblogdata, setcopyblogdata] = useState([]);
   const searchBLogString = useRef("");
 
+  const searchByTag = (tag) => {
+    if (tag === "all") {
+      setblogdata(copyblogdata);
+    }
+    var newSearchBlog = blogdata?.filter((blog) => {
+      if (blog.blogtag.toLowerCase().includes(tag.toLowerCase())) {
+        return blog;
+      }
+    });
+
+    if (newSearchBlog.length > 0) {
+      setblogdata(newSearchBlog);
+    } else {
+      setblogdata(copyblogdata);
+    }
+  };
+
   const handleBlogSearch = () => {
     console.log(searchBLogString.current.value);
     if (searchBLogString.current.value) {
@@ -58,6 +75,7 @@ function BlogDisplayPage() {
                   src={`http://localhost:3001/static/${item.blogImage}`}
                   width="100%"
                   height="400px"
+                  alt="blogImg"
                   style={{
                     marginTop: "30px",
                     objectFit: "cover",
@@ -132,7 +150,68 @@ function BlogDisplayPage() {
             ref={searchBLogString}
           ></input>
         </div>
-        <MostLikedBlog />
+        <div className="CategoryButtonContainer">
+          <h3 className="TagHeading">Top Tags</h3>
+          <button
+            className="tagButton"
+            onClick={() => {
+              searchByTag("All");
+            }}
+          >
+            All
+          </button>
+          <button
+            className="tagButton"
+            onClick={() => {
+              searchByTag("Technology");
+            }}
+          >
+            Technology
+          </button>
+          <button
+            className="tagButton"
+            onClick={() => {
+              searchByTag("Environment");
+            }}
+          >
+            Environment
+          </button>
+          <button
+            className="tagButton"
+            onClick={() => {
+              searchByTag("Nature");
+            }}
+          >
+            Nature
+          </button>
+          <button
+            className="tagButton"
+            onClick={() => {
+              searchByTag("e-commerce");
+            }}
+          >
+            E-commerce WebApp
+          </button>
+          <button
+            className="tagButton"
+            onClick={() => {
+              searchByTag("Programing");
+            }}
+          >
+            Programing
+          </button>
+          <button
+            className="tagButton"
+            onClick={() => {
+              searchByTag("MongoDB");
+            }}
+          >
+            MongoDB
+          </button>
+        </div>
+        <div className="MostLikedBlogComponentContainer">
+          <MostLikedBlog />
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,51 @@
+.conponentContainer {
+  width: 400px;
+}
+
+.mostLikedBlogContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: 14%;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-bottom: 0.5px solid rgb(237, 237, 237);
+}
+
+.mostLikeBlogDataContainer {
+  text-align: left;
+  width: 75%;
+}
+
+.componentHeading {
+  margin-left: -95px;
+  font-size: 25px;
+  color: #151875;
+}
+
+.mostLikedBlogTitle {
+  margin: 0%;
+  font-size: 16px;
+  font-weight: 600;
+  color: #151875;
+}
+
+.mostLikedBlogContent {
+  margin: 0%;
+  font-size: 14px;
+  font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
+  margin-bottom: 2px;
+  color: #8a8fb9;
+}
+
+.likeAndCountHolder {
+  display: flex;
+  justify-content: flex-start;
+  color: red;
+}
+
+.likeAndCountHolder p {
+  font-size: 14px;
+  margin-left: 5px;
+  margin-top: -5px;
+}

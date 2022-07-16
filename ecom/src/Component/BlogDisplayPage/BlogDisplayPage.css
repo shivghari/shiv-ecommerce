@@ -115,3 +115,36 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.MostLikedBlogComponentContainer {
+  margin-top: 20px;
+  margin-left: 3px;
+}
+
+.TagHeading {
+  font-size: 25px;
+  color: #151875;
+  margin-top: 10px;
+}
+
+.CategoryButtonContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.tagButton {
+  background-color: #e7f7ff;
+  border: none;
+  padding: 5px 10px;
+  width: fit-content;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.tagButton:hover {
+  background-color: #dcf6fb;
+}
