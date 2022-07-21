@@ -31,7 +31,7 @@ function DisplayBlogDetailView() {
   const [toggle, settoggle] = useState(false);
 
   const { data } = useGetUserQuery(
-    JSON.parse(localStorage.getItem("token")).userID
+    JSON.parse(localStorage.getItem("token"))
       ? JSON.parse(localStorage.getItem("token")).userID
       : ""
   );
@@ -242,55 +242,61 @@ function DisplayBlogDetailView() {
             <p>{tag}</p>
           ))}
         </div>
-        <div className="mainlikeAndCommentHolder">
-          {unlike === true && like === false ? (
-            <IconButton
-              onClick={() => {
-                setunlike(false);
-                setlike(true);
-                likeBlog(individualBlog._id);
-              }}
-            >
-              <ThumbUpOutlinedIcon
-                sx={{
-                  fontSize: "25px",
-                  color: "rgb(128, 126, 126)",
-                  // marginRight: "20px",
-                  textAlign: "center",
+        {localStorage.getItem("token") ? (
+          <div className="mainlikeAndCommentHolder">
+            {unlike === true && like === false ? (
+              <IconButton
+                onClick={() => {
+                  setunlike(false);
+                  setlike(true);
+                  likeBlog(individualBlog._id);
                 }}
-              />
-              <span className="likecount">{individualBlog?.likes?.length}</span>
-            </IconButton>
-          ) : like === true && unlike === false ? (
-            <IconButton
-              onClick={() => {
-                setunlike(true);
-                setlike(false);
-                unlikeBlog(individualBlog._id);
-              }}
-            >
-              <ThumbUpIcon
-                sx={{
-                  fontSize: "25px",
-                  color: "rgb(128, 126, 126)",
-                  // marginRight: "20px",
-                  textAlign: "center",
+              >
+                <ThumbUpOutlinedIcon
+                  sx={{
+                    fontSize: "25px",
+                    color: "rgb(128, 126, 126)",
+                    // marginRight: "20px",
+                    textAlign: "center",
+                  }}
+                />
+                <span className="likecount">
+                  {individualBlog?.likes?.length}
+                </span>
+              </IconButton>
+            ) : like === true && unlike === false ? (
+              <IconButton
+                onClick={() => {
+                  setunlike(true);
+                  setlike(false);
+                  unlikeBlog(individualBlog._id);
                 }}
-              />
-              <span className="likecount">{individualBlog?.likes?.length}</span>
-            </IconButton>
-          ) : null}
+              >
+                <ThumbUpIcon
+                  sx={{
+                    fontSize: "25px",
+                    color: "rgb(128, 126, 126)",
+                    // marginRight: "20px",
+                    textAlign: "center",
+                  }}
+                />
+                <span className="likecount">
+                  {individualBlog?.likes?.length}
+                </span>
+              </IconButton>
+            ) : null}
 
-          <IconButton onClick={toggleDrawer("right", true)}>
-            <ModeCommentOutlinedIcon
-              sx={{
-                fontSize: "25px",
-                color: "rgb(128, 126, 126)",
-                // marginRight: "20px",
-              }}
-            />
-          </IconButton>
-        </div>
+            <IconButton onClick={toggleDrawer("right", true)}>
+              <ModeCommentOutlinedIcon
+                sx={{
+                  fontSize: "25px",
+                  color: "rgb(128, 126, 126)",
+                  // marginRight: "20px",
+                }}
+              />
+            </IconButton>
+          </div>
+        ) : null}
       </div>
       <div className="reletedBLogComponent">
         <ReletedBlogCoponent />

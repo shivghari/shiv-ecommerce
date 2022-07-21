@@ -17,13 +17,13 @@ import Paper from "@mui/material/Paper";
 import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import { useTheme } from '@mui/material/styles';
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { useTheme } from "@mui/material/styles";
 
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
@@ -76,28 +76,36 @@ function TablePaginationActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -120,24 +128,26 @@ function AdminProductList() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-    //Table Pagination Logic 
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-  
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-      page > 0 ? Math.max(0, (1 + page) * rowsPerPage - filterProducts.length) : 0;
-  
-    const handleChangePage = (event, newPage) => {
-      setPage(newPage);
-    };
-  
-    const handleChangeRowsPerPage = (event) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
-    };
-  
-    //end table Pagination
+  //Table Pagination Logic
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  // Avoid a layout jump when reaching the last page with empty rows.
+  const emptyRows =
+    page > 0
+      ? Math.max(0, (1 + page) * rowsPerPage - filterProducts.length)
+      : 0;
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  //end table Pagination
 
   useEffect(() => {
     axios
@@ -277,10 +287,11 @@ function AdminProductList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-
-                
-              {(rowsPerPage > 0
-                  ? filterProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                {(rowsPerPage > 0
+                  ? filterProducts.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
                   : filterProducts
                 ).map((item, index) => (
                   <TableRow>
@@ -288,66 +299,63 @@ function AdminProductList() {
                       {index}
                     </TableCell>
                     <TableCell align="left">
-                        <div className="nameImgHolder">
-                          <img
-                            src={`http://localhost:3001/static/${item.image}`}
-                            height="50px"
-                            width="50px"
-                            alt="Product"
-                          />
-                          <h6
-                            style={{
-                              marginTop: "16px",
-                              width: "150px",
-                              marginLeft: "10px",
-                            }}
-                          >
-                            {item.prouctname}
-                          </h6>
-                        </div>
-                      </TableCell>
-                      <TableCell align="left">{item.category}</TableCell>
-                      <TableCell align="left">{item.price} ₹</TableCell>
-                      <TableCell align="left">{item.costofitem}</TableCell>
-                      <TableCell align="left">
-                        {item.costofitem <= 0 ? (
-                          <p>
-                            <span class="dot-outofStock"></span> Out Of Stock
-                          </p>
-                        ) : item.costofitem < 5 ? (
-                          <p>
-                            <span class="dot-limited"></span> Limited Stock
-                          </p>
-                        ) : (
-                          <p>
-                            <span class="dot-instock"></span> In Stock
-                          </p>
-                        )}
-                      </TableCell>
-                      <TableCell align="left">
-                        <DropdownButton
-                          title={<MoreVertIcon />}
-                          className="more"
+                      <div className="nameImgHolder">
+                        <img
+                          src={`http://localhost:3001/static/${item.image}`}
+                          height="50px"
+                          width="50px"
+                          alt="Product"
+                        />
+                        <h6
+                          style={{
+                            marginTop: "16px",
+                            width: "150px",
+                            marginLeft: "10px",
+                          }}
                         >
-                          <Dropdown.Item
-                            onClick={() => {
-                              deleteProduct(item._id);
-                              setdeleteFlag(!deleteFlag);
-                            }}
-                          >
-                            Delete
-                          </Dropdown.Item>
-                          <Dropdown.Item
-                            href="#/action-2"
-                            onClick={() => {
-                              handleOpen();
-                              setSelectedproductID(item._id);
-                            }}
-                          >
-                            Preview
-                          </Dropdown.Item>
-                        </DropdownButton>
-                      </TableCell>
+                          {item.prouctname}
+                        </h6>
+                      </div>
+                    </TableCell>
+                    <TableCell align="left">{item.category}</TableCell>
+                    <TableCell align="left">{item.price} ₹</TableCell>
+                    <TableCell align="left">{item.costofitem}</TableCell>
+                    <TableCell align="left">
+                      {item.costofitem <= 0 ? (
+                        <p>
+                          <span class="dot-outofStock"></span> Out Of Stock
+                        </p>
+                      ) : item.costofitem < 5 ? (
+                        <p>
+                          <span class="dot-limited"></span> Limited Stock
+                        </p>
+                      ) : (
+                        <p>
+                          <span class="dot-instock"></span> In Stock
+                        </p>
+                      )}
+                    </TableCell>
+                    <TableCell align="left">
+                      <DropdownButton title={<MoreVertIcon />} className="more">
+                        <Dropdown.Item
+                          onClick={() => {
+                            deleteProduct(item._id);
+                            setdeleteFlag(!deleteFlag);
+                          }}
+                        >
+                          Delete
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          href="#/action-2"
+                          onClick={() => {
+                            handleOpen();
+                            setSelectedproductID(item._id);
+                          }}
+                        >
+                          Preview
+                        </Dropdown.Item>
+                      </DropdownButton>
+                    </TableCell>
                   </TableRow>
                 ))}
 
@@ -363,14 +371,19 @@ function AdminProductList() {
                   <TableCell></TableCell>
                   <TableCell></TableCell>
                   <TablePagination
-                    rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                    rowsPerPageOptions={[
+                      5,
+                      10,
+                      25,
+                      { label: "All", value: -1 },
+                    ]}
                     colSpan={3}
                     count={filterProducts.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     SelectProps={{
                       inputProps: {
-                        'aria-label': 'rows per page',
+                        "aria-label": "rows per page",
                       },
                       native: true,
                     }}

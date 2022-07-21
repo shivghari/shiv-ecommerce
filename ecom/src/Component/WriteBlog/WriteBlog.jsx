@@ -25,9 +25,11 @@ function WriteBlog() {
   const { Option } = Select;
   const children = [];
 
-  for (let i = 0; i < 5; i++) {
-    children.push(<Option key={i}>{i}</Option>);
-  }
+  const defaultTagOption = ["Technology", "React", "NodeJS", "Environment"];
+
+  defaultTagOption.map((tag) => {
+    children.push(<Option key={tag}>{tag}</Option>);
+  });
 
   const handleChange = (value) => {
     setblogtag(`${value}`);

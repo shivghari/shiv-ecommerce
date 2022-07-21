@@ -12,10 +12,10 @@ function MostLikedBlog() {
     axios
       .post("http://localhost:3001/handleBlog/getAllDisplayBlog")
       .then((response) => {
-        var mostLiked = response?.data?.response?.slice(0, 5)?.sort((a, b) => {
+        var mostLiked = response?.data?.response?.sort((a, b) => {
           return b?.likes.length - a?.likes.length;
         });
-        setallBlog(mostLiked);
+        setallBlog(mostLiked.slice(0, 5));
       })
       .catch((err) => {
         console.log("err", err);

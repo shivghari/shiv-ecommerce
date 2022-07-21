@@ -181,8 +181,7 @@ function CommonNav() {
           ) : null}
         </div>
         <div>
-          {loginUserRole === "admin" &&
-          localStorage.getItem("token") != undefined ? (
+          {localStorage.getItem("token") != undefined ? (
             <div
               className="blogSec"
               onClick={() => {

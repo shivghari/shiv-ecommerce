@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import "./BlogAdminDetailView.css";
+import Alert from "@mui/material/Alert";
 
 function BlogAdminDetailView({ blogID }) {
   const [blogSoloData, setblogSoloData] = useState({});
+  const [approveState, setapproveState] = useState(null);
 
   const approveFunction = () => {
     axios
@@ -20,10 +22,19 @@ function BlogAdminDetailView({ blogID }) {
         }
       )
       .then((response) => {
-        console.log(response);
+        setapproveState(
+          <Alert severity="success">
+            Blog Approved Successfully — Check Out.
+          </Alert>
+        );
       })
       .catch((err) => {
         console.log(err, "err in Approving");
+        setapproveState(
+          <Alert severity="error">
+            Blog Not Approved — Something is Wrong..!
+          </Alert>
+        );
       });
   };
 
@@ -79,6 +90,11 @@ function BlogAdminDetailView({ blogID }) {
       {blogSoloData?.content?.split("\n").map((item) => (
         <p>{item}</p>
       ))}
+
+      <div style={{ marginTop: "10px", marginBottom: "10px" }}>
+        {approveState}
+      </div>
+
       <Button
         className="DeleteBtn"
         onClick={() => {
