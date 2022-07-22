@@ -1,0 +1,109 @@
+.zoomProductContainer {
+  height: 410px;
+  width: 65%;
+  margin: auto;
+  box-shadow: #dddff9 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-top: 60px;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.productImageContainer {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .ImageColumn {
+  margin-top: 10px;
+} */
+
+.ColumnImageStyle {
+  border: 1px solid #edefff;
+  padding: 10px;
+  margin: 6px;
+  object-fit: cover;
+}
+
+/* .SoloBogImage {
+  margin-top: 10px;
+} */
+
+.ViewProductDetalisContainer {
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  padding-left: 30px;
+  margin-top: 0%;
+}
+
+.ViewProductNamePage {
+  color: #151875;
+  font-size: 36px;
+  font-style: "Josefin Sans";
+  font-weight: 500;
+  margin: 0%;
+}
+.ratingAndGui {
+  /* text-align: left; */
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  /* margin: auto; */
+}
+
+.ratingAndGui p {
+  margin-left: 5px;
+  color: rgb(175, 175, 175);
+  font-weight: 500;
+}
+
+.ViewProductPriceContainer {
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  /* margin: auto; */
+}
+
+.ViewProductPrice {
+  font-size: 18px;
+  color: #151875;
+}
+
+.ViewProductStakedPrice {
+  margin-left: 20px;
+  font-size: 18px;
+  color: #fb2e86;
+}
+
+.ViewPRodctDesc {
+  font-size: 18px;
+  color: #a9acc6;
+}
+
+.ViewButtonAddtoCartButtonHolder {
+  margin-top: 40px;
+}
+
+.ViewButtonAddtoCartButton {
+  background-color: #fb2e86;
+  border: #fb2e86;
+}
+
+.ViewButtonAddtoCartButton:hover {
+  background-color: #ff1178;
+  border: #ff1178;
+}
+
+.tagsAndCategories {
+  font-size: 18px;
+  color: #151875;
+  font-weight: 500px;
+  margin-top: 40px;
+}
+
+.tagsAndCategories p {
+  margin: 0%;
+}

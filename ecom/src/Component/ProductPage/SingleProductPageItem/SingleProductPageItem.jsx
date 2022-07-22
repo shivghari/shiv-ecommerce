@@ -9,7 +9,7 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../../Feature/cartSlice";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 
 function SingleProductPageItem({
@@ -22,6 +22,7 @@ function SingleProductPageItem({
   ratevotecount,
 }) {
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const [liked, setliked] = useState();
   const [unlike, setunlike] = useState(true);
@@ -93,7 +94,12 @@ function SingleProductPageItem({
       <div className="productCard">
         <div className="imgiconHolder">
           <div className="iconHolder">
-            <ZoomInIcon className="iconGrid" />
+            <ZoomInIcon
+              className="iconGrid"
+              onClick={() => {
+                Navigate(`/thisProduct/${productID}`);
+              }}
+            />
             <ShoppingCartIcon
               className="iconGrid"
               onClick={() => {

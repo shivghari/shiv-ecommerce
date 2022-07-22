@@ -21,6 +21,7 @@ import Pagination from "./Component/Pagination/Pagination";
 import WriteBlog from "./Component/WriteBlog/WriteBlog";
 import BlogDisplayPage from "./Component/BlogDisplayPage/BlogDisplayPage";
 import DisplayBlogDetailView from "./Component/BlogDisplayPage/DisplayBlogDetailView/DisplayBlogDetailView";
+import ViewSingleProduct from "./Component/ProductPage/ViewSingleProduct/ViewSingleProduct";
 
 import Page404 from "./Component/Page404/Page404";
 
@@ -71,6 +72,11 @@ function App() {
               exact
               path="/thisBlog/:blogID"
               element={<DisplayBlogDetailView />}
+            ></Route>
+            <Route
+              exact
+              path="/thisProduct/:productID"
+              element={<ViewSingleProduct />}
             ></Route>
             <Route exact path="*" element={<Page404 />}></Route>
           </Routes>
