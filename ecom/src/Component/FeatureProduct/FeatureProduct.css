@@ -13,6 +13,7 @@
   display: flex;
   justify-content: space-evenly;
   overflow-x: scroll;
+  padding-top: 50px;
 }
 
 .productDisplay::-webkit-scrollbar {

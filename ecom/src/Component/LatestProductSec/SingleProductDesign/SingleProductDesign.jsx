@@ -97,7 +97,7 @@ function SingleProductDesign({
 
   return (
     <div className="SingleproductCardContainer">
-      <Card style={{ width: "300px" }}>
+      <Card style={{ width: "300px", height: "370px", margin: "5px" }}>
         <div className="card-content">
           <div className="ImgIconContainer">
             <div className="IconListHolder">

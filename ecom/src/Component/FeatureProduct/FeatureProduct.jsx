@@ -4,6 +4,7 @@ import FeatureSec1 from "../FeatureSec1/FeatureSec1";
 import { Carousel, Col, Row } from "react-bootstrap";
 
 import axios from "axios";
+import { maxHeight } from "@mui/system";
 
 function FeatureProduct() {
   const [index, setIndex] = useState(0);
@@ -30,93 +31,24 @@ function FeatureProduct() {
     <div className="FeatureProductContainer">
       <div className="featureProduct-heading">
         <h1>Featured Product</h1>
-        <div className="productDisplay">
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            {data.map((item) => (
-              <FeatureSec1
-                productPhoto={`http://localhost:3001/static/${item.image}`}
-                productname={item.prouctname}
-                productCode={item._id}
-                productPrice={item.price}
-                productRating={item.rating}
-              />
-            ))}
-          </div>
-          {/* <Carousel
-            activeIndex={index}
-            onSelect={handleSelect}
-            variant="dark"
-            className="SliderContainer"
-          >
-            <Carousel.Item className="slider-component">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                {data.map((item) => (
-                  <FeatureSec1
-                    productPhoto={`http://localhost:3001/static/${item.image}`}
-                    productname={item.prouctname}
-                    productCode={item._id}
-                    productPrice={item.price}
-                  />
-                ))}
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <FeatureSec1
-                  productPhoto={FP2}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-                <FeatureSec1
-                  productPhoto={FP1}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-                <FeatureSec1
-                  productPhoto={FP4}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-                <FeatureSec1
-                  productPhoto={FP3}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-              </div>
-            </Carousel.Item>
-            <Carousel.Item>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <FeatureSec1
-                  productPhoto={FP2}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-                <FeatureSec1
-                  productPhoto={FP1}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-                <FeatureSec1
-                  productPhoto={FP4}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-                <FeatureSec1
-                  productPhoto={FP3}
-                  productname={"Cantilever chair"}
-                  productCode={"Code . 21123"}
-                  productPrice={"41.00$"}
-                />
-              </div>
-            </Carousel.Item>
-          </Carousel> */}
+      </div>
+      <div className="productDisplay">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            height: "470px",
+          }}
+        >
+          {data.map((item) => (
+            <FeatureSec1
+              productPhoto={`http://localhost:3001/static/${item.image}`}
+              productname={item.prouctname}
+              productCode={item._id}
+              productPrice={item.price}
+              productRating={item.rating}
+            />
+          ))}
         </div>
       </div>
     </div>
