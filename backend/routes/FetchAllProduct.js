@@ -37,4 +37,22 @@ router.post("/getPerticularProduct", verifyToken, (req, res) => {
   });
 });
 
+router.post("/getRelatedProduct", (req, res) => {
+  Product.find({ category: req.body.productCategory })
+    .then((data) => {
+      var newdata = data.filter((product) => {
+        if (product?._id != req.body.neglateProductID) {
+          return product;
+        }
+      });
+      response = newdata?.slice(0, 4);
+      res.status(200).json({ response });
+    })
+    .catch((err) => {
+      res
+        .status(300)
+        .json({ message: "Something went wring in fetching relataed Product" });
+    });
+});
+
 module.exports = router;

@@ -162,8 +162,8 @@ function AdminProductList() {
 
         var filterArr = [];
         response.data.map((item) => {
-          if (!filterArr.includes(item.category)) {
-            filterArr.push(item.category);
+          if (!filterArr.includes(item.category?.toLowerCase())) {
+            filterArr.push(item.category?.toLowerCase());
           }
         });
 
@@ -219,7 +219,7 @@ function AdminProductList() {
 
   const categoryFilter = (category) => {
     const newArr = copyData.filter((item) => {
-      if (item.category === category) {
+      if (item.category.toLowerCase() === category.toLowerCase()) {
         return item;
       }
     });
@@ -302,14 +302,14 @@ function AdminProductList() {
                       <div className="nameImgHolder">
                         <img
                           src={`http://localhost:3001/static/${item.image}`}
-                          height="50px"
-                          width="50px"
+                          height="70px"
+                          width="70px"
                           alt="Product"
                         />
                         <h6
                           style={{
                             marginTop: "16px",
-                            width: "150px",
+                            width: "300px",
                             marginLeft: "10px",
                           }}
                         >

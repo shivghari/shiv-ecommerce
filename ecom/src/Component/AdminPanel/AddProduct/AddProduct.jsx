@@ -3,8 +3,11 @@ import "./AddProduct.css";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import Alert from "@mui/material/Alert";
 
 function AddProduct() {
+  const [addProductAlert, setaddProductAlert] = useState();
+
   const [productImg, setproductImg] = useState();
   const [productName, setproductName] = useState("");
   const [Desc, setDesc] = useState("");
@@ -32,20 +35,40 @@ function AddProduct() {
 
     axios
       .post("http://localhost:3001/addproduct", AddProductData, {
-        headers : {
-          "Authorization" : JSON.parse(localStorage.getItem("token")).token
-        }
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("token")).token,
+        },
       })
       .then((response) => {
         console.log("Data Submmited ", response);
+        setaddProductAlert(
+          <Alert severity="success">
+            Product Added to the Store — check it out!
+          </Alert>
+        );
       })
       .catch((err) => {
         console.log(err);
+        setaddProductAlert(
+          <Alert severity="error">
+            Somethig went wrong while adding Product — check it out!
+          </Alert>
+        );
       });
   };
 
   return (
     <div>
+      <div
+        style={{
+          marginTop: "5px",
+          marginBottm: "10px",
+          width: "90%",
+          margin: "auto",
+        }}
+      >
+        {addProductAlert}
+      </div>
       <div className="buttonBar">
         <div>
           <h2>Add Product</h2>

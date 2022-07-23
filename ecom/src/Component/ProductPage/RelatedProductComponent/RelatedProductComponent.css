@@ -1,0 +1,52 @@
+.relatedProductMainContaier {
+  width: fit-content;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.singleProductContainer {
+  margin: 20px;
+}
+
+.containerDivOfProduct {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.RelatedProductDetailsContainer {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+  color: #151875;
+}
+.RelatedProductDetailsContainer p {
+  margin: 0%;
+  margin-bottom: 5px;
+}
+
+.flexContainerforRateCount {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ratingAndPriceHolder {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  text-align: left;
+  font-size: 16px;
+  color: #fb2e86;
+  margin: 0%;
+  font-weight: 500;
+  /* margin: auto; */
+}
+
+.soloRateContainer {
+  color: rgb(177, 177, 177);
+  margin-top: -2px;
+}
+
+.imagesCover {
+  border: 1px solid rgb(213, 213, 213);
+}
