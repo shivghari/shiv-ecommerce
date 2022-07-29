@@ -1,6 +1,41 @@
 .productGridHolder {
-    width: 80%;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.filterContainerHolder {
+  height: 70px;
+  width: 100%;
+  border: 1px solid rgb(235, 235, 235);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.CategoryFilterHolder {
+  width: 30%;
+  margin-top: 8px;
+}
+
+.priceFilter {
+  width: 30%;
+  margin-top: 15px;
+}
+
+.priceFilter p {
+  margin: 0%;
+}
+
+.ratingFilterContainer {
+  margin: auto;
+}
+
+.ratingFilterContainer p {
+  margin: 0%;
+}
+
+.filterButton {
+  margin: auto;
 }
