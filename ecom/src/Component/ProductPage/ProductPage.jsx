@@ -21,6 +21,7 @@ function ProductPage() {
   const [filterRating, setfilterRating] = useState(0);
   const [filterPrice, setfilterPrice] = useState([0, 100000000000]);
   const [filterCategory, setfilterCategory] = useState([]);
+  const [categoryShow, setcategoryShow] = useState([]);
 
   const handleChange = (value) => {
     console.log(value);
@@ -29,34 +30,39 @@ function ProductPage() {
 
   //handle filter function
   const handleFilter = () => {
-    console.log("function is called", [
-      filterCategory,
-      filterPrice,
-      filterRating,
-    ]);
-    var filterdProduct = productData?.filter((product) => {
-      if (
-        product.price >= parseInt(filterPrice[0]) &&
-        product.price <= parseInt(filterPrice[1])
-      ) {
-        if (product.rating >= filterRating) {
-          if (filterCategory.length && filterCategory[0] != "All") {
-            if (filterCategory.includes(product.category.toLowerCase())) {
-              return product;
+    setproductData(copyProductData);
+
+    var filterdProduct = copyProductData?.filter((product) => {
+      if (filterCategory.length) {
+        if (
+          product.price >= parseInt(filterPrice[0]) &&
+          product.price <= parseInt(filterPrice[1])
+        ) {
+          if (product.rating >= filterRating) {
+            if (filterCategory.length && filterCategory[0] != "All") {
+              if (filterCategory.includes(product.category.toLowerCase())) {
+                return product;
+              }
             }
           }
+        }
+      } else {
+        if (
+          product.price >= parseInt(filterPrice[0]) &&
+          product.price <= parseInt(filterPrice[1]) &&
+          product.rating >= parseInt(filterRating)
+        ) {
+          return product;
         }
       }
     });
     if (filterdProduct.length) {
       setproductData(filterdProduct);
+      console.log(filterdProduct, "check filter");
     } else {
       setproductData(copyProductData);
     }
   };
-
-  //selcect Dropdown options array
-  const categoryArr = ["All", "cosmatic", "watch", "chair", "shoes"];
 
   //range filter slider
 
@@ -70,6 +76,17 @@ function ProductPage() {
         console.log(response.data.response);
         setproductData(response.data.response);
         setcopyProductData(response.data.response);
+        var catArr = ["All"];
+        response?.data?.response?.map((item) => {
+          if (!catArr.includes(item.category)) {
+            catArr.push(item.category);
+          }
+        });
+        if (catArr.length) {
+          setcategoryShow(catArr);
+        } else {
+          setcategoryShow(["All", "cosmatic", "watch", "chair", "shoes"]);
+        }
         setisFetching(false);
         if (localStorage.getItem("token")) {
           dispatch(
@@ -100,7 +117,7 @@ function ProductPage() {
             placeholder="Select Category"
             onChange={handleChange}
           >
-            {categoryArr?.map((item) => (
+            {categoryShow?.map((item) => (
               <Option key={item} style={{ width: "30%" }}>
                 {item}
               </Option>
