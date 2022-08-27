@@ -57,7 +57,6 @@ function WebNavbar() {
             >
               Blog
             </Nav.Link>
-            <Nav.Link className="links">Shop</Nav.Link>
             <Nav.Link
               className="links"
               onClick={() => {
@@ -65,6 +64,14 @@ function WebNavbar() {
               }}
             >
               Contact
+            </Nav.Link>
+            <Nav.Link
+              className="links"
+              onClick={() => {
+                Navigate("/aboutme");
+              }}
+            >
+              About Me
             </Nav.Link>
           </Nav>
           <Form className="d-flex">

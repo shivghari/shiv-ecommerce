@@ -22,6 +22,7 @@ import WriteBlog from "./Component/WriteBlog/WriteBlog";
 import BlogDisplayPage from "./Component/BlogDisplayPage/BlogDisplayPage";
 import DisplayBlogDetailView from "./Component/BlogDisplayPage/DisplayBlogDetailView/DisplayBlogDetailView";
 import ViewSingleProduct from "./Component/ProductPage/ViewSingleProduct/ViewSingleProduct";
+import AboutMe from "./Component/AboutMe/AboutMe";
 
 import Page404 from "./Component/Page404/Page404";
 
@@ -78,6 +79,7 @@ function App() {
               path="/thisProduct/:productID"
               element={<ViewSingleProduct />}
             ></Route>
+            <Route exact path="/aboutme" element={<AboutMe />}></Route>
             <Route exact path="*" element={<Page404 />}></Route>
           </Routes>
           <Footer />

@@ -1,0 +1,208 @@
+.AboutMeContainer {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.bigBio {
+  color: #151875;
+  font-family: Bahnschrift SemiBold;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.miniLine {
+  font-size: 20px;
+  color: #151875;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin-top: -10px;
+}
+
+.imgAndHello {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #6f42c1;
+  margin-top: 60px;
+}
+
+.HelloContent {
+  margin: auto;
+  justify-content: center;
+  color: white;
+  margin-left: -20px;
+}
+
+.HelloContent h1 {
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 2px;
+}
+
+.HelloContent p {
+  font-size: 20px;
+}
+
+.skills {
+  background-color: #6f42c1;
+  height: 200px;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 450px;
+}
+
+.Educations {
+  height: 500px;
+  width: 32%;
+  background-color: white;
+  border: 2px solid #6f42c1;
+  border-radius: 10px;
+}
+.FullstackDev {
+  height: 500px;
+  width: 32%;
+  background-color: white;
+  border: 2px solid #6f42c1;
+  border-radius: 10px;
+}
+.Mentor {
+  height: 500px;
+  width: 32%;
+  background-color: white;
+  border: 2px solid #6f42c1;
+  border-radius: 10px;
+}
+
+.imageDesignedu {
+  margin-top: 20px;
+  height: 70px;
+  width: 70px;
+}
+
+.imgDesignDev {
+  margin-top: 40px;
+  height: 52px;
+  width: 52px;
+}
+
+.imgDesignMentor {
+  margin-top: 40px;
+  height: 52px;
+  width: 52px;
+}
+
+.roleHeading {
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  margin-top: 10px;
+  font-family: Arial Black;
+}
+
+.roleDesc {
+  font-size: 16px;
+  width: 90%;
+  margin: auto;
+  font-weight: 500;
+}
+
+.HeadingsOnBlocks {
+  font-size: 16px;
+  color: #6f42c1;
+  font-weight: 500;
+  margin: 0%;
+  margin-top: 20px;
+}
+
+.actualTools {
+  font-size: 16px;
+  font-weight: 500;
+  width: 95%;
+  margin: auto;
+}
+
+.bigBioWork {
+  color: #151875;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 35px;
+}
+
+.taglineProjects {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.projectHolder {
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  margin-top: 60px;
+}
+
+.projectImage {
+  height: 280px;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.projectHeading {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.collobration {
+  width: 90%;
+  margin: auto;
+  background-color: #6f42c1;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  height: 150px;
+  margin-top: 60px;
+}
+
+.StartProject {
+  margin: auto;
+  width: 20%;
+}
+
+.StartProject h1 {
+  font-size: 35px;
+  font-family: impact;
+  margin: 0%;
+  color: white;
+}
+
+.quote {
+  width: 40%;
+  margin: auto;
+}
+
+.quote p {
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+  width: 80%;
+  margin: auto;
+  margin-left: -5px;
+}
+
+.letDoButton {
+  margin: auto;
+  border: 2px solid white;
+  padding: 10px 30px 10px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+.letDoButton:hover {
+  background-color: white;
+  color: #6f42c1;
+}
